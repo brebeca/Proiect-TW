@@ -3,6 +3,7 @@
   margin: 0;
   list-style: none;
   text-decoration: none;
+  
 }
 body {
   font-family: 'Roboto', sans-serif;
@@ -12,7 +13,7 @@ body {
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #2c292f;
+  background: #e0ac1c;
   transition: all .5s ease;
 }
 .sidebar header {
@@ -20,7 +21,7 @@ body {
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #736b7b;
+  background: #ebc660;
   user-select: none;
 }
 .sidebar ul a{
@@ -91,8 +92,7 @@ label #cancel{
 
 ul.nav-menu{
   padding-left:100px;
-  padding-right: :100px;
-  border-bottom: 1px black solid;
+  padding-right: 100px;
 }
 
 ul.nav-menu li a{
@@ -106,7 +106,7 @@ ul.nav-menu li a{
   box-sizing: border-box;
   border-left:  1px  #1d3030 solid;
   width: 200px;
-
+  background: #2c292f;
 }
 ul.nav-menu li a:hover{
   color:#92999f;
@@ -117,8 +117,31 @@ ul.nav-menu li a:hover{
 #check:checked ~ section{
   margin-left: 250px;
 }
+@media only screen and (max-width: 768px) {
+  
+  ul.nav-menu li a{
+    width: 70%;
+    border-bottom:  1px black solid;
+    border-left:  1px black solid;
+    border-right:  1px black solid;
+  }
+}
+
+@media only screen and (max-width: 989px){
+  ul.nav-menu{
+    padding-right:0;
+  }
+  ul.nav-menu li a{
+    border-bottom:  1px black solid;
+    border-left:  1px black solid;
+    border-right:  1px black solid;
+  }
+}
+
+
 section{
-  background-color: #e0ac1c;
+  /*background-color: #e0ac1c;*/
+  background: linear-gradient(182deg, #2c292f, #e0ac1c);
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -131,8 +154,8 @@ section{
 
 
 .contact-section{
-  background: #e0ac1c;
-  background-size: cover;
+  background-color: #e0ac1c;
+  border-radius: 5%;
   color: #fff;
   padding: 40px 0;
   width: 550px;
@@ -217,7 +240,12 @@ textarea.contact-form-text{
  background: #2c292f;
 }
 
-
+@media only screen and (max-width: 768px) {
+  
+  .contact-section{
+    margin-top: 15%;
+  }
+}
 
 
 /*Footer*/
