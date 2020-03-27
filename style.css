@@ -91,8 +91,7 @@ label #cancel{
 
 ul.nav-menu{
   padding-left:100px;
-  padding-right: :100px;
-  border-bottom: 1px black solid;
+  padding-right: 100px;
 }
 
 ul.nav-menu li a{
@@ -106,7 +105,7 @@ ul.nav-menu li a{
   box-sizing: border-box;
   border-left:  1px  #1d3030 solid;
   width: 200px;
-
+  background: #2c292f;
 }
 ul.nav-menu li a:hover{
   color:#92999f;
@@ -117,6 +116,26 @@ ul.nav-menu li a:hover{
 #check:checked ~ section{
   margin-left: 250px;
 }
+@media only screen and (max-width: 768px) {
+  
+  ul.nav-menu li a{
+    width: 70%;
+   
+  }
+}
+
+@media only screen and (max-width: 990px){
+  ul.nav-menu{
+    padding-left: 250px;
+    padding-right:0;
+  }
+   ul.nav-menu li a{
+    border-bottom:  1px black solid;
+    border-left:  1px black solid;
+    border-right:  1px black solid;}
+}
+
+
 section{
   background: url(poza_prima_pagina.jpg) no-repeat;
   background-position: center;
@@ -126,61 +145,77 @@ section{
 }
 
 
-/*casuta de cautare*/
-.buton_cautare{
-  position: absolute;
-  top :75%;
-  left:45%;
-  transform: translate(-35%,-50%);
-
-}
-input {
-  border :2px solid #1d3030;
-  font-size: 27px;
-  height: 70px;
-  width: 400px;
-  border-radius: 35px;
-  padding: 10px;
-  opacity: 0.5;
-}
-.icon {  
-  position: absolute;
-  left:83%;
-  top:22%;
- 
-
-}
-
 /*Elementu principal cu text*/
 .element_mijloc{
-  position:absolute;
-  top :22%;
-  left:26%;
+  top: 55%;
+	left: 50%;
   border-radius: 35px;
   width: 800px;
   height: 400px;
   background: rgba(44, 41, 47, 0.3);
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
 }
+
+
+
 .element_mijloc h2{
-  position:relative;
-  top:10%;
+  position: relative;
+  top:7%;
   color: #660066;
   text-align: center;
   font: bold 50px sans-serif;
-  font-weight: bold
-  
-
+  font-weight: bold;
 }
 
 .element_mijloc p{
-  position:absolute;
-  top:30%;
+  position: relative;
+  top:7%;
   text-align: center;
-   font-weight: normal;
+  font-weight: normal;
   font: bold 30px sans-serif;
   color:white;
 }
 
+/*casuta de cautare*/
+.buton_cautare{
+  position: absolute;
+  top:60%;
+  left:28%;
+}
+
+input {
+  border :2px solid #1d3030;
+  font-size: 27px;
+  height: 70px;
+  width: 80%;
+  border-radius: 35px;
+  opacity: 0.5;
+  max-width: 500px;
+  box-sizing: border-box;
+ 
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .element_mijloc {
+    width: 100%;
+    top:58%;
+  }
+  .element_mijloc .buton_cautare input,
+  .element_mijloc .buton_cautare a
+  .element_mijloc p,
+  .element_mijloc h1 {
+    display:block;
+  }
+  .buton_cautare a {
+    padding-left: 40%;
+  }
+  .buton_cautare  {
+    padding-top: 5%;
+  }
+}
  
  
 /* footer*/
@@ -299,6 +334,7 @@ footer{
   color:  #e0ac1c;
   text-decoration: none;;
 }
+
  
  
 /* Footer Right */
@@ -321,6 +357,26 @@ footer{
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+ 
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+ 
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+ 
+	margin-right: 3px;
+	margin-bottom: 5px;
 }
  
  
