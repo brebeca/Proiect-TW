@@ -12,7 +12,7 @@ body {
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #e0ac1c;
+  background: #2c292f;
   transition: all .5s ease;
 }
 .sidebar header {
@@ -20,7 +20,7 @@ body {
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #ebc660;
+  background: #736b7b;
   user-select: none;
 }
 .sidebar ul a{
@@ -92,6 +92,7 @@ label #cancel{
 ul.nav-menu{
   padding-left:100px;
   padding-right: 100px;
+  border-bottom: 1px black solid;
 }
 
 ul.nav-menu li a{
@@ -105,7 +106,7 @@ ul.nav-menu li a{
   box-sizing: border-box;
   border-left:  1px  #1d3030 solid;
   width: 200px;
-  background: #2c292f;
+
 }
 ul.nav-menu li a:hover{
   color:#92999f;
@@ -116,28 +117,8 @@ ul.nav-menu li a:hover{
 #check:checked ~ section{
   margin-left: 250px;
 }
-@media only screen and (max-width: 768px) {
-  
-  ul.nav-menu li a{
-    width: 70%;
-   
-  }
-}
-
-@media only screen and (max-width: 990px){
-  ul.nav-menu{
-    padding-left: 250px;
-    padding-right:0;
-  }
-   ul.nav-menu li a{
-    border-bottom:  1px black solid;
-    border-left:  1px black solid;
-    border-right:  1px black solid;}
-}
-
-
 section{
-  background: url(poza_prima_pagina.jpg) no-repeat;
+  background-color: #e0ac1c;
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -145,81 +126,64 @@ section{
 }
 
 
-/*Elementu principal cu text*/
-.element_mijloc{
-  top: 55%;
-	left: 50%;
-  border-radius: 35px;
-  width: 800px;
-  height: 400px;
-  background: rgba(44, 41, 47, 0.3);
-	position: absolute;
-	transform: translate(-50%,-50%);
-	box-sizing: border-box;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 200px;
+  column-gap: 10%;
+  row-gap: 50px;
+}
+.grid-item {
+  background-color: rgb(0, 0, 53);
+  border: 1px solid black;
+  font-size: 30px;
+}
+
+.collapsible {
+  background-color: #ddd;
+  padding: 20px;
+  width: 100%;
+  color: black;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.deschis, .collapsible:hover {
+  background-color: #ccc;
 }
 
 
+.content {
+  padding: 0 1em;
+  max-height:0;
+  overflow: hidden;
+  background-color: white;
+  transition: max-height 0.2s ease-out;
+}
 
-.element_mijloc h2{
+.filtre{
+  padding:50px 5%;
+  max-width:20%;
+}
+
+.filtre .container{
+  display: block;
   position: relative;
-  top:7%;
-  color: #660066;
-  text-align: center;
-  font: bold 50px sans-serif;
-  font-weight: bold;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
-.element_mijloc p{
-  position: relative;
-  top:7%;
-  text-align: center;
-  font-weight: normal;
-  font: bold 30px sans-serif;
-  color:white;
-}
+/*Footer*/
 
-/*casuta de cautare*/
-.buton_cautare{
-  position: absolute;
-  top:60%;
-  left:28%;
-}
-
-input {
-  border :2px solid #1d3030;
-  font-size: 27px;
-  height: 70px;
-  width: 80%;
-  border-radius: 35px;
-  opacity: 0.5;
-  max-width: 500px;
-  box-sizing: border-box;
- 
-}
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  .element_mijloc {
-    width: 100%;
-    top:58%;
-  }
-  .element_mijloc .buton_cautare input,
-  .element_mijloc .buton_cautare a
-  .element_mijloc p,
-  .element_mijloc h1 {
-    display:block;
-  }
-  .buton_cautare a {
-    padding-left: 40%;
-  }
-  .buton_cautare  {
-    padding-top: 5%;
-  }
-}
- 
- 
-/* footer*/
- 
 footer{
   position: fixed;
   top :0;
@@ -334,7 +298,6 @@ footer{
   color:  #e0ac1c;
   text-decoration: none;;
 }
-
  
  
 /* Footer Right */
@@ -357,26 +320,6 @@ footer{
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
-}
-.footer-distributed .footer-icons{
-	margin-top: 25px;
-}
- 
-.footer-distributed .footer-icons a{
-	display: inline-block;
-	width: 35px;
-	height: 35px;
-	cursor: pointer;
-	background-color:  #33383b;
-	border-radius: 2px;
- 
-	font-size: 20px;
-	color: #ffffff;
-	text-align: center;
-	line-height: 35px;
- 
-	margin-right: 3px;
-	margin-bottom: 5px;
 }
  
  
