@@ -6,10 +6,12 @@
 }
 body {
   font-family: 'Roboto', sans-serif;
+  background: url(poza_prima_pagina.jpg) no-repeat;
+
 }
 .sidebar {
   position: fixed;
-  left: -250px;
+    left: -250px;
   width: 250px;
   height: 100%;
   background: #e0ac1c;
@@ -79,6 +81,9 @@ label #cancel{
 #check:checked ~ label #cancel{
   left: 195px;
 }
+#check:checked ~ section{
+  margin-left: 250px;
+}
 
 
 
@@ -113,14 +118,28 @@ ul.nav-menu li a:hover{
 }
 
 
-#check:checked ~ section{
-  margin-left: 250px;
-}
+
 @media only screen and (max-width: 768px) {
   
   ul.nav-menu li a{
     width: 70%;
    
+  }
+  .sidebar {
+    position: fixed;
+    left: -290px;
+    width:50%px;
+    height: 100%;
+    background: #e0ac1c;
+    transition: all .3s ease;
+  }
+  .sidebar  header{
+    display: none;
+  }
+  .sidebar ul a{
+    height: 50%;
+    font-size: 15px;
+    line-height: 50px;
   }
 }
 
@@ -128,11 +147,16 @@ ul.nav-menu li a:hover{
   ul.nav-menu{
     padding-left: 250px;
     padding-right:0;
+    transition: all .3s ease;
   }
    ul.nav-menu li a{
     border-bottom:  1px black solid;
     border-left:  1px black solid;
-    border-right:  1px black solid;}
+    border-right:  1px black solid;
+    font-size: 17px;
+    transition: all .3s ease;
+  }
+
 }
 
 
@@ -202,6 +226,7 @@ input {
   .element_mijloc {
     width: 100%;
     top:58%;
+    transition: all .3s ease;
   }
   .element_mijloc .buton_cautare input,
   .element_mijloc .buton_cautare a
@@ -214,6 +239,9 @@ input {
   }
   .buton_cautare  {
     padding-top: 5%;
+  }
+  .element_mijloc p{
+    font-size: 23px;
   }
 }
  
