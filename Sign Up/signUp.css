@@ -116,24 +116,47 @@ ul.nav-menu li a:hover{
 #check:checked ~ section{
   margin-left: 250px;
 }
+
 @media only screen and (max-width: 768px) {
   
   ul.nav-menu li a{
     width: 70%;
+   
+  }
+  .sidebar {
+    position: fixed;
+    left: -290px;
+    width:50%px;
+    height: 100%;
+    background: #e0ac1c;
+    transition: all .3s ease;
+  }
+  .sidebar  header{
+    display: none;
+  }
+  .sidebar ul a{
+    height: 50%;
+    font-size: 15px;
+    line-height: 50px;
   }
 }
 
-@media only screen and (max-width: 989px){
+@media only screen and (max-width: 990px){
   ul.nav-menu{
+    padding-left: 250px;
     padding-right:0;
+    transition: all .3s ease;
   }
-  ul.nav-menu li a{
-    
+   ul.nav-menu li a{
     border-bottom:  1px black solid;
     border-left:  1px black solid;
     border-right:  1px black solid;
+    font-size: 17px;
+    transition: all .3s ease;
   }
+
 }
+
 
 
 section{
@@ -234,7 +257,7 @@ hr{
 @media only screen and (max-width: 768px) {
   
   .signupbox{
-    margin-top: 10%;
+    margin-top: 7%;
   }
 }
 
@@ -377,6 +400,27 @@ footer{
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
+
+}
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+ 
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+ 
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+ 
+	margin-right: 3px;
+	margin-bottom: 5px;
 }
  
  
