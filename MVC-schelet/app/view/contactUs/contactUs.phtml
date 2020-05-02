@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Contact Us</title>
+     <link rel="stylesheet" href="/contactUs.css">
+    <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  </head>
+  <body>
+  <input type="checkbox" id="check">
+    <label for="check">
+      <i class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+
+    <div class="sidebar">
+    <header>Optiuni</header>
+  <ul>
+  <li <?php session_start();if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
+    <?php if(isset($_SESSION['login'])) 
+       echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
+    ?>
+    <li><a href="/aboutUs/aboutUS"><i class="fas Despre_noi"></i>Despre noi</a></li>
+    <li><a href="/QA/QA"><i class="fas Intrebari"></i>Intrebari frecvente</a></li>
+    <li><a href="/contactUs/contactUS"><i class="fas Contact"></i>Contact</a></li>
+    <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
+  </ul>
+   </div> 
+
+
+  <div class="contact-section">
+    
+       <h1>CONTACTEAZA-NE,</h1>
+       <h2>NU EZITA!</h2>
+      
+       <div class="info"><h3> Helpline: +04 0770519234 <br/>Luni-Vineri <br/> 10:00 - 17:00</h3></div>
+      <div ><img src="/images/contactUs.jpg" class="img"></div>
+     
+       <form class="contact-form" action="/contactUs/contactUs" method="get"> 
+        <input type="text" name="nume" class="contact-form-text" placeholder="Scrie: nume">
+        <input type="email" name="email" class="contact-form-text" placeholder="Scrie: email">
+        <input type="text"name="tel" class="contact-form-text" placeholder="Scrie: numar telefon">
+        <textarea class="contact-form-text"name="mesaj" placeholder="Scrie: mesaj"></textarea>
+        <input type="submit" class="contact-form-btn" value="Trimite">
+       </form>
+      
+   </div>
+   
+
+
+<nav class="Optiuni">
+      <ul class="nav-menu">
+        <li><a href="/produse/produse">Imbracaminte</a></li>
+        <li><a href="/produse/produse">Electocasnice</a></li>
+        <li><a href="/produse/produse">Telefoane</a></li>
+        <li><a href="/produse/produse">Calculatoare</a></li>
+      </ul>
+</nav>
+
+ <section></section>
+
+
+ <footer class="footer-distributed">
+ 
+  <div class="footer-left">
+    <img src="/images/logo_mic2.png">
+    <h3>Despre<span>CompareIt</span></h3>
+
+    <p class="footer-links">
+    <a href="/home/index">Home</a>
+      |
+      <a href="/aboutUs/aboutUs">Despre noi</a>
+      |
+      <a href="/contactUs/contactUs">Contact</a>
+
+    <p class="footer-company-name">© 2020 CompareIT </p>
+  </div>
+
+  <div class="footer-center">
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>Str. Frunzei nr. 7 , jud Iasi </span>
+       Iasi, Pacurari (cod postal) - 400710</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+       <p>Telefon : </p>
+      <p>+04 0770519234</p>
+    </div>
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p>Email : </p>
+      <p><a href="mailto:birleanurebeca@yahoo.com">support@CompareIt.com</a></p>
+    </div>
+  </div>
+  <div class="footer-right">
+    <p class="footer-company-about">
+      <span>Despre noi </span>
+      Ofrim posibilitaea de a gasi cea mai buna calitate la cel mai bun pret pentru produsul dorit.</p>
+      <div class="footer-icons">
+        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+        <a href="https://twitter.com/login?lang=ro"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+        <a href="https://ro.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+      </div>
+  </div>
+</footer>
+
+</body>
+</html>
