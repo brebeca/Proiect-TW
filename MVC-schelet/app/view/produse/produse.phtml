@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Contact Us</title>
+  <title>Produse</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/produse.css">
  
@@ -112,19 +112,24 @@
 <table>
   <thead>
     <tr>
-        <th>Title</th>
-        <th>Product URL</th>
-        <th>Photo URL</th>
-        <th>Characteristics</th>
+        <th>Titlu</th>
+        <th>Link Produs</th>
+        <th>Link Fotografie</th>
+        <th>Caracteristici</th>
     </tr>
   </thead>
   <tbody>
 <?php foreach ($produse_returnate as $produs): ?>
     <tr id = <?php echo "\"".array_search($produs, $produse_returnate)."\""; ?> >
-      <td><ul><?php echo "<li>"; echo $produs->title; echo "</li>"; ?></ul></td>
-      <td><ul><?php echo "<li>"; echo $produs->detailsURL; echo "</li>"; ?></ul></td>
-      <td><ul><?php echo "<li>"; echo $produs->photoURL; echo "</li>"; ?></ul></td>
-      <td class="details"><ul><?php echo "<li>"; echo implode(",", $produs->items); echo "</li>"; ?></ul></td>
+      <td class="cellWidth"><ul><?php echo "<li>";?> <a href= #><?php echo $produs->title;?></a> <?php echo "</li>";?></ul></td>
+      <td><ul><?php echo "<li>";?> <a href= <?php echo "\"".$produs->detailsURL."\"" ?> >Link Produs</a> <?php echo "</li>"; ?></ul></td>
+      <td class="productImg"><ul> <?php echo "<li>"; if($produs->photoURL != ""): ?> <img src= <?php echo "\"".$produs->photoURL."\"";?>> <?php echo "</li>";?></ul></td>
+        <?php endif; ?>
+      <td class="cellWidth">
+        <?php foreach ($produs->items as $item): ?>
+          <ul><?php echo "<li>"; echo print_r($item); echo "</li>"; ?></ul>
+        <?php endforeach; ?>
+      </td>
     </tr>
 <?php endforeach; ?>
   </tbody>

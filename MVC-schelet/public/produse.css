@@ -265,16 +265,22 @@ ul.nav-menu li a:hover{
 }
 
 
+/*The products table*/
 table{
     border: 1px solid black;
     border-spacing: 5px;
     background-color: #2c292f;
     color: #ebc660;
-    width: 90%;
-    margin-left: 50px;
+    width: 70%;
+    margin-left: 40px;
+    font-family: "Times New Roman", Times, serif;
 }
-td .details{
-  width: 100px;
+.cellWidth ul{
+  width: 350px;
+}
+.productImg img{
+  width: 330px;
+  height: 400px;
 }
 td{
     border: 1px solid black; 
