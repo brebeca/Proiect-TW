@@ -15,7 +15,10 @@ public function __construct(){
        if(method_exists($this->controller,$this->action)){
            call_user_func_array([$this->controller,$this->action],$this->params);
        }
-       else 'homeController'->index;
+       else {
+        $this->controller = new homeController;
+        $this->controller->index();
+       }
        
    }
     else{

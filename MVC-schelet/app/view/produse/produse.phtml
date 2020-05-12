@@ -6,6 +6,7 @@
   <title>Contact Us</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/produse.css">
+ 
   <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
@@ -91,41 +92,49 @@
       </div>
     </li>
   </ul>
-  <div class="grid-container">
-    <div class="grid-item">
-      <a href="#Despre-noi">
-        <ul style="list-style-type: none">
-          <li>Despre noi</li>
-          <li><img src="Despre-noi.svg" /></li>
-        </ul>
-      </a>
-    </div>
-    <div class="grid-item">
-      <a href="#Servicii">
-        <ul style="list-style-type:none">
-          <li>Servicii</li>
-          <li><img src="Servicii.svg" /></li>
-        </ul>
-      </a>
-    </div>
-    <div class="grid-item">
-      <a href="#Atestate">
-        <ul style="list-style-type:none">
-          <li>Atestate</li>
-          <li><img src="Atestate.svg" /></li>
-        </ul>
-      </a>
-    </div>
-    <div class="grid-item">
-      <a href="#Contact">
-        <ul style="list-style-type:none">
-          <li>Contact</li>
-          <li><img src="Contact.svg" /></li>
-        </ul>
-      </a>
-    </div>
-  </div>
+  
 
+
+
+
+<?php
+  require_once ('model/produseModel.php');
+  //if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
+         //$produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
+  $produse_returnate=ProduseModel::cautaProdus("Apple", 10);
+
+  if($produse_returnate==false)
+          header("Location:index.php?cautare_esuata=1");
+     
+     
+ if (count($produse_returnate) > 0):
+?>
+
+<table>
+  <thead>
+    <tr>
+        <th>Title</th>
+        <th>Product URL</th>
+        <th>Photo URL</th>
+        <th>Characteristics</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php foreach ($produse_returnate as $produs): ?>
+    <tr id = <?php echo "\"".array_search($produs, $produse_returnate)."\""; ?> >
+      <td><ul><?php echo "<li>"; echo $produs->title; echo "</li>"; ?></ul></td>
+      <td><ul><?php echo "<li>"; echo $produs->detailsURL; echo "</li>"; ?></ul></td>
+      <td><ul><?php echo "<li>"; echo $produs->photoURL; echo "</li>"; ?></ul></td>
+      <td class="details"><ul><?php echo "<li>"; echo implode(",", $produs->items); echo "</li>"; ?></ul></td>
+    </tr>
+<?php endforeach; ?>
+  </tbody>
+</table>
+
+<?php endif; ?>
+
+
+  
   <footer class="footer-distributed">
  
  <div class="footer-left">
