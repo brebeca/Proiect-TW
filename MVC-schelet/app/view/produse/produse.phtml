@@ -99,15 +99,14 @@
 
 <?php
   require_once ('model/produseModel.php');
-  //if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
-         //$produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
-  $produse_returnate=ProduseModel::cautaProdus("Apple", 10);
+  if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
+  {
+      $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
 
-  if($produse_returnate==false)
-          header("Location:index.php?cautare_esuata=1");
-     
-     
- if (count($produse_returnate) > 0):
+      if($produse_returnate==false)
+          header("Location:/index.php?cautare_esuata=1");
+
+      if (count($produse_returnate) > 0):
 ?>
 
 <table>
@@ -131,10 +130,10 @@
   </tbody>
 </table>
 
-<?php endif; ?>
+<?php endif; }?>
 
 
-  
+
   <footer class="footer-distributed">
  
  <div class="footer-left">

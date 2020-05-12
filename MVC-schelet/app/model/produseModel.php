@@ -9,7 +9,7 @@ class Product {
 
 class ProduseModel extends Model{
 
-	public function cautaProdus($produs_de_cuatat, $numar_de_produse_returnate){
+	public static function cautaProdus($produs_de_cuatat, $numar_de_produse_returnate){
 	 $product = ebay::get_product_xml($produs_de_cuatat, $numar_de_produse_returnate);
      $xml = simplexml_load_string($product);
 
@@ -25,13 +25,14 @@ class ProduseModel extends Model{
 	        $productObj->photoURL = (string)$list->StockPhotoURL;
          }
 
+         if(isset($list->ItemSpecifics[0])){
          foreach ($list->ItemSpecifics[0] as $list1){
 
             foreach ( $list1->Value as $item) {
             	
             	array_push($productObj->items, $list1->Name.": ".$item);
             }
-         }
+         }}
          array_push($products, $productObj);
      }
      

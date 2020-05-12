@@ -1,7 +1,7 @@
 <?php
 class ebay {
 
- public function get_product_xml($produs='', $nr_de_produse=1){
+ public static function get_product_xml($produs='', $nr_de_produse=1){
 
     if($produs=='')return false;
 
