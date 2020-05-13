@@ -135,7 +135,7 @@
     .sidebar {
       position: fixed;
       left: -290px;
-      width:50%px;
+      width:50px;
       height: 100%;
       background: #e0ac1c;
       transition: all .3s ease;
@@ -409,8 +409,11 @@
    
   /* Here is the code for Responsive Footer */
   /* You can remove below code if you don't want Footer to be responsive */
-   
-   
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
   @media (max-width: 880px) {
    
     .footer-distributed .footer-left,

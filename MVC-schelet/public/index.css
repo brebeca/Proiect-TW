@@ -1,273 +1,275 @@
 *{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-decoration: none;
-    
-  }
-  body {
-    font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #e0ac1c;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 35px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #ebc660;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #5b460b;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+.sidebar ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background:  #e0ac1c;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 1px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+
+
+
+/*meniul de sus*/
+.nav-menu {
+  background: #2c292f;
+  height:51.5px;
+  width: auto;
+}
+
+ul.nav-menu{
+  padding-left:100px;
+  padding-right: 100px;
+}
+
+ul.nav-menu li a{
+  float:right;
+  height:50px;
+  line-height:55px;
+  color:#ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-left:  1px  #1d3030 solid;
+  width: 200px;
+  background: #2c292f;
+}
+ul.nav-menu li a:hover{
+  color:#92999f;
+  background: rgb(47, 79, 90);
+}
+
+
+#check:checked ~ section{
+  margin-left: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  ul.nav-menu li a{
+    width: 70%;
+
   }
   .sidebar {
     position: fixed;
-    left: -250px;
-    width: 250px;
+    left: -290px;
     height: 100%;
     background: #e0ac1c;
-    transition: all .5s ease;
+    transition: all .3s ease;
   }
-  .sidebar header {
-    font-size: 35px;
-    color: white;
-    line-height: 70px;
-    text-align: center;
-    background: #ebc660;
-    user-select: none;
-  }
-  .sidebar ul a{
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 20px;
-    color: white;
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #5b460b;
-    border-top: 1px solid rgba(255,255,255,.1);
-    transition: .4s;
-  }
-  .sidebar ul li:hover a{
-    padding-left: 50px;
-  }
-  .sidebar ul a i{
-    margin-right: 16px;
-  }
-  #check{
+  .sidebar  header{
     display: none;
   }
-  label #btn,label #cancel{
-    position: absolute;
-    background:  #e0ac1c;
-    border-radius: 3px;
-    cursor: pointer;
+  .sidebar ul a{
+    height: 50%;
+    font-size: 15px;
+    line-height: 40px;
+
   }
-  label #btn{
-    left: 40px;
-    top: 1px;
-    font-size: 35px;
-    color: white;
-    padding: 6px 12px;
-    transition: all .5s;
-  }
-  label #cancel{
-    z-index: 1111;
-    left: -195px;
-    top: 17px;
-    font-size: 30px;
-    color: #0a5275;
-    padding: 4px 9px;
-    transition: all .5s ease;
-  }
-  #check:checked ~ .sidebar{
-    left: 0;
-  }
-  #check:checked ~ label #btn{
-    left: 250px;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #check:checked ~ label #cancel{
-    left: 195px;
-  }
-  
-  
-  
-  /*meniul de sus*/
-  .nav-menu {
-    background: #2c292f;
-    height:51.5px;
-    width: auto;
-  }
-  
+
+}
+
+@media only screen and (max-width: 990px){
   ul.nav-menu{
-    padding-left:100px;
-    padding-right: 100px;
+    padding-left: 250px;
+    padding-right:0;
+    transition: all .3s ease;
   }
-  
   ul.nav-menu li a{
-    float:right;
-    height:50px;
-    line-height:55px;
-    color:#ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    font-size: 20px;
-    box-sizing: border-box;
-    border-left:  1px  #1d3030 solid;
-    width: 200px;
-    background: #2c292f;
+    border-bottom:  1px black solid;
+    border-left:  1px black solid;
+    border-right:  1px black solid;
+    font-size: 17px;
+    transition: all .3s ease;
   }
-  ul.nav-menu li a:hover{
-    color:#92999f;
-     background: rgb(47, 79, 90);
+
+}
+
+
+
+section{
+  background: linear-gradient(182deg, #2c292f, #e0ac1c);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+}
+
+
+
+/*Elementul principal: buton de cautare*/
+
+.element_mijloc{
+  top: 55%;
+  left: 50%;
+  border-radius: 35px;
+  width: 800px;
+  height: 400px;
+  background: rgba(44, 41, 47, 0.3);
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+}
+
+
+
+.element_mijloc h2{
+  position: relative;
+  top:7%;
+  color: #660066;
+  text-align: center;
+  font: bold 50px sans-serif;
+  font-weight: bold;
+}
+
+.element_mijloc p{
+  position: relative;
+  top:7%;
+  text-align: center;
+  font-weight: normal;
+  font: bold 30px sans-serif;
+  color:white;
+}
+
+/*casuta de cautare*/
+.buton_cautare{
+  position: absolute;
+  top:60%;
+  left:28%;
+}
+.bloc_cautare {
+  display: inline-block;
+}
+input {
+  border :2px solid #1d3030;
+  font-size: 27px;
+  height: 70px;
+  width: 85%;
+  border-radius: 35px;
+  opacity: 0.5;
+  max-width: 500px;
+  box-sizing: border-box;
+
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .element_mijloc {
+    width: 100%;
+    top:58%;
+    transition: all .3s ease;
   }
-  
-  
-  #check:checked ~ section{
-    margin-left: 250px;
+  .element_mijloc .buton_cautare input,
+  .element_mijloc .buton_cautare a
+  .element_mijloc p,
+  .element_mijloc h1 {
+    display:block;
   }
-  
-  @media only screen and (max-width: 768px) {
-    
-    ul.nav-menu li a{
-      width: 70%;
-     
-    }
-    .sidebar {
-      position: fixed;
-      left: -290px;
-      height: 100%;
-      background: #e0ac1c;
-      transition: all .3s ease;
-    }
-    .sidebar  header{
-      display: none;
-    }
-    .sidebar ul a{
-      height: 50%;
-      font-size: 15px;
-      line-height: 40px;
-    
+  .buton_cautare a {
+    padding-left: 40%;
   }
-  
+  .buton_cautare  {
+    padding-top: 5%;
   }
-  
-  @media only screen and (max-width: 990px){
-    ul.nav-menu{
-      padding-left: 250px;
-      padding-right:0;
-      transition: all .3s ease;
-    }
-     ul.nav-menu li a{
-      border-bottom:  1px black solid;
-      border-left:  1px black solid;
-      border-right:  1px black solid;
-      font-size: 17px;
-      transition: all .3s ease;
-    }
-   
-  }
-  
-  
-  
-  section{
-    background: linear-gradient(182deg, #2c292f, #e0ac1c);
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    transition: all .5s;
-  }
-  
-  
-  
-  /*Elementul principal: buton de cautare*/
-  
-  .element_mijloc{
-    top: 55%;
-    left: 50%;
-    border-radius: 35px;
-    width: 800px;
-    height: 400px;
-    background: rgba(44, 41, 47, 0.3);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    box-sizing: border-box;
-  }
-  
-  
-  
-  .element_mijloc h2{
-    position: relative;
-    top:7%;
-    color: #660066;
-    text-align: center;
-    font: bold 50px sans-serif;
-    font-weight: bold;
-  }
-  
   .element_mijloc p{
-    position: relative;
-    top:7%;
-    text-align: center;
-    font-weight: normal;
-    font: bold 30px sans-serif;
-    color:white;
+    font-size: 23px;
   }
-  
-  /*casuta de cautare*/
-  .buton_cautare{
-    position: absolute;
-    top:60%;
-    left:28%;
+  .element_mijloc{
+    top:65%;
+    width: 85%;
+    height: 50%;
   }
-  
-  input {
-    border :2px solid #1d3030;
-    font-size: 27px;
-    height: 70px;
-    width: 80%;
-    border-radius: 35px;
-    opacity: 0.5;
-    max-width: 500px;
-    box-sizing: border-box;
-   
+  .element_mijloc .buton_cautare{
+    left:20%;
   }
-  
-  @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    .element_mijloc {
-      width: 100%;
-      top:58%;
-      transition: all .3s ease;
-    }
-    .element_mijloc .buton_cautare input,
-    .element_mijloc .buton_cautare a
-    .element_mijloc p,
-    .element_mijloc h1 {
-      display:block;
-    }
-    .buton_cautare a {
-      padding-left: 40%;
-    }
-    .buton_cautare  {
-      padding-top: 5%;
-    }
-    .element_mijloc p{
-      font-size: 23px;
-    }
-    .element_mijloc{
-      top:65%;
-      width: 85%;
-      height: 50%;
-    }
-    .element_mijloc .buton_cautare{
-      left:20%;
-    }
-  }
-  
+}
+
 footer{
   position: fixed;
   top :0;
   bottom: 0;
 }
- 
+
 @media (max-height:800px){
   footer { position: static; }
   header { padding-top:40px; }
 }
- 
- 
+
+
 .footer-distributed{
   background-color: #2c292f;
   box-sizing: border-box;
@@ -276,64 +278,64 @@ footer{
   font: bold 16px sans-serif;
   padding: 50px 50px 10px 50px;
 }
- 
+
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
 .footer-distributed .footer-right{
   display: inline-block;
   vertical-align: top;
 }
- 
+
 /* Footer left */
- 
+
 .footer-distributed .footer-left{
   width: 30%;
 }
- 
+
 .footer-distributed h3{
   color:  #ffffff;
   font: normal 36px 'Cookie', cursive;
   margin: 0;
 }
- 
+
 /* The company logo */
- 
+
 .footer-distributed .footer-left img{
   width: 30%;
 }
- 
+
 .footer-distributed h3 span{
   color:  #e0ac1c;
 }
- 
+
 /* Footer links */
- 
+
 .footer-distributed .footer-links{
   color:  #ffffff;
   margin: 20px 0 12px;
 }
- 
+
 .footer-distributed .footer-links a{
   display:inline-block;
   line-height: 1.8;
   text-decoration: none;
   color:  inherit;
 }
- 
+
 .footer-distributed .footer-company-name{
   color:  #8f9296;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
 }
- 
+
 /* Footer Center */
- 
+
 .footer-distributed .footer-center{
   width: 35%;
 }
- 
- 
+
+
 .footer-distributed .footer-center i{
   background-color:  #33383b;
   color: #ffffff;
@@ -346,38 +348,38 @@ footer{
   margin: 10px 15px;
   vertical-align: middle;
 }
- 
+
 .footer-distributed .footer-center i.fa-envelope{
   font-size: 17px;
   line-height: 38px;
 }
- 
+
 .footer-distributed .footer-center p{
   display: inline-block;
   color: #ffffff;
   vertical-align: middle;
   margin:0;
 }
- 
+
 .footer-distributed .footer-center p span{
   display:block;
   font-weight: normal;
   font-size:14px;
   line-height:2;
 }
- 
+
 .footer-distributed .footer-center p a{
   color:  #e0ac1c;
   text-decoration: none;;
 }
- 
- 
+
+
 /* Footer Right */
- 
+
 .footer-distributed .footer-right{
   width: 30%;
 }
- 
+
 .footer-distributed .footer-company-about{
   line-height: 20px;
   color:  #92999f;
@@ -385,7 +387,7 @@ footer{
   font-weight: normal;
   margin: 0;
 }
- 
+
 .footer-distributed .footer-company-about span{
   display: block;
   color:  #ffffff;
@@ -395,33 +397,32 @@ footer{
 
 }
 .footer-distributed .footer-icons{
-	margin-top: 25px;
+  margin-top: 25px;
 }
- 
+
 .footer-distributed .footer-icons a{
-	display: inline-block;
-	width: 35px;
-	height: 35px;
-	cursor: pointer;
-	background-color:  #33383b;
-	border-radius: 2px;
- 
-	font-size: 20px;
-	color: #ffffff;
-	text-align: center;
-	line-height: 35px;
- 
-	margin-right: 3px;
-	margin-bottom: 5px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color:  #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
 }
- 
- 
+
+
 /* Here is the code for Responsive Footer */
 /* You can remove below code if you don't want Footer to be responsive */
- 
- 
+
 @media (max-width: 880px) {
- 
+
   .footer-distributed .footer-left,
   .footer-distributed .footer-center,
   .footer-distributed .footer-right{
@@ -430,9 +431,9 @@ footer{
     margin-bottom: 40px;
     text-align: center;
   }
- 
+
   .footer-distributed .footer-center i{
     margin-left: 0;
   }
- 
+
 }

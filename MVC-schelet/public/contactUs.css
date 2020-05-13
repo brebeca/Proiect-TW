@@ -438,8 +438,11 @@
     margin-right: 3px;
     margin-bottom: 5px;
   }
-   
-   
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
    
   @media (max-width: 880px) {
    
