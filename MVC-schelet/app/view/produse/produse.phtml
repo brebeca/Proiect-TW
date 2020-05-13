@@ -121,11 +121,11 @@
   <tbody>
 <?php foreach ($produse_returnate as $produs): ?>
     <tr id = <?php echo "\"".array_search($produs, $produse_returnate)."\""; ?> >
-      <td class="cellWidth"><ul><?php echo "<li>";?> <a href= #><?php echo $produs->title;?></a> <?php echo "</li>";?></ul></td>
-      <td><ul><?php echo "<li>";?> <a href= <?php echo "\"".$produs->detailsURL."\"" ?> >Link Produs</a> <?php echo "</li>"; ?></ul></td>
-      <td class="productImg"><ul> <?php echo "<li>"; if($produs->photoURL != ""): ?> <img src= <?php echo "\"".$produs->photoURL."\"";?>> <?php echo "</li>";?></ul></td>
+      <td id= <?php echo "\"".array_search($produs, $produse_returnate).".title\""; ?> class="cellWidth"><ul><?php echo "<li>";?> <a onClick=<?php echo "\"eca(".array_search($produs, $produse_returnate).")\""; ?> href= #><?php echo $produs->title;?></a> <?php echo "</li>";?></ul></td>
+      <td id= <?php echo "\"".array_search($produs, $produse_returnate).".link\""; ?> ><ul><?php echo "<li>";?> <a href= <?php echo "\"".$produs->detailsURL."\"" ?> >Link Produs</a> <?php echo "</li>"; ?></ul></td>
+      <td id= <?php echo "\"".array_search($produs, $produse_returnate).".image\""; ?> class="productImg"><ul> <?php echo "<li>"; if($produs->photoURL != ""): ?> <img src= <?php echo "\"".$produs->photoURL."\"";?>> <?php echo "</li>";?></ul></td>
         <?php endif; ?>
-      <td class="cellWidth">
+      <td id= <?php echo "\"".array_search($produs, $produse_returnate).".specs\""; ?> class="cellWidth">
         <?php foreach ($produs->items as $item): ?>
           <ul><?php echo "<li>"; echo print_r($item); echo "</li>"; ?></ul>
         <?php endforeach; ?>
@@ -186,6 +186,13 @@
  </div>
 </footer>
 <script src="/JS-uri/Collapse.js"></script>
+<script>
+    function eca(a) {
+        let title = document.getElementById(a+".title").textContent;
+        console.log(title);
+        console.log(document.getElementById(a+".link").textContent);
+    }
+</script>
 </body>
 
 
