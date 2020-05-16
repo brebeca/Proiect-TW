@@ -2,29 +2,29 @@
 <html lang="ro" dir="ltr">
 
 <head>
-    <meta charset="utf-8">
-    <title>Produse</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/produse.css">
+  <meta charset="utf-8">
+  <title>Produse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/produse.css">
+ 
+  <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
 
-    <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
-
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  
 </head>
 
 <body>
 
-<input type="checkbox" id="check">
-<label for="check">
-    <i onclick="navroll(true)" class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
-    <i onclick="navroll(false)" class="fas fa-times" id="cancel"></i>
-</label>
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
 
 
-<div class="sidebar">
+  <div class="sidebar">
     <header>Optiuni</header>
     <ul>
         <li <?php session_start();if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
@@ -36,78 +36,81 @@
         <li><a href="/contactUs/contactUS"><i class="fas Contact"></i>Contact</a></li>
         <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
     </ul>
-</div>
+  </div>
 
-<nav class="Optiuni">
-    <ul class="nav-menu">
-        <li><a href="/produse/produse">Imbracaminte</a></li>
+  <nav class="Optiuni">
+      <ul class="nav-menu">
+      <li><a href="/produse/produse">Imbracaminte</a></li>
         <li><a href="/produse/produse">Electocasnice</a></li>
         <li><a href="/produse/produse">Telefoane</a></li>
         <li><a href="/produse/produse">Calculatoare</a></li>
-    </ul>
+      </ul>
 </nav>
-<div id="main">
-<ul class="filtre">
+  <ul class="filtre">
     <li>
-        <button type="button" class="collapsible">Pret</button>
-        <div class="content">
-            <label class="container"> 0-100
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
+      <button type="button" class="collapsible">Pret</button>
+      <div class="content">
+        <label class="container"> 0-100
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
 
-            <label class="container"> 100-500
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
+        <label class="container"> 100-500
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
 
-            <label class="container"> 500-1500
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
+        <label class="container"> 500-1500
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
 
-            <label class="container"> 1500-2500
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
+        <label class="container"> 1500-2500
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
 
-            <label class="container"> 2500-5000
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
+        <label class="container"> 2500-5000
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
 
-            <label class="container"> 5000-
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+        <label class="container"> 5000-
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
     </li>
     <li>
-        <button type="button" class="collapsible">Rating minim</button>
-        <div class="content">
-            <input type="radio" id="5" name="rating" value="5">
-            <label for="5">5 stele</label><br>
-            <input type="radio" id="4" name="rating" value="4">
-            <label for="4">4 stele</label><br>
-            <input type="radio" id="3" name="rating" value="3">
-            <label for="3">3 stele</label><br>
-            <input type="radio" id="2" name="rating" value="2">
-            <label for="2">2 stele</label><br>
-        </div>
+      <button type="button" class="collapsible">Rating minim</button>
+      <div class="content">
+        <input type="radio" id="5" name="rating" value="5">
+        <label for="5">5 stele</label><br>
+        <input type="radio" id="4" name="rating" value="4">
+        <label for="4">4 stele</label><br>
+        <input type="radio" id="3" name="rating" value="3">
+        <label for="3">3 stele</label><br>
+        <input type="radio" id="2" name="rating" value="2">
+        <label for="2">2 stele</label><br>
+      </div>
     </li>
-</ul>
+  </ul>
+  
+
+
 
 
 <?php
-require_once('model/produseModel.php');
-if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
-    $produse_returnate = ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
+  require_once ('model/produseModel.php');
+  if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
+  {
+      $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
 
-    if ($produse_returnate == false)
-        header("Location:/index.php?cautare_esuata=1");
+      if($produse_returnate==false)
+          header("Location:/index.php?cautare_esuata=1");
 
-    if (count($produse_returnate) > 0):
-        ?>
+      if (count($produse_returnate) > 0):
+?>
 
         <table>
             <thead>
@@ -143,57 +146,56 @@ if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
             </tbody>
         </table>
 
-    <?php endif;
-} ?>
+<?php endif; }?>
 
 
-<footer class="footer-distributed">
 
-    <div class="footer-left">
-        <img src="/images/logo_mic2.png">
-        <h3>Despre<span>CompareIt</span></h3>
+  <footer class="footer-distributed">
+ 
+ <div class="footer-left">
+   <img src="/images/logo_mic2.png">
+   <h3>Despre<span>CompareIt</span></h3>
 
-        <p class="footer-links">
-            <a href="/home/index">Home</a>
+   <p class="footer-links">
+   <a href="/home/index">Home</a>
+     
+     <a href="/aboutUs">Despre noi</a>
+     |
+     <a href="/contactUs/contactUs">Contact</a>
 
-            <a href="/aboutUs">Despre noi</a>
-            |
-            <a href="/contactUs/contactUs">Contact</a>
+   <p class="footer-company-name">© 2020 CompareIT </p>
+ </div>
 
-        <p class="footer-company-name">© 2020 CompareIT </p>
-    </div>
+ <div class="footer-center">
+   <div>
+     <i class="fa fa-map-marker"></i>
+     <p><span>Str. Frunzei nr. 7 , jud Iasi </span>
+      Iasi, Pacurari (cod postal) - 400710</p>
+   </div>
 
-    <div class="footer-center">
-        <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span>Str. Frunzei nr. 7 , jud Iasi </span>
-                Iasi, Pacurari (cod postal) - 400710</p>
-        </div>
-
-        <div>
-            <i class="fa fa-phone"></i>
-            <p>Telefon : </p>
-            <p>+04 0770519234</p>
-        </div>
-        <div>
-            <i class="fa fa-envelope"></i>
-            <p>Email : </p>
-            <p><a href="mailto:birleanurebeca@yahoo.com">support@CompareIt.com</a></p>
-        </div>
-    </div>
-    <div class="footer-right">
-        <p class="footer-company-about">
-            <span>Despre noi </span>
-            Ofrim posibilitaea de a gasi cea mai buna calitate la cel mai bun pret pentru produsul dorit.</p>
-        <div class="footer-icons">
-            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-            <a href="https://twitter.com/login?lang=ro"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-            <a href="https://ro.linkedin.com/"><i class="fa fa-linkedin"></i></a>
-        </div>
-    </div>
+   <div>
+     <i class="fa fa-phone"></i>
+      <p>Telefon : </p>
+     <p>+04 0770519234</p>
+   </div>
+   <div>
+     <i class="fa fa-envelope"></i>
+     <p>Email : </p>
+     <p><a href="mailto:birleanurebeca@yahoo.com">support@CompareIt.com</a></p>
+   </div>
+ </div>
+ <div class="footer-right">
+   <p class="footer-company-about">
+     <span>Despre noi </span>
+     Ofrim posibilitaea de a gasi cea mai buna calitate la cel mai bun pret pentru produsul dorit.</p>
+     <div class="footer-icons">
+       <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+       <a href="https://twitter.com/login?lang=ro"><i class="fa fa-twitter"></i></a>
+       <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+       <a href="https://ro.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+     </div>
+ </div>
 </footer>
-</div>
 <script src="/JS-uri/Collapse.js"></script>
 <script>
     function eca(a) {
@@ -223,4 +225,6 @@ if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
 </script>
 <script src="/JS-uri/navro.js"></script>
 </body>
+
+
 </html>
