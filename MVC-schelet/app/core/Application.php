@@ -30,7 +30,6 @@ public function __construct(){
 protected function prepareURL(){
 
     $request =trim($_SERVER['REQUEST_URI'],'/');
- 
     if(!empty($request)){
 
         $uri=explode('/',str_replace ( '?',  '/' ,  $request));
@@ -39,8 +38,9 @@ protected function prepareURL(){
         $this->action =isset($uri[1]) ? $uri[1]: 'index';
 
         unset($uri[0],$uri[1]);
-        $this->params =!empty($uri) ? array_values($uri) : []; 
+        $this->params =!empty($uri) ? array_values($uri) : [];
         
     }
+
 }
 }

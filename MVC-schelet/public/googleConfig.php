@@ -12,7 +12,7 @@ $google_client->setClientId('545653588207-4q7had5ils4r0740urlghbu9sbboq9li.apps.
 $google_client->setClientSecret('mR3cG5TjKScvmF2fshEeVQVy');
 
 //Set the OAuth 2.0 Redirect URI
-$google_client->setRedirectUri('http://localhost:800/');
+$google_client->setRedirectUri('http://localhost:800/signUp/google');
 
 //
 $google_client->addScope('email');

@@ -3,23 +3,13 @@
 class homeController extends Controller {
 
     public function index(){
-        if(isset($_SESSION["login"])) {
-            if(isLoginSessionExpired())  {
-                header("Location:index.php?session_expired=1");
-            }
-        }
-       
 
      $this->view('home\index');
        $this->view->render();
     }
 
     public function cauta($de_cautat=''){
-        if(isset($_SESSION["login"])) {
-            if(isLoginSessionExpired())  {
-                header("Location:index.php?session_expired=1");
-            }
-        }
+
         if($de_cautat==''){
             header("Location:index.php");
         }

@@ -39,6 +39,42 @@ class ProduseModel extends Model{
      return $products;
     
 	}
+
+    public static function produsele_mele($id)
+    {
+
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsOwner');
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
+            'Session:'.$id
+        ));
+
+        $res = curl_exec($cURLConnection);
+        curl_close($cURLConnection);
+
+        return json_decode($res);
+
+    }
+
+    public function trimite_produs($id,$params){
+
+        //print_r($responseData);
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/AppInsert?'.$params);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
+            'Session:'.$id
+        ));
+
+        $res = curl_exec($cURLConnection);
+        curl_close($cURLConnection);
+
+        $jsonArrayResponse = json_decode($res);
+        print_r($jsonArrayResponse);
+    }
 }
 
 ?>

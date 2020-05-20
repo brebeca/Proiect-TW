@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Produse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/produse.css">
+
+    <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<input type="checkbox" id="check">
+<label for="check">
+    <i class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+
+
+<div class="sidebar">
+    <header>Optiuni</header>
+    <ul>
+        <li <?php session_start();if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
+        <?php if(isset($_SESSION['login']))
+            echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
+        ?>
+        <li><a href="/aboutUs/aboutUS"><i class="fas Despre_noi"></i>Despre noi</a></li>
+        <li><a href="/QA/QA"><i class="fas Intrebari"></i>Intrebari frecvente</a></li>
+        <li><a href="/contactUs/contactUS"><i class="fas Contact"></i>Contact</a></li>
+        <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
+    </ul>
+</div>
+<div>
+<?php
+
+if(isset($_SESSION['id'])) {
+    echo "trimite req";
+    require_once('model/produseModel.php');
+    echo "<pre>";
+    print_r(ProduseModel::produsele_mele(md5($_SESSION['id'])));
+    echo"</pre>";
+}
+else {
+    "<script>alert(\"Nu suneti logat!\")</script>";
+}
+    ?>
+</div>
+
+<script src="/JS-uri/navro.js"></script>
+</body>
+</html>

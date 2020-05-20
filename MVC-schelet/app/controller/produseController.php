@@ -4,13 +4,24 @@ class produseController extends Controller {
 
 
     public function produse(){
-        if(isset($_SESSION["login"])) {
-            if(isLoginSessionExpired())  {
-                header("Location:index.php?session_expired=1");
-            }
 
-        }
        $this->view('produse\produse');
        $this->view->render();
      }
+     public function alegere_ebay($data=''){
+            $params= explode('?',$_SERVER['REQUEST_URI'])[1];
+            $id=explode("&id=",$params)[1];
+            $params=str_replace('-','/',explode("&id=", $params)[0]);
+            $this->model('produseModel');
+            $this->model->trimite_produs($id,$params);
+
+    }
+    public function compara(){
+        $this->view('produse\compara');
+        $this->view->render();
+
+    }
+
+
+
 }

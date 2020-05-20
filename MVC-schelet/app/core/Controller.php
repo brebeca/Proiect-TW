@@ -14,7 +14,7 @@ class Controller{
           { 
             require MODEL.$modelName. '.php'; 
             $this->model=new $modelName;
-            echo MODEL.$modelName. '.php';
+           // echo MODEL.$modelName. '.php';
           }
           else {echo "nu ".MODEL.$modelName. '.php';}
     }

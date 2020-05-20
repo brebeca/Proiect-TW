@@ -2,23 +2,58 @@
  class ModelRegister extends Model{
 
     public function addUser($username, $password, $email){ //create
-        $sql = "INSERT INTO users (username,password, email) VALUES (:username, :password, :email)";
+        $id=uniqid();
+        $sql = "INSERT INTO users (username,password, email,session) VALUES (:username, :password, :email, :id)";
         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
-        return $cerere -> execute ([
+        if( $cerere -> execute ([
             'username'=>$username,
             'password'=>$password,
-            'email'=>$email
-        ]);
+            'email'=>$email,
+            'id'=>$id
+        ])!=false) {
+
+            $this->registerUserSession($id);
+            return $id;
+        }
+        else return false;
     }
 
-    public function sePoateIregistra( $username, $email){ 
-        $sql = "SELECT * FROM users where username = :username and email = :email ";
+    public function sePoateIregistra(  $email){
+        $sql = "SELECT * FROM users where  email = :email ";
         $cerere = $this->bd->obtine_conexiune()->prepare($sql);
-        return  $cerere->execute([
-            'username'=>$username,
+        $cerere->execute([
             'email'=>$email
         ]);
+        $result=$cerere->fetchAll();
+        if(sizeof( $result)!=0)
+            return $result[0]['session'];
+        return true;
         
     }
+    public function registerUserSession($id){
+
+        $postData = array(
+            'Session' => $id
+        );
+        $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
+        $ch = curl_init('http://localhost:801/AddUsers');
+        curl_setopt_array($ch, array(
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type:application/json',
+                'Session:'.$session
+            ),
+            CURLOPT_POSTFIELDS => json_encode($postData)
+        ));
+        $response = curl_exec($ch);
+        if($response === FALSE){
+            die(curl_error($ch));
+        }
+        $responseData = json_decode($response, TRUE);
+
+       //print_r($responseData);
+    }
+
 }
 

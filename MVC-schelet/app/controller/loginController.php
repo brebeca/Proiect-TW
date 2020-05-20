@@ -3,8 +3,6 @@ class loginController extends Controller {
 
     public function login($data="")
     {
-
-
         if ($data == "" || strpos($data, 'fail')) {
             $this->view('login\login');
             $this->view->render();
@@ -17,19 +15,17 @@ class loginController extends Controller {
 
             $result_of_db_search = $this->model->performLogin($password, $email);
             if ($result_of_db_search != null) {
-                session_start();
-                $_SESSION['login'] = $result_of_db_search[0]['id'];// echo $_SESSION['login'];
-                $_SESSION['loggedin_time'] = time();
-                $_SESSION['username'] = $result_of_db_search[0]['username'];
-                echo $_SESSION['username'];
-                header("Location:/index.php?login_succes=1");
+
+                header("Location:/index.php?login_succes=1&user=".$result_of_db_search[0]['username']."&id=".$result_of_db_search[0]['session']);
             } else {
-                header("Location:/login/login?login_fail=1");
+               header("Location:/login/login?login_fail=1");
             }
         }
     }
-    public function google(){
-        echo $_SESSION['login'];
+    public function google($data=''){
+        include('googleConfig.php');
+
+
     }
 
 
