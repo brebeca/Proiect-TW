@@ -110,49 +110,40 @@
       if (count($produse_returnate) > 0):
 ?>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Titlu</th>
-                <th>Link Fotografie</th>
-                <th>Caracteristici</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($produse_returnate as $produs): ?>
-                <tr id= <?php echo "\"" . array_search($produs, $produse_returnate) . "\""; ?>>
-                    <td id= <?php echo "\"" . array_search($produs, $produse_returnate) . ".title\""; ?> class="cellWidth">
-                         <a id=<?php echo "\"" . array_search($produs, $produse_returnate) . ".link\""; ?> href=<?php echo "\"" . $produs->detailsURL . "\"" ?>  >
-                                <?php echo $produs->title; ?></a>
-                    </td>
-                    <td class="productImg">
-                       <?php $photo="no_link"; if ($produs->photoURL != ""): $photo=$produs->photoURL; ?>
-                        <img id= <?php echo "\"" . array_search($produs, $produse_returnate) . ".image\""; ?>  src= <?php echo "\"" . $produs->photoURL . "\"";  endif;?>>
-                    </td>
-                    <td class="cellWidth">
-                        <?php
-                         $result="";
-                         foreach ($produs->items as $item):
-                            echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";
-                            $result=$result.'|'.$item;
-                            echo $item;
-                            echo "</p>";
-                         endforeach; ?>
-                    </td>
-                    <td>
-                        <a class="purchase" href=<?php
-                        $link=explode( '#',$produs->detailsURL)[0];
-                        $params=str_replace('/','-',"category=search&key_word=".$_GET["nume-produs"]."&title=".$produs->title."&link=".$link."&imglink=".$photo."&details=".$result."&source=Ebay");
-                        if(isset($_SESSION['id']))
-                        echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
-                        else
-                        ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-
+<?php foreach ($produse_returnate as $produs): ?>
+          <div class="itemi">
+              <div class="item" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
+                  <div id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?> class="c">
+                      <div class="ct">
+                          <?php $photo="no_link"; if ($produs->photoURL != ""): $photo=$produs->photoURL; ?>
+                          <img class="ci img" id= <?php echo "\"" . array_search($produs, $produse_returnate) . ".image\""; ?>  src= <?php echo "\"" . $produs->photoURL . "\"";  endif;?>>
+                      </div>
+                      <div id=<?php echo "\"".array_search($produs, $produse_returnate).".title\"";?> class="ct">
+                          <a id=<?php echo "\"".array_search($produs, $produse_returnate).".link\"";?> href=<?php echo "\"" . $produs->detailsURL . "\"" ?>  >
+                              <?php echo $produs->title; ?></a>
+                      </div>
+                  </div>
+                  <div class="c cs">
+                      <?php
+                      $result="";
+                      foreach ($produs->items as $item):
+                          echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";
+                          $result=$result.'|'.$item;
+                          echo $item;
+                          echo "</p>";
+                      endforeach; ?>
+                  </div>
+                  <div class="c cp">
+                      <a class="purchase" href=<?php
+                      $link=explode( '#',$produs->detailsURL)[0];
+                      $params=str_replace('/','-',"category=search&key_word=".$_GET["nume-produs"]."&title=".$produs->title."&link=".$link."&imglink=".$photo."&details=".$result."&source=Ebay");
+                      if(isset($_SESSION['id']))
+                          echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
+                      else
+                          ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>                  </div>
+              </div>
+          </div>
+      <?php endforeach; ?>
 <?php endif; }?>
 
 
