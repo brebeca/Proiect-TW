@@ -21,6 +21,10 @@ class produseController extends Controller {
         $this->view->render();
 
     }
+    public function scrap(){
+        $this->view('produse\produse_scrap');
+        $this->view->render();
+    }
 
 
 
