@@ -45,7 +45,7 @@ class ProduseModel extends Model{
 
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsOwner');
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetMyProducts');
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$id
@@ -90,7 +90,24 @@ class ProduseModel extends Model{
         curl_close($cURLConnection);
 
         $jsonArrayResponse = json_decode($res);
+        //print_r($jsonArrayResponse);
+    }
+
+    public function sterge($id, $session){
+        $cURLConnection = curl_init();
+
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/DeleteProduct?id='.$id);
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cURLConnection, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
+            'Session:'.$session
+        ));
+
+        $res = curl_exec($cURLConnection);
+        curl_close($cURLConnection);
+        $jsonArrayResponse = json_decode($res);
         print_r($jsonArrayResponse);
+
     }
 }
 

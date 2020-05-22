@@ -14,6 +14,7 @@ class produseController extends Controller {
             $params=str_replace('-','/',explode("&id=", $params)[0]);
             $this->model('produseModel');
             $this->model->trimite_produs($id,$params);
+            header("Location:/produse/produse?nume-produs=".urlencode($_GET['key_word'])."&nr-produse="."10");
 
     }
     public function compara(){
@@ -26,6 +27,11 @@ class produseController extends Controller {
 
         $this->view('produse\produse_scrap?categorie=');
         $this->view->render();
+    }
+
+    public function sterge_produs(){
+        $this->model('produseModel');
+        $this->model->sterge($_GET['product_id'],$_GET['session']);
     }
 
 
