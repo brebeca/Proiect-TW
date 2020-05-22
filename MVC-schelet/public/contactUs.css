@@ -175,13 +175,13 @@
   
   
   .contact-section{
-    width: 500px;
+    width: 600px;
     height: 550px;
     background:  #e0ac1c;
     color: #fff;
     padding-top: 0;
     top: 62%;
-    left: 50%;
+    left: 45%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
@@ -194,7 +194,7 @@
     border-radius: 50%;
     position: absolute;
     top: 170px;
-    right: -73%;
+    right: -60%;
   }
   .contact-section h1{
     margin-top: 0;
@@ -211,10 +211,10 @@
   }
   .contact-section .info h3{
     position: absolute;
-    left:130%;
-    top:-10%;
+    left:120%;
+    top:-5%;
     padding: 0px 0px 0px 0px;
-    font-size: 29px;
+    font-size: 25px;
     color: white;
     text-align: center;
   }

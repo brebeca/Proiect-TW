@@ -48,11 +48,45 @@
    		<p>Parola</p>
    		<input type="password" name="password" required placeholder="Scrie: Parola">
    		<input type="submit" name="" value="Intra in cont">
-   		<a href="#">Mi-am uitat parola</a><br>
+      <!-- TO ADD Google btn. HERE-->
+   		<button class="formBtn" id="myBtn">Mi-am uitat parola</button><br><br><br>
    		<a href="/signUp/signUp">Nu am cont</a>
    	</form>
    </div>
 
+
+<div id="myModal" class="modal">
+  <form action="/login/resetPassword" method="get">
+  <div class="modal-content">
+     <span class="close">&times;</span>
+     <label for="uname"><b>Email: </b></label>
+     <input type="email" placeholder="Scrie email" name="email" required>
+     <button class="modalBtn" type="submit"><b>Trimite</b></button>
+  </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
 
 
@@ -62,12 +96,12 @@
  <footer class="footer-distributed">
  
   <div class="footer-left">
-    <img src="/images/logo_mic2.png">
+    <img src="/images/logo_mic2.png" alt="Logoul firmei noastre CompareIt">
     <h3>Despre<span>CompareIt</span></h3>
 
     <p class="footer-links">
     <a href="/home/index">Home</a>
-      
+      |
       <a href="/aboutUs">Despre noi</a>
       |
       <a href="/contactUs/contactUs">Contact</a>
@@ -119,5 +153,4 @@ echo"   <script>
 ?>
     <script src="JS-uri/navro.js"></script>
 </body>
-</html>
 </html>
