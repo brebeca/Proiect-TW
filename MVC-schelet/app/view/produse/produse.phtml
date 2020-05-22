@@ -95,68 +95,18 @@
     </li>
   </ul>
 
-  <?php
-    require_once ('model/produseModel.php');
-    if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
-    {
-      $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
-      if($produse_returnate==false)
-          header("Location:/index.php?cautare_esuata=1");
-      if (count($produse_returnate) > 0):
-  ?>
-<?php foreach ($produse_returnate as $produs): ?>
-          <div class="itemi">
-              <div class="item" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
-                  <div class="c" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
-                      <div class="ct">
-                          <?php $photo="no_link"; if ($produs->photoURL != ""): $photo=$produs->photoURL; ?>
-                          <img class="ci img" id= <?php echo "\"" . array_search($produs, $produse_returnate) . ".image\""; ?>  src= <?php echo "\"" . $produs->photoURL . "\"";  endif;?>>
-                      </div>
-                      <div id=<?php echo "\"".array_search($produs, $produse_returnate).".title\"";?> class="ct">
-                          <a id=<?php echo "\"".array_search($produs, $produse_returnate).".link\"";?> href=<?php echo "\"" . $produs->detailsURL . "\"" ?>  >
-                              <?php echo $produs->title; ?></a>
-                      </div>
-                  </div>
-                  <div class="c cs">
-                      <?php
-                      $i=0;
-                      $result="";
-                      foreach ($produs->items as $item):
-                          $i=$i+1;
-                          if($i<=20) {
-                              echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
-                              $result = $result . '|' . $item;
-                              echo $item;
-                              echo "</p>";
-                          }
-                      endforeach; ?>
-                  </div>
-                  <div class="c cp">
-                      <a class="purchase" href=<?php
-                      $link=explode( '#',$produs->detailsURL)[0];
-                      $params=str_replace('/','-',"category=search&key_word=".$_GET["nume-produs"]."&title=".$produs->title."&link=".$link."&imglink=".$photo."&details=".$result."&source=Ebay");
-                      if(isset($_SESSION['id']))
-                          echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
-                      else
-                          ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>                  </div>
-                          <div class="extraspec">
-                              <?php
-                              $i=0;
-                              $result="";
-                              foreach ($produs->items as $item):
-                                  $i=$i+1;
-                                  if($i>20) {
-                                      echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
-                                      $result = $result . '|' . $item;
-                                      echo $item;
-                                      echo "</p>";
-                                  }
-                              endforeach; ?>
-                          </div>
-                  </div>
-          </div>
-      <?php endforeach; ?>
-<?php endif; }?>
+<?php
+if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
+{
+    include VIEW . 'produse/search_db.phtml';
+    include VIEW . 'produse/search_ebay.phtml';
+}
+if(isset($_GET["categorie"])){
+
+}
+
+
+?>
 
 
 
@@ -207,51 +157,12 @@
  </div>
 </footer>
 <script src="/JS-uri/Collapse.js"></script>
-<script>
-  async  function eca(a) {
-         async function  call() {
-            let img_link = "no_link";
-            if (document.getElementById(a + ".image") !== null)
-                img_link = document.getElementById(a + ".image").getAttribute("src").trim();
-            let lis = document.getElementsByClassName(a + "specs");
-            let result = Array();
-            for (let i = 0, len = lis.length | 0; i < len; i = i + 1 | 0) {
-                result.push(lis[i].textContent);
-            }
-
-            let url = new URL('http://10.147.17.45:801//AppInsert');
-            let params = {
-                category: 'search',
-                key_word:<?php echo "'".$_GET["nume-produs"]."'" ?> ,
-                title: document.getElementById(a + ".title").textContent.trim(),
-                link: document.getElementById(a + ".link").getAttribute("href").trim(),
-                img_link: img_link,
-                details: result,
-                source: 'Ebay'
-            };
-
-            url.search = new URLSearchParams(params).toString();
-           await fetch(url,{
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors',
-                headers: { 'Access-Control-Allow-Origin': '*',
-                    'Session':<?php if(isset($_SESSION['id'])) echo "'".md5($_SESSION['id'])."'" ; else echo "'-'";?>
-                }
-            }).then(data => {
-                return data.json()
-            }).then(data => {
-                console.log(data)
-            }).catch(e => {
-                console.log(e)
-            });
-        }
-        if(<?php if(isset($_SESSION['id'])) echo 'true'; else echo 'false'; ?>===true)
-           await call();
-        else  alert(" Nu esti logat! ");
-    }
-</script>
 <script src="/JS-uri/navro.js"></script>
 </body>
-
+<?php
+/*if(isset($_GET['nu_esti_logat'])){
+    echo "<script>alert(\"Nu esti logat! \")</script>";
+}*/
+?>
 
 </html>

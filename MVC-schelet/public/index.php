@@ -19,4 +19,5 @@ require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."googleConfig.php";
 
 set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modules));
 spl_autoload_register('spl_autoload', false);
+
 new Application();

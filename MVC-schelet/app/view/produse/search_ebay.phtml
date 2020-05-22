@@ -1,0 +1,60 @@
+<?php
+require_once ('model/produseModel.php');
+
+    $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
+    if($produse_returnate==false)
+        header("Location:/index.php?cautare_esuata=1");
+    if (count($produse_returnate) > 0):
+        foreach ($produse_returnate as $produs): ?>
+            <div class="itemi">
+                <div class="item" >
+                    <div class="c" >
+                        <div class="ct">
+                            <?php $photo="no_link"; if ($produs->photoURL != ""): $photo=$produs->photoURL; ?>
+                            <img class="ci img"  src= <?php echo "\"" . $produs->photoURL . "\"";  endif;?>>
+                        </div>
+                        <div class="ct">
+                            <a  href=<?php echo "\"" . $produs->detailsURL . "\"" ?>  >
+                                <?php echo $produs->title; ?></a>
+                        </div>
+                    </div>
+                    <div class="c cs">
+                        <?php
+                        $i=0;
+                        $result="";
+                        foreach ($produs->items as $item):
+                            $i=$i+1;
+                            if($i<=20) {
+                                echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
+                                $result = $result . '|' . $item;
+                                echo $item;
+                                echo "</p>";
+                            }
+                        endforeach; ?>
+                    </div>
+                    <div class="c cp">
+                        <a class="purchase" href=<?php
+                        $link=explode( '#',$produs->detailsURL)[0];
+                        $params=str_replace('/','-',"category=search&key_word=".$_GET["nume-produs"]."&title=".$produs->title."&link=".$link."&imglink=".$photo."&details=".$result."&source=Ebay");
+                        if(isset($_SESSION['id']))
+                            echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
+                        else echo "\"\produse\produse?nu_esti_logat=1&nume-produs=".$_GET["nume-produs"]."&nr-produse=".$_GET["nr-produse"]."\""
+                        ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>
+                    </div>
+                    <div class="extraspec">
+                        <?php
+                        $i=0;
+                        $result="";
+                        foreach ($produs->items as $item):
+                            $i=$i+1;
+                            if($i>20) {
+                                echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
+                                $result = $result . '|' . $item;
+                                echo $item;
+                                echo "</p>";
+                            }
+                        endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach;  endif; ?>

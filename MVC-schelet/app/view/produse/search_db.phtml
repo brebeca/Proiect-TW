@@ -1,0 +1,60 @@
+<?php
+require_once ('model/produseModel.php');
+
+$produse_returnate=ProduseModel::cauta_produs_db($_GET["nume-produs"]);
+if($produse_returnate==false)
+    header("Location:/index.php?cautare_esuata=1");
+if (count($produse_returnate) > 0):
+    foreach ($produse_returnate['products'] as $produs): ?>
+        <div class="itemi">
+            <div class="item" >
+                <div class="c" >
+                    <div class="ct">
+                        <?php if($produs['img_link']!="no_link")
+                          echo" <img class=\"ci img\" src=\"" . $produs['img_link'] . "\">"; ?>
+                    </div>
+                    <div  class="ct">
+                        <a  href=<?php echo "\"" . $produs['link'] . "\"" ?>  >
+                            <?php echo $produs['title']; ?></a>
+                    </div>
+                </div>
+                <div class="c cs">
+                    <?php
+                    $i=0;
+                    $result="";
+                    foreach ($produs['details'] as $item):
+                        $i=$i+1;
+                        if($i<=20) {
+                            echo "<p>";
+                            $result = $result . '|' . $item;
+                            echo $item;
+                            echo "</p>";
+                        }
+                    endforeach; ?>
+                </div>
+                <div class="c cp">
+                    <div class="extraspec">
+                        <?php
+                        $i=0;
+                        $result="";
+                        foreach ($produs['details'] as $item):
+                            $i=$i+1;
+                            if($i>20) {
+                                echo "<p>";
+                                $result = $result . '|' . $item;
+                                echo $item;
+                                echo "</p>";
+                            }
+                        endforeach; ?>
+                    </div>
+                    <a class="purchase" href=<?php
+                    $params=str_replace('/','-',"category=search&key_word=".$_GET["nume-produs"]."&title=".$produs['title']."&link=".$produs['link']."&imglink=".$produs['img_link']."&details=".$result."&source=Ebay");
+                    if(isset($_SESSION['id']))
+                        echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
+                    else echo "\"\produse\produse?nu_esti_logat=1&nume-produs=".$_GET["nume-produs"]."&nr-produse=".$_GET["nr-produse"]."\""
+                    ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>
+                </div>
+
+            </div>
+        </div>
+    <?php endforeach;  endif; ?>

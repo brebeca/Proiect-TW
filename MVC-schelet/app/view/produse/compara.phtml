@@ -43,9 +43,12 @@
 if(isset($_SESSION['id'])) {
     echo "trimite req";
     require_once('model/produseModel.php');
-    echo "<pre>";
-    print_r(ProduseModel::produsele_mele(md5($_SESSION['id'])));
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']));
+     echo "<pre>";
+    print_r($produse['products']);//[0]['category']);
     echo"</pre>";
+
+
 }
 else {
     "<script>alert(\"Nu suneti logat!\")</script>";

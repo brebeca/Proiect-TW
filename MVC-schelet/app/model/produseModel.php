@@ -54,7 +54,24 @@ class ProduseModel extends Model{
         $res = curl_exec($cURLConnection);
         curl_close($cURLConnection);
 
-        return json_decode($res);
+        return json_decode($res,true);
+
+    }
+    public static function cauta_produs_db($word)
+    {
+
+        $cURLConnection = curl_init();
+        $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsByName?word='.urlencode($word));
+        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
+            'Session:'.$session
+        ));
+
+        $res = curl_exec($cURLConnection);
+        curl_close($cURLConnection);
+
+        return json_decode($res,true);
 
     }
 
