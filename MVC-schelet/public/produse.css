@@ -52,6 +52,9 @@ body {
   width:100%;
   object-fit: cover;
 }
+.extraspec { text-align: center;
+
+}
 .item:after {
   content: "";
   display: table;

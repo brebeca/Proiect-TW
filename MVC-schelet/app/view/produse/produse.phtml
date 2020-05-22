@@ -23,7 +23,6 @@
     <i class="fas fa-times" id="cancel"></i>
   </label>
 
-
   <div class="sidebar">
     <header>Optiuni</header>
     <ul>
@@ -45,7 +44,7 @@
         <li><a href="/produse/produse">Telefoane</a></li>
         <li><a href="/produse/produse">Calculatoare</a></li>
       </ul>
-</nav>
+  </nav>
   <ul class="filtre">
     <li>
       <button type="button" class="collapsible">Pret</button>
@@ -95,25 +94,20 @@
       </div>
     </li>
   </ul>
-  
 
-
-
-
-<?php
-  require_once ('model/produseModel.php');
-  if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
-  {
+  <?php
+    require_once ('model/produseModel.php');
+    if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
+    {
       $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
       if($produse_returnate==false)
           header("Location:/index.php?cautare_esuata=1");
       if (count($produse_returnate) > 0):
-?>
-
+  ?>
 <?php foreach ($produse_returnate as $produs): ?>
           <div class="itemi">
               <div class="item" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
-                  <div id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?> class="c">
+                  <div class="c" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
                       <div class="ct">
                           <?php $photo="no_link"; if ($produs->photoURL != ""): $photo=$produs->photoURL; ?>
                           <img class="ci img" id= <?php echo "\"" . array_search($produs, $produse_returnate) . ".image\""; ?>  src= <?php echo "\"" . $produs->photoURL . "\"";  endif;?>>
@@ -125,12 +119,16 @@
                   </div>
                   <div class="c cs">
                       <?php
+                      $i=0;
                       $result="";
                       foreach ($produs->items as $item):
-                          echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";
-                          $result=$result.'|'.$item;
-                          echo $item;
-                          echo "</p>";
+                          $i=$i+1;
+                          if($i<=20) {
+                              echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
+                              $result = $result . '|' . $item;
+                              echo $item;
+                              echo "</p>";
+                          }
                       endforeach; ?>
                   </div>
                   <div class="c cp">
@@ -141,7 +139,21 @@
                           echo "\"\produse\alegere_ebay?".$params."&id=".md5($_SESSION['id'])."\"";
                       else
                           ?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></a>                  </div>
-              </div>
+                          <div class="extraspec">
+                              <?php
+                              $i=0;
+                              $result="";
+                              foreach ($produs->items as $item):
+                                  $i=$i+1;
+                                  if($i>20) {
+                                      echo "<p class=\"" . array_search($produs, $produse_returnate) . "specs\">";
+                                      $result = $result . '|' . $item;
+                                      echo $item;
+                                      echo "</p>";
+                                  }
+                              endforeach; ?>
+                          </div>
+                  </div>
           </div>
       <?php endforeach; ?>
 <?php endif; }?>
