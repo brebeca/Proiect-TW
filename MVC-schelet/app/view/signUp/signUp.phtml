@@ -39,7 +39,7 @@ include('googleConfig.php');
 
 
    <div class="signupbox">
-    <img src="/images/avatar_login.png" class="avatar">
+    <img src="/images/avatar_login.png" class="avatar" alt="Login picture">
    	<h1>Creeaza cont</h1>
     <form action="/signUp/signUp" method="get">
       <p>Nume si Prenume</p>
@@ -52,9 +52,14 @@ include('googleConfig.php');
       <button type="submit" class="signbtn">Creeaza cont</button>
       <hr>
       <p class="or">SAU</p>
-      <p>Ai deja un cont? <a href="login/login"> Intra in cont</a></p>
-    </form>
-       <a href= <?php echo "\"".$google_client->createAuthUrl()."\""?> >Conecteaza-te cu google</a>';
+    </form>  
+    <a href= <?php echo "\"".$google_client->createAuthUrl()."\""?> >
+      <button  class="googlebtn">
+        <p>Conecteaza-te cu </p>
+        <img src="/images/google_logo.png" alt="Google logo">
+      </button>
+    </a>
+    <p>Ai deja un cont? <a href="/login/login"> Intra in cont</a></p>
    </div>
 
 

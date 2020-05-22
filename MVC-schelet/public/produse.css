@@ -210,7 +210,7 @@ ul.nav-menu li a:hover{
 
 
 section{
-  background-color: linear-gradient(182deg, #2c292f
+  background: linear-gradient(182deg, #2c292f
   , #e0ac1c);
   background-position: center;
   background-size: cover;
