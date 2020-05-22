@@ -98,10 +98,12 @@
 <?php
 if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
 {
+    //butonul de cautare
     include VIEW . 'produse/search_db.phtml';
     include VIEW . 'produse/search_ebay.phtml';
 }
-if(isset($_GET["categorie"])){
+else if(isset($_GET["categorie"])){
+    //
 
 }
 
