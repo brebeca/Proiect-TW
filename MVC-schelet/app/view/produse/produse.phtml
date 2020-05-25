@@ -95,21 +95,12 @@
     </li>
   </ul>
 
-<?php
-if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
-{
-    //butonul de cautare
-   // include VIEW . 'produse/search_db.phtml';
-    include VIEW . 'produse/search_ebay.phtml';
-}
-else if(isset($_GET["categorie"])){
-    //
-
-}
-
-
-?>
-
+<div class="grid-container">
+    <?php //afisam obiectele luate din baza de date apeland functia
+    require_once('core/makeItems.php');
+    makeItems();
+    ?>
+</div>
 
 
   <footer class="footer-distributed">
