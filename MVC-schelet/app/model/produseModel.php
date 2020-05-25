@@ -40,12 +40,12 @@ class ProduseModel extends Model{
     
 	}
 
-    public static function produsele_mele($id)
+    public static function produsele_mele($id,$category)
     {
 
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetMyProducts');
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsByCategory?category='.$category);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$id

@@ -22,13 +22,30 @@ class GetForOwner
         {  $db = new DBManagement();
            $products=$db->get_products_by_name($_GET['word']);
            http_response_code(200);
-          echo json_encode(array("message" => "success","products"=>$products));
+          echo json_encode(array("Success" => "true","products"=>$products));
         }
         else{
             http_response_code(400);
-            echo json_encode(array("Error" => "Need mode data "));
+            echo json_encode(array("Success" => "true","Reason" => "Need mode data "));
         }
 
+    }
+
+    public static function get_by_category($session)
+    {
+        if (
+        isset($_GET['category'])
+        )
+        {
+            $db = new DBManagement();
+            $products=$db->get_products_by_category($_GET['category'],$session);
+            http_response_code(200);
+            echo json_encode(array("Success" => "true","products"=>$products));
+        }
+        else{
+            http_response_code(400);
+            echo json_encode(array("Success" => "true","Reason" => "Need mode data "));
+        }
     }
 
 }

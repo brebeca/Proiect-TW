@@ -11,7 +11,6 @@ define('CONTROLLER', ROOT . 'app' .DIRECTORY_SEPARATOR . 'controller' . DIRECTOR
 $modules=[ROOT, APP, CORE, CONTROLLER,DATA];
 
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."config.php";
-require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."parseXML.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."simple_html_dom.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."ebayClass.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
@@ -21,3 +20,4 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modu
 spl_autoload_register('spl_autoload', false);
 
 new Application();
+

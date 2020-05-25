@@ -11,6 +11,7 @@ class DBManagement
     private $connection;
     private $products_collection;
     private $users_collection;
+
     public function __construct()
     {
         $this->connection=DBConnection::obtine_conexiune();
@@ -60,10 +61,13 @@ class DBManagement
         return $collection->find( $query)->toArray();
     }
 
-    public function get_products_by_name($word)
+    public function get_products_by_name($word, $id='')
     {
         $collection = $this->connection->selectCollection('Products');
-        $query = array('title' => new Regex($word,'i'));
+        if($id=='')
+            $query = array('title' => new Regex($word,'i'));
+        else
+            $query = array('title' => new Regex($word,'i'),'owner'=>$id);
         return $collection->find( $query)->toArray();
     }
 
@@ -76,8 +80,29 @@ class DBManagement
 
     public function delete_product($id)
     {
-        print_r($this->products_collection->deleteOne(array("id"=>intval($id))));
+       $this->products_collection->deleteOne(array("id"=>intval($id)));
     }
+
+    public function update_price($id, $new_price)
+    {
+        $newdata = array('$set' => array("price" => intval($new_price)));
+        $this->products_collection->updateOne(array("id"=>intval($id)),$newdata);
+    }
+
+    public function get_products_by_category($category,$session)
+    {
+        $products=$this->get_products_by_name($category,$session);
+        $result=$this->products_collection->find(array('category'=>$category,'owner'=>$session))->toArray();
+        foreach ($result as $item){
+            array_push($products,$item);
+        }
+        usort($products,function($first,$second){
+            return $first->price > $second->price;
+        });
+        return $products;
+    }
+
+
 
 
 }

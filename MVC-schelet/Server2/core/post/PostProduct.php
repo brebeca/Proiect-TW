@@ -26,11 +26,11 @@ class PostProduct
             $id=$db->insert_products($document);
 
             http_response_code(200);
-            echo json_encode(array("message" => "Success","Product ID"=>$id));
+            echo json_encode(array("Success" => "true","Product ID"=>$id));
         }
         else{
             http_response_code(400); // bad request
-            echo json_encode(array("Error" => "Need more data . GET"));
+            echo json_encode(array("Success" => "true","Reason" => "Need more data"));
 
         }
     }

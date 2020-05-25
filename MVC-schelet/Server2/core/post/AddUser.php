@@ -16,7 +16,7 @@ class AddUser
         $db->insert_users($document);
 
         http_response_code(200);
-        echo json_encode(array("message" => "Contact added.POST"));
+        echo json_encode(array("Success" => "true"));
         return;
     }
 

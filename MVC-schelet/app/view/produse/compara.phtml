@@ -41,13 +41,13 @@
 <?php
 
 if(isset($_SESSION['id'])) {
-    echo "trimite req";
+
     require_once('model/produseModel.php');
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']));
+    $category='';
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),$category);
      echo "<pre>";
     print_r($produse['products']);//[0]['category']);
     echo"</pre>";
-
 
 }
 else {

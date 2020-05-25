@@ -24,13 +24,22 @@ if (isset($_GET['login_succes'])) {
   </head>
   <body>
 
-    <input type="checkbox" id="check">
+  <div class="element_mijloc">
+      <h2>Bine ai venit!</h2>
+      <div class="buton_cautare">
+          <form class="cautare" action="/home/cauta" method="get">
+              <input type="text" name="cauta"  required placeholder="&nbsp Cauta produsul dorit..." aria-hidden="true">
+              <button  class="fa fa-search" style="font-size:50px;color: black;border: none; background: transparent;" type="submit"></button>
+          </form>
+      </div>
+      <p>Scopul nostru este sa va ajutam sa gasiti produsele dorite cat mai rapid si mai usor. Noi te ajutam sa gasesti si sa compari totul intr-un singur loc.</p>
+  </div>
+
+  <input type="checkbox" id="check">
     <label for="check">
       <i class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
       <i class="fas fa-times" id="cancel"></i>
     </label>
-
-
     <div class="sidebar">
     <header>Optiuni</header>
     <ul>
@@ -44,19 +53,6 @@ if (isset($_GET['login_succes'])) {
         <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
     </ul>
 </div>
-
-<div class="element_mijloc">
-<h2>Bine ai venit!</h2>
-
-<div class="buton_cautare">
-      <form class="cautare" action="/home/cauta" method="get"> 
-      <input type="text" name="cauta"  required placeholder="&nbsp Cauta produsul dorit..." aria-hidden="true">
-      <button  class="fa fa-search" style="font-size:50px;color: black;border: none; background: transparent;" type="submit"></button>
-      </form>
- </div>
-
- <p>Scopul nostru este sa va ajutam sa gasiti produsele dorite cat mai rapid si mai usor. Noi te ajutam sa gasesti si sa compari totul intr-un singur loc.</p>
-    </div>
 
     
 

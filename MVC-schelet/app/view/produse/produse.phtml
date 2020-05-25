@@ -99,7 +99,7 @@
 if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
 {
     //butonul de cautare
-    include VIEW . 'produse/search_db.phtml';
+   // include VIEW . 'produse/search_db.phtml';
     include VIEW . 'produse/search_ebay.phtml';
 }
 else if(isset($_GET["categorie"])){
@@ -160,6 +160,47 @@ else if(isset($_GET["categorie"])){
 </footer>
 <script src="/JS-uri/Collapse.js"></script>
 <script src="/JS-uri/navro.js"></script>
+  <script>
+      function eca(a) {
+          function call(a){
+              let img_link="no_link";
+              if(document.getElementById(a + ".image")!==null)
+                  img_link= document.getElementById(a + ".image").getAttribute("src").trim();
+              let lis =  document.getElementsByClassName(a+"specs");
+              let result=Array();
+              for (let i=0, len=lis.length|0; i<len; i=i+1|0) {
+                  result.push(lis[i].textContent+'|');
+              }
+              let url = new URL('http://localhost:800/produse/alegere_ebay');
+              let params = {
+                  category:'search',
+                  key_word:<?php echo"\"". $_GET["nume-produs"]."\"" ?>,
+                  title:document.getElementById(a + ".title").textContent.trim(),
+                  source:'Ebay',
+                  link:document.getElementById(a + ".link").getAttribute("href").trim(),
+                  imglink:img_link,
+                  details: result,
+                  id:<?php echo"\"". $_SESSION['id']."\"";?>
+              } ;
+
+              url.search = new URLSearchParams(params).toString();
+              const http = new XMLHttpRequest();
+
+              http.open("GET", url, true);
+              http.onreadystatechange = function()
+              {
+                  if(http.readyState === 400 && http.status === 200) {
+                     console.log(http.responseText);
+                  }
+              }
+              http.send(null);
+          }
+          if(true===<?php if(  isset($_SESSION['id'])) echo "true"; else echo "false";?>)
+              call(a);
+          else alert("Nu esti logat");
+      }
+  </script>
+
 </body>
 <?php
 /*if(isset($_GET['nu_esti_logat'])){

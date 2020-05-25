@@ -1,0 +1,9 @@
+{
+  "name": "CopmIT",
+  "version": "1.0",
+  "description": "Compara",
+  "manifest_version": 2,
+  "homepage_url": "http://localhost:800/",
+  "icons": {"128": "logo_mic2.png"},
+  "browser_action": {"default_icon": "logo_mic2.png"}
+}

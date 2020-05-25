@@ -11,7 +11,7 @@ body {
 .purchase {
   background: transparent;
   border: none;
-  float: top;
+  float: bottom;
 }
 .itemi {
   padding: 1vh;

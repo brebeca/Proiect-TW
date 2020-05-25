@@ -10,11 +10,13 @@ class produseController extends Controller {
      }
      public function alegere_ebay($data=''){
             $params= explode('?',$_SERVER['REQUEST_URI'])[1];
-            $id=explode("&id=",$params)[1];
-            $params=str_replace('-','/',explode("&id=", $params)[0]);
+            //$id=explode("&id=",$params)[1];
+            $id=$_GET['id'];
+            echo $id;
+            $params=explode("&id=", $params)[0];
+            echo $params;
             $this->model('produseModel');
             $this->model->trimite_produs($id,$params);
-            header("Location:/produse/produse?nume-produs=".urlencode($_GET['key_word'])."&nr-produse="."10");
 
     }
     public function compara(){
@@ -32,6 +34,11 @@ class produseController extends Controller {
     public function sterge_produs(){
         $this->model('produseModel');
         $this->model->sterge($_GET['product_id'],$_GET['session']);
+    }
+
+    public function test(){
+        $this->view('produse\test');
+        $this->view->render();
     }
 
 
