@@ -8,13 +8,18 @@ function makeItems(){
       //
       require_once('core/Scrapping.php');
 
-      $produse_de_afisat_emag = Select::scrapping_emag($_GET["categorie"]);
+      $produse = Select::scrapping($_GET["categorie"],$_GET["bd"]);
       //aici am pus if-ul in caz ca ceva esueaza la scraping si intorci false
-      if ($produse_de_afisat_emag == false)
+      if ($produse == false)
         header("Location:/index.php?scrap_esuat=1");
-      else {
-        foreach ($produse_de_afisat_emag as $produs) {
-          display($produs['id'], $produs['nume'], $produs['link'], $produs['imagine'], $produs['rating'], $produs['pret'], $produs['disponibilitate']);
+      else if($_GET["bd"]=="emag"){
+        foreach ($produse as $produs) {
+          display_emag($produs['id'], $produs['nume'], $produs['link'], $produs['imagine'], $produs['rating'], $produs['pret'], $produs['disponibilitate']);
+        }
+      }
+      else if($_GET["bd"]=="altex"){
+          foreach ($produse as $produs) {
+          display_altex($produs['id'], $produs['nume'], $produs['link'], $produs['imagine'], $produs['pret'], $produs['disponibilitate']);
         }
       }
     }
@@ -28,7 +33,7 @@ function makeItems(){
     <?php
     */
 }
-    function display($id, $nume, $link, $imagine, $rating, $pret, $disponibilitate) //generam pentru fiecare 
+    function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilitate) //generam pentru fiecare 
     {
       echo '<div class="grid-item">
                 <img src=' . $imagine . '></img>
@@ -40,6 +45,24 @@ function makeItems(){
                 <br><br>
                 <a class="review" href=' . $link . '/#reviews-section' . '> Catre review-uri </a>
                 <div class="rating" style="--rating:' . $rating . ';"></div>
+                <p class="pret">' . $pret . ' lei</p>';
+      if (strpos($disponibilitate, 'ultimul') !== false || strpos($disponibilitate, 'ultimele') !== false) {
+        echo '<p class="ultimul">' . $disponibilitate . '</p>';
+      } else {
+        echo '<p class=' . str_replace(" ", "-", $disponibilitate) . '>' . $disponibilitate . '</p>';
+      }
+      echo "</div>";
+    }
+    function display_altex($id, $nume, $link, $imagine, $pret, $disponibilitate) //generam pentru fiecare 
+    {
+      echo '<div class="grid-item">
+                <img src=' . $imagine . '></img>
+                <button class="compara" type="button" title="Compara">
+                  <span class="tooltip">Compara</span>
+                  </button>
+                <br>
+                <a class="titlu" href=' . $link . '> ' . $nume . '</a>
+                <br><br>
                 <p class="pret">' . $pret . ' lei</p>';
       if (strpos($disponibilitate, 'ultimul') !== false || strpos($disponibilitate, 'ultimele') !== false) {
         echo '<p class="ultimul">' . $disponibilitate . '</p>';
