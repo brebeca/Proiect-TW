@@ -1,14 +1,11 @@
 <?php
 class Select 
 {
-  public static function scrapping_altex($categorie){
-  //select from categorie ;
-  }
-  public static function scrapping_emag($categorie){
-    $servername = "localhost";
+  public static function scrapping($categorie,$db){
+   $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "produse_emag";
+    $dbname = $db;
     $page = 1;
     $nr_produse_pagina = 30;
     $clauza_where = ""; //pentru filtre
