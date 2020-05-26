@@ -32,7 +32,7 @@ function makeItems(){
     {
       echo '<div class="grid-item">
                 <img src=' . $imagine . '></img>
-                <button class="compara" type="button" title="Compara">
+                <button class="compara" type="button"  onclick=produs_ales('.$id.') title="Compara">
                   <span class="tooltip">Compara</span>
                   </button>
                 <br>

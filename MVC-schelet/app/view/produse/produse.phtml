@@ -152,6 +152,28 @@
 <script src="/JS-uri/Collapse.js"></script>
 <script src="/JS-uri/navro.js"></script>
   <script>
+      function produs_ales(id){
+          let url = new URL('http://localhost:800/produse/alegere');
+          let params = {
+              category:<?php if(isset($_GET["categorie"]))echo"\"". $_GET["categorie"]."\"";else echo"\"-\"" ?>,
+              id:<?php if(isset($_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo"\"-\""?>,
+              index:id,
+              source:<?php if(isset($_GET["sursa"]))echo"\"". $_GET["sursa"]."\"";else echo"\"-\"" ?>
+          } ;
+
+          url.search = new URLSearchParams(params).toString();
+          const http = new XMLHttpRequest();
+
+          http.open("GET", url, true);
+          http.onreadystatechange = function()
+          {
+              console.log(http.responseText);
+              if(http.readyState === 4 && http.status === 200) {
+                  console.log(http.responseText);
+              }
+          }
+          http.send(null);
+      }
       function eca(a) {
           function call(a){
               let img_link="no_link";
@@ -165,7 +187,7 @@
               let url = new URL('http://localhost:800/produse/alegere_ebay');
               let params = {
                   category:'search',
-                  key_word:<?php echo"\"". $_GET["nume-produs"]."\"" ?>,
+                  key_word:<?php if(isset($_GET["nume-produs"]))echo"\"". $_GET["nume-produs"]."\"";else echo"\"-\"" ?>,
                   title:document.getElementById(a + ".title").textContent.trim(),
                   source:'Ebay',
                   link:document.getElementById(a + ".link").getAttribute("href").trim(),
@@ -180,7 +202,7 @@
               http.open("GET", url, true);
               http.onreadystatechange = function()
               {
-                  if(http.readyState === 400 && http.status === 200) {
+                  if(http.readyState === 4 && http.status === 200) {
                      console.log(http.responseText);
                   }
               }
@@ -190,6 +212,7 @@
               call(a);
           else alert("Nu esti logat");
       }
+
   </script>
 
 </body>

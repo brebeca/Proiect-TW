@@ -4,5 +4,5 @@ class ShouldUpdateDB{
     public static function shouldUpdate($categorie){
 
     }
-    private static function updateOre
+    private static function updateOre(){}
 }

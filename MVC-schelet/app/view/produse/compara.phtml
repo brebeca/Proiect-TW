@@ -43,9 +43,21 @@
 if(isset($_SESSION['id'])) {
 
     require_once('model/produseModel.php');
-    $category='';
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),$category);
+
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'imbracaminte');
      echo "<pre>";
+    print_r($produse['products']);//[0]['category']);
+    echo"</pre>";
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'telefoane');
+    echo "<pre>";
+    print_r($produse['products']);//[0]['category']);
+    echo"</pre>";
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'electrocasnice');
+    echo "<pre>";
+    print_r($produse['products']);//[0]['category']);
+    echo"</pre>";
+    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'calculatoare');
+    echo "<pre>";
     print_r($produse['products']);//[0]['category']);
     echo"</pre>";
 

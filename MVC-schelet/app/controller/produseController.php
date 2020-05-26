@@ -36,9 +36,15 @@ class produseController extends Controller {
         $this->model->sterge($_GET['product_id'],$_GET['session']);
     }
 
-    public function test(){
-        $this->view('produse\test');
-        $this->view->render();
+    public function alegere(){
+
+        $id=$_GET['id'];
+        $this->model('produseModel');
+        $produs=$this->model->get_produs_db($_GET['index'], $_GET['category']);
+        $de_trimis=array("category"=>$_GET['category'],"title"=>$produs['nume'],"link"=>$produs['link'],"img_link"=>$produs['imagine']
+        ,"price"=>$produs['pret'],"details"=>array("rating"=>$produs['rating']),"source"=>$_GET['source']);
+        $this->model->trimite_produs2($de_trimis,$id);
+
     }
 
 

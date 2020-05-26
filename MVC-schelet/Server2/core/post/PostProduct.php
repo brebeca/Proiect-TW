@@ -12,12 +12,15 @@ class PostProduct
         if(isset($data['category'])&&isset($data['title'])&&isset($data['link'])&&isset($data['img_link'])
             &&isset($data['details'])&&isset($data['price'])) {
             $db = new DBManagement();
+            if(!isset($data['source']))
+                $source="outside";
+            else $source=$data['source'];
             $document = [
                 'category' => $data['category'],
                 'title' => $data['title'],
                 'link' => $data['link'],
                 'img_link' => $data['img_link'],
-                'source' => 'outside',
+                'source' => $source,
                 'details' => $data['details'],
                 'price' => $data['price'],
                 'owner' => $session,

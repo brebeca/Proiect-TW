@@ -65,6 +65,11 @@ class Main
                             AddUser::add($data['Session']);
                             return;
                    }
+                    if (strpos($request[0], 'AppInsert') === 0) {
+                        PostProduct::add($data,$session);
+                       // echo json_encode($data);
+                        return;
+                    }
                     else if(strpos($request[0], 'AddProduct') === 0){
                              PostProduct::add($data,$session);
                              return;

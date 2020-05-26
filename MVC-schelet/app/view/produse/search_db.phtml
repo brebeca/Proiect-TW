@@ -1,6 +1,6 @@
 <?php
 require_once ('model/produseModel.php');
-
+if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])){
 $produse_returnate=ProduseModel::cauta_produs_db($_GET["nume-produs"]);
 if($produse_returnate==false)
     header("Location:/index.php?cautare_esuata=1");
@@ -57,4 +57,4 @@ if (count($produse_returnate) > 0):
 
             </div>
         </div>
-    <?php endforeach;  endif; ?>
+    <?php endforeach;  endif;} ?>
