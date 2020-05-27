@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="ro" dir="ltr">
+<script>
+    function load() {
+        let url = new URL('http://localhost:800/produse/incarcaProduse');
+        let params = {
+            id:<?php session_start();if(isset($_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo"\"-\""?>
+        } ;
 
+        url.search = new URLSearchParams(params).toString();
+        const http = new XMLHttpRequest();
+
+        http.open("GET", url, true);
+        http.onreadystatechange = function()
+        {
+
+            if(http.readyState === 4 && http.status === 200) {
+                const myArr = JSON.parse(http.responseText);
+                console.log(myArr);
+            }
+        }
+
+        http.send(null);
+    }
+    window.onload = load;
+</script>
 <head>
     <meta charset="utf-8">
     <title>Produse</title>
@@ -27,7 +50,7 @@
 <div class="sidebar">
     <header>Optiuni</header>
     <ul>
-        <li <?php session_start();if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
+        <li <?php if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
         <?php if(isset($_SESSION['login']))
             echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
         ?>
@@ -44,7 +67,7 @@ if(isset($_SESSION['id'])) {
 
     require_once('model/produseModel.php');
 
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'imbracaminte');
+  /*  $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'imbracaminte');
      echo "<pre>";
     print_r($produse['products']);//[0]['category']);
     echo"</pre>";
@@ -59,7 +82,7 @@ if(isset($_SESSION['id'])) {
     $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'calculatoare');
     echo "<pre>";
     print_r($produse['products']);//[0]['category']);
-    echo"</pre>";
+    echo"</pre>";*/
 
 }
 else {

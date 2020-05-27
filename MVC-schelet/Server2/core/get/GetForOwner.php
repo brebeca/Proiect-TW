@@ -48,4 +48,18 @@ class GetForOwner
         }
     }
 
+    public static function get_all_category($session)
+    {
+            $db = new DBManagement();
+            $tel=$db->get_products_by_category('telefoane',$session);
+            $elect=$db->get_products_by_category('electrocasnice',$session);
+            $calc=$db->get_products_by_category('calculatoare',$session);
+            $div=$db->get_products_by_category('search',$session);
+            $imbr=$db->get_products_by_category('imbracaminte',$session);
+            $produse=array("electrocasnice"=>$elect,"telefoane"=>$tel,"calculatoare"=>$calc,
+                "diverse"=>$div,"imbracaminte"=>$imbr);
+            http_response_code(200);
+            echo json_encode(array("Success" => "true","produse"=>$produse));
+    }
+
 }

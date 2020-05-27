@@ -88,6 +88,8 @@ function altex($categorie)
 altex("calculatoare");
 altex("telefoane");
 altex("electrocasnice");
+
+
 /*
 altex("imbracaminte");//nu exista
 */

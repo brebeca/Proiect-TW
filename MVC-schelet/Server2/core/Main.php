@@ -50,6 +50,10 @@ class Main
                             GetForOwner::get_by_category($session);
                             return;
                         }
+                        else if(strpos($request[0],'GetProductsAllCategory')===0){
+                            GetForOwner::get_all_category($session);
+                            return;
+                        }
                         else {
                             http_response_code(400);
                             echo json_encode(array("Success" => "false","Reason" => "Unrecognized path."));
