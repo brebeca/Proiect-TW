@@ -61,3 +61,7 @@
 .drop:hover .dropwrap {
     display: block;
 }
+li.comparaBtn a{
+    position: static;
+    float:right;
+}

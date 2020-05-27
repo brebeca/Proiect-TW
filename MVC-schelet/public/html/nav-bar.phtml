@@ -7,6 +7,9 @@
       <a href="/produse/produse?categorie=imbracaminte&sursa=produse_altex">Altex</a>
     </div>
   </div>
+    <?php if(isset($_SESSION['login']))
+        echo "<li class=\"comparaBtn\"><a href=\"#\"><b>COMPARA</b></a></li>";
+    ?>
   <div class="drop">
     <button class="dropper">Electrocasnice</button>
     <div class="dropwrap">

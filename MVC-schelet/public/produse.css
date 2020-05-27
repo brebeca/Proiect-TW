@@ -13,12 +13,10 @@ body {
   border: none;
   float: bottom;
 }
-.itemi {
-  padding: 1vh;
-}
 .item {
   margin: auto;
   width: 70%;
+  min-height: 400px;
   background-color: white;
   padding: 3vh;
   border-radius: 1vh;
@@ -66,7 +64,7 @@ body {
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #e0ac1c;
+  background: #2c292f;
   transition: all .5s ease;
 }
 .sidebar header {
@@ -74,7 +72,7 @@ body {
   color: white;
   line-height: 70px;
   text-align: center;
-  background: #ebc660;
+  background: #736b7b;
   user-select: none;
 }
 .sidebar ul a{
@@ -165,7 +163,43 @@ ul.nav-menu li a:hover{
   color:#92999f;
    background: rgb(47, 79, 90);
 }
-
+ul.nav-menu li.comparaBtn a{
+  text-decoration: none;
+  display: block;
+  color: black;
+  background-color: #305900;
+  width: 160px;
+  height: 47px;
+  transition: 0.5s;
+  transform: rotate(0deg) skewX(0deg) translate(0,0);
+  box-shadow: -10px 10px 5px rgba(0,0,0,0.5);
+}
+ul.nav-menu li.comparaBtn a:before{
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: -5px;
+  height: 100%;
+  width: 5px;
+  background:#004d00;
+  transform: 0.5s;
+  transform: rotate(0deg) skewY(-45deg);
+}
+ul.nav-menu li.comparaBtn a:after{
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: -3px;
+  height: 5px;
+  width: 100%;
+  background:#004d00;
+  transform: 0.5s;
+  transform: rotate(0deg) skewX(-45deg);
+}
+ul.nav-menu li.comparaBtn a:hover{
+  box-shadow: -20px 20px 10px rgba(00, 00, 00);
+  transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
+}
 
 #check:checked ~ section{
   margin-left: 250px;
@@ -265,28 +299,33 @@ ul.nav-menu li a:hover{
 .grid-container {
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
-  padding-bottom: 200px;
+  padding-bottom: 180px;
   padding-left: 5%;
   padding-right: 5%;
   column-gap: 5%;
   row-gap: 50px;
   grid-template-rows: 500px;
 }
-
 .grid-item {
   background-color: whitesmoke;
   padding: 10px;
   margin: auto;
-  border: 2px solid black;
+  border: 1px #828282;
+  border-radius: 1vh;
   --font-size: 30px;
   text-align: center;
   line-height: normal;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
-
+.grid-item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 .grid-item .compara {
   position: absolute;
   display: inline-block;
   border: 2px outset orange;
+  border-radius: 50%;
   background-color: whitesmoke;
   height: 30px;
   width: 30px;
@@ -297,14 +336,20 @@ ul.nav-menu li a:hover{
 .grid-item .compara:hover {
   background-color: orange;
 }
-
+.grid-item .compara .hovtip {
+  display:none;
+  padding-top: 2px;
+}
+.grid-item .compara:hover .hovtip {
+  display: block;
+}
 .grid-item .compara .tooltip {
   visibility: hidden;
   background-color: black;
   color: white;
   text-align: center;
   width:100px;
-  margin-left:-150px;
+  margin-left:-140px;
   border-radius: 20px;
   padding: 5px;
   position: absolute;
@@ -332,6 +377,9 @@ ul.nav-menu li a:hover{
 
 .grid-item img {
   object-fit: contain;
+  padding-right: 1vh;
+  border-radius: 6px;
+  mix-blend-mode: multiply;
 }
 
 .grid-item .review{
@@ -351,7 +399,7 @@ ul.nav-menu li a:hover{
   content: '★★★★★';
   --width: calc(var(--rating) / 5 * 100%);
   /*rating e intre 0 si 5, 20% reprezinta o stea*/
-  background: linear-gradient(to right, rgb(255, 251, 0) var(--width), rgb(15, 15, 15) var(--width));
+  background: linear-gradient(to right, rgb(255, 200, 0) var(--width), rgb(15, 15, 15) var(--width));
   /* prima culoare e cea de umplere, a doua cea de fundal (rating 5=5 stele galbene)*/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -400,7 +448,14 @@ ul.nav-menu li a:hover{
   padding:50px 5%;
   max-width:20%;
 }
-
+#fila {
+ border-top-left-radius: 1.5vh;
+ border-top-right-radius: 1.5vh;
+}
+#filb {
+  border-bottom-left-radius: 1.5vh;
+  border-bottom-right-radius: 1.5vh;
+}
 .filtre .container{
   display: block;
   position: relative;
@@ -408,6 +463,9 @@ ul.nav-menu li a:hover{
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 20px;
+}
+.filtre .ratm .content {
+  border-radius: 1.5vh;
 }
 
 

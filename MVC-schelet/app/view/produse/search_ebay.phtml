@@ -11,7 +11,6 @@ if (count($produse_returnate) > 0):
 ?>
 
 <?php foreach ($produse_returnate as $produs): ?>
-<div class="itemi">
     <div class="item" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
         <div id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?> class="c">
             <div class="ct">
@@ -35,6 +34,5 @@ if (count($produse_returnate) > 0):
             <button class="purchase" style="vertical-align: middle" onclick=<?php echo "\"eca(".array_search($produs, $produse_returnate).")\"";?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></button>
         </div>
     </div>
-</div>
 <?php endforeach; ?>
 <?php endif; }?>

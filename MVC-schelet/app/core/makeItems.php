@@ -29,9 +29,10 @@ function makeItems()
 function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilitate) //generam pentru fiecare
 {
     echo '<div class="grid-item">
-                <img src=' . $imagine . '></img>
+                <img class="aimg" src=' . $imagine . '></img>
                 <button class="compara" type="button"  onclick=produs_ales(' . $id . ') title="Compara">
                   <span class="tooltip">Compara</span>
+                  <i class="fas fa-check hovtip"></i>
                   </button>
                 <br>
                 <a class="titlu" href=' . $link . '> ' . $nume . '</a>
@@ -50,9 +51,10 @@ function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilit
 function display_altex($id, $nume, $link, $imagine, $pret, $disponibilitate) //generam pentru fiecare
 {
     echo '<div class="grid-item">
-                <img src=' . $imagine . '></img>
+                <img class="aimg "src=' . $imagine . '></img>
                 <button class="compara" type="button" title="Compara">
                   <span class="tooltip">Compara</span>
+                  <i class="fas fa-check hovtip"></i>
                   </button>
                 <br>
                 <a class="titlu" href=' . $link . '> ' . $nume . '</a>
