@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="/produse.css">
 
     <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
-
+    <link rel="stylesheet" href="/css/nav-bar.css" media="all">
+    <link rel="stylesheet" href="/css/footer.css" media="all">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -61,34 +62,12 @@
     </ul>
 </div>
 <div>
-<?php
-
-if(isset($_SESSION['id'])) {
-
-    require_once('model/produseModel.php');
-
-  /*  $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'imbracaminte');
-     echo "<pre>";
-    print_r($produse['products']);//[0]['category']);
-    echo"</pre>";
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'telefoane');
-    echo "<pre>";
-    print_r($produse['products']);//[0]['category']);
-    echo"</pre>";
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'electrocasnice');
-    echo "<pre>";
-    print_r($produse['products']);//[0]['category']);
-    echo"</pre>";
-    $produse=ProduseModel::produsele_mele(md5($_SESSION['id']),'calculatoare');
-    echo "<pre>";
-    print_r($produse['products']);//[0]['category']);
-    echo"</pre>";*/
-
-}
-else {
-    "<script>alert(\"Nu suneti logat!\")</script>";
-}
+    <?php
+    include HTMLS.'nav-bar.phtml';
     ?>
+
+
+
 </div>
 
 <script src="/JS-uri/navro.js"></script>

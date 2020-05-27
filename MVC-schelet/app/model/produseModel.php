@@ -5,6 +5,8 @@ class Product {
 		public $detailsURL;
 		public $photoURL;
 		public $items = array();
+		public $price;
+		public $rating;
 	}
 class BD2{
     private static $conexiune_bd = NULL;
@@ -16,6 +18,7 @@ class BD2{
         return self::$conexiune_bd;
     }
 }
+
 class ProduseModel extends Model{
     protected $bd2;
     public function __construct(){
@@ -34,17 +37,15 @@ class ProduseModel extends Model{
      	$productObj->detailsURL = (string)$list->DetailsURL;
 
          if((string)$list->DisplayStockPhotos == 'true'){
-	        $productObj->photoURL = (string)$list->StockPhotoURL;
+             $productObj->photoURL = (string)$list->StockPhotoURL;
          }
-
          if(isset($list->ItemSpecifics[0])){
-         foreach ($list->ItemSpecifics[0] as $list1){
-
-            foreach ( $list1->Value as $item) {
-            	
-            	array_push($productObj->items, $list1->Name.": ".$item);
-            }
-         }}
+             foreach ($list->ItemSpecifics[0] as $list1){
+                 foreach ( $list1->Value as $item){
+                     array_push($productObj->items, $list1->Name.": ".$item);
+                 }
+             }
+         }
          array_push($products, $productObj);
      }
      

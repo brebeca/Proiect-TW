@@ -18,6 +18,8 @@ if (isset($_GET['login_succes'])) {
     <title>CompareIt</title>
     <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
     <link rel="stylesheet" href="/index.css" media="all">
+      <link rel="stylesheet" href="/css/nav-bar.css" media="all">
+      <link rel="stylesheet" href="/css/footer.css" media="all">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -56,14 +58,9 @@ if (isset($_GET['login_succes'])) {
 
     
 
-<nav class="Optiuni">
-      <ul class="nav-menu">
-      <li><a href="/produse/produse?categorie=imbracaminte&sursa=emag" >Imbracaminte</a></li>
-        <li><a href="/produse/produse?categorie=electrocasnice&sursa=emag">Electrocasnice</a></li>
-        <li><a href="/produse/produse?categorie=telefoane&sursa=emag">Telefoane</a></li>
-        <li><a href="/produse/produse?categorie=calculatoare&sursa=emag">Calculatoare</a></li>
-      </ul>
-</nav>
+<?php
+include HTMLS.'nav-bar.phtml';
+?>
 
  <section></section>
 

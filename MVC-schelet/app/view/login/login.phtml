@@ -6,7 +6,8 @@
     <title>Sign In</title>
     <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
      <link rel="stylesheet" href="/login.css">
-    
+      <link rel="stylesheet" href="/css/nav-bar.css" media="all">
+      <link rel="stylesheet" href="/css/footer.css" media="all">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,16 +31,12 @@
     <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
   </ul>
    </div>
-    <nav class="Optiuni">
-        <ul class="nav-menu">
-            <li><a href="/produse/produse">Imbracaminte</a></li>
-            <li><a href="/produse/produse">Electocasnice</a></li>
-            <li><a href="/produse/produse">Telefoane</a></li>
-            <li><a href="/produse/produse">Calculatoare</a></li>
-        </ul>
-    </nav>
+    <?php
+    include HTMLS.'nav-bar.phtml';
+    ?>
 
-   <div class="loginbox">
+
+    <div class="loginbox">
    	<img src="/images/avatar_login.png" class="avatar">
    	<h1>Intra in cont</h1>
    	<form action="/login/login" method="get">

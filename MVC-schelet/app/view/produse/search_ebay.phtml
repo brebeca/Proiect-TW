@@ -28,7 +28,8 @@ if (count($produse_returnate) > 0):
                 echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";
                 echo $item;
                 echo "</p>";
-            endforeach; ?>
+            endforeach;
+            ?>
         </div>
         <div class="c cp">
             <button class="purchase" style="vertical-align: middle" onclick=<?php echo "\"eca(".array_search($produs, $produse_returnate).")\"";?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></button>

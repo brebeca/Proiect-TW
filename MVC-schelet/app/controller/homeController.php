@@ -15,7 +15,7 @@ class homeController extends Controller {
         }
         else{
             $produs_de_cuatat=explode('=',  $de_cautat)[1];
-            $numar_de_produse_returnate = 10;
+            $numar_de_produse_returnate = 13;
             
             header("Location:/produse/produse?nume-produs=".$produs_de_cuatat."&nr-produse=".$numar_de_produse_returnate);
            
