@@ -32,6 +32,9 @@
    </div>
     <nav class="Optiuni">
         <ul class="nav-menu">
+            <?php if(isset($_SESSION['login']))
+              echo "<li class=\"comparaBtn\"><a href=\"#\"><b>COMPARA</b></a></li>";
+            ?>
             <li><a href="/produse/produse">Imbracaminte</a></li>
             <li><a href="/produse/produse">Electocasnice</a></li>
             <li><a href="/produse/produse">Telefoane</a></li>
@@ -48,10 +51,12 @@
    		<p>Parola</p>
    		<input type="password" name="password" required placeholder="Scrie: Parola">
    		<input type="submit" name="" value="Intra in cont">
-      <!-- TO ADD Google btn. HERE-->
-   		<button class="formBtn" id="myBtn">Mi-am uitat parola</button><br><br><br>
-   		<a href="/signUp/signUp">Nu am cont</a>
-   	</form>
+      <!-- TO ADD Google btn. HERE -->
+      <!-- <button class="formBtn" id="myBtn">Mi-am uitat parola</button><br><br><br> -->
+    </form>
+    <a href="/signUp/signUp">
+      <button class="formBtn">Nu am cont</button>
+    </a>
    </div>
 
 

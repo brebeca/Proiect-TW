@@ -59,7 +59,10 @@ Produsele magazinelor de calitate pot face diferenta si pot atrage cumparatorii 
 
 <nav class="Optiuni">
       <ul class="nav-menu">
-      <li><a href="/produse/produse">Imbracaminte</a></li>
+        <?php if(isset($_SESSION['login']))
+          echo "<li class=\"comparaBtn\"><a href=\"#\"><b>COMPARA</b></a></li>";
+        ?>
+        <li><a href="/produse/produse">Imbracaminte</a></li>
         <li><a href="/produse/produse">Electocasnice</a></li>
         <li><a href="/produse/produse">Telefoane</a></li>
         <li><a href="/produse/produse">Calculatoare</a></li>

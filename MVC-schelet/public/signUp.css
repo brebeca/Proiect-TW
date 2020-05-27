@@ -12,7 +12,7 @@
     left: -250px;
     width: 250px;
     height: 100%;
-    background: #e0ac1c;
+    background: #2c292f;
     transition: all .5s ease;
   }
   .sidebar header {
@@ -20,7 +20,7 @@
     color: white;
     line-height: 70px;
     text-align: center;
-    background: #ebc660;
+    background: #736b7b;
     user-select: none;
   }
   .sidebar ul a{
@@ -111,7 +111,43 @@
     color:#92999f;
      background: rgb(47, 79, 90);
   }
-  
+  ul.nav-menu li.comparaBtn a{
+  text-decoration: none;
+  display: block;
+  color: black;
+  background-color: #305900;
+  width: 160px;
+  height: 47px;
+  transition: 0.5s;
+  transform: rotate(0deg) skewX(0deg) translate(0,0);
+  box-shadow: -10px 10px 5px rgba(0,0,0,0.5);
+}
+ul.nav-menu li.comparaBtn a:before{
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: -5px;
+  height: 100%;
+  width: 5px;
+  background:#004d00;
+  transform: 0.5s;
+  transform: rotate(0deg) skewY(-45deg);
+}
+ul.nav-menu li.comparaBtn a:after{
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: -3px;
+  height: 5px;
+  width: 100%;
+  background:#004d00;
+  transform: 0.5s;
+  transform: rotate(0deg) skewX(-45deg);
+}
+ul.nav-menu li.comparaBtn a:hover{
+  box-shadow: -20px 20px 10px rgba(00, 00, 00);
+  transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
+}
   
   #check:checked ~ section{
     margin-left: 250px;

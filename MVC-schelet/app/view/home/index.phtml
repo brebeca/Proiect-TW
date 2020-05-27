@@ -25,14 +25,14 @@ if (isset($_GET['login_succes'])) {
   <body>
 
   <div class="element_mijloc">
-      <h2>Bine ai venit!</h2>
+      <h2>Bine ati venit!</h2>
       <div class="buton_cautare">
           <form class="cautare" action="/home/cauta" method="get">
               <input type="text" name="cauta"  required placeholder="&nbsp Cauta produsul dorit..." aria-hidden="true">
               <button  class="fa fa-search" style="font-size:50px;color: black;border: none; background: transparent;" type="submit"></button>
           </form>
       </div>
-      <p>Scopul nostru este sa va ajutam sa gasiti produsele dorite cat mai rapid si mai usor. Noi te ajutam sa gasesti si sa compari totul intr-un singur loc.</p>
+      <p>Scopul nostru este acela de a va ajuta sa gasiti produsele dorite cat mai rapid si mai usor. Noi va ajutam sa gasiti si sa comparati totul intr-un singur loc.</p>
   </div>
 
   <input type="checkbox" id="check">
@@ -58,7 +58,10 @@ if (isset($_GET['login_succes'])) {
 
 <nav class="Optiuni">
       <ul class="nav-menu">
-      <li><a href="/produse/produse?categorie=imbracaminte&sursa=emag" >Imbracaminte</a></li>
+        <?php if(isset($_SESSION['login']))
+          echo "<li class=\"comparaBtn\"><a href=\"#\"><b>COMPARA</b></a></li>";
+        ?>
+        <li><a href="/produse/produse?categorie=imbracaminte&sursa=emag" >Imbracaminte</a></li>
         <li><a href="/produse/produse?categorie=electrocasnice&sursa=emag">Electrocasnice</a></li>
         <li><a href="/produse/produse?categorie=telefoane&sursa=emag">Telefoane</a></li>
         <li><a href="/produse/produse?categorie=calculatoare&sursa=emag">Calculatoare</a></li>
