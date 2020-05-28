@@ -16,7 +16,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     float: right;
-    height:auto;
+    height: auto;
     overflow: hidden;
 }
 
@@ -61,7 +61,148 @@
 .drop:hover .dropwrap {
     display: block;
 }
+
 li.comparaBtn a{
     position: static;
-    float:right;
+    float: right;
+    margin-right: 3%;
+    margin-left: 1%;
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: #305900;
+    width: 90px;
+    height: 10px;
+    transition: 0.5s;
+    transform: rotate(0deg) skewX(0deg) translate(0,0);
+    box-shadow: -10px 10px 5px rgba(0,0,0,0.5);
 }
+
+li.comparaBtn a:before{
+   content: '';
+   position: absolute;
+   top: 3px;
+   left: -5px;
+   height: 100%;
+   width: 5px;
+   background:#004d00;
+   transform: 0.5s;
+   transform: rotate(0deg) skewY(-45deg);
+}
+li.comparaBtn a:after{
+   content: '';
+   position: absolute;
+   bottom: -5px;
+   left: -3px;
+   height: 5px;
+   width: 100%;
+   background:#004d00;
+   transform: 0.5s;
+   transform: rotate(0deg) skewX(-45deg);
+}
+li.comparaBtn a:hover{
+   background: #305900;
+   color: black;
+   box-shadow: -20px 20px 10px rgba(00, 00, 00);
+   transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
+}
+
+.docAPIbtn{
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   text-align: center;
+   font-size: 15px; 
+   border: none;
+   background: #333;
+   float: right;
+   height: 45px;
+   width: 130px;
+   line-height: 40px;
+   box-sizing: border-box;
+   padding: 0px;
+}
+
+.docAPIbtn:hover{
+   color:#92999f;
+   background: rgb(47, 79, 90);
+}
+
+/* The Modal (background) */
+.modal{
+   display: none; 
+   position: fixed; 
+   z-index: 1; /*Sit on top*/
+   top: 8.5%;
+   left: 0%;
+   width: 2000px;
+   height: 650px; 
+   overflow: auto; /*Enable scroll if needed*/
+   background-color: rgb(0,0,0); 
+   background-color: rgba(0,0,0,0.7);
+}
+
+/* Modal Content/Box */
+.modal-content{
+   font-family: "Times New Roman", Times, serif;
+   background-color: #e0ac1c;
+   color: #004d00;
+   margin: 4%; 
+   padding: 1%;
+   border: 1px solid #888;
+   width: 1100px;
+   height: 400px; 
+   padding-bottom: 2%;
+   overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+   width: 12px;
+   height: 12px;
+}
+
+::-webkit-scrollbar-track {
+   border: 1px solid #e0ac1c;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #004d00;  
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #004d00;  
+}
+
+.modal-content p{
+   margin-left: 120px;
+}  
+
+/* The Close Button */
+.close {
+   color: #111;
+   float: right;
+   font-size: 36px;
+   font-weight: bold;
+   margin-right: 35px;
+}
+
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.myAPIidBtn{
+   background-color: #305900;
+   border-color: #004d00;
+   height: 40px;
+   width: 200px;
+   margin-left: 450px;
+}
+
+.myAPIidBtn:hover{
+   transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
+}  
