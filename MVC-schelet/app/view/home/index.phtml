@@ -1,6 +1,6 @@
 
 <?php
-$ok=false;
+
 if (isset($_GET['login_succes'])) {
     session_start();
     $_SESSION['login'] = $_GET['user'];
@@ -37,28 +37,9 @@ if (isset($_GET['login_succes'])) {
       <p>Scopul nostru este acela de a va ajuta sa gasiti produsele dorite cat mai rapid si mai usor. Noi va ajutam sa gasiti si sa comparati totul intr-un singur loc.</p>
   </div>
 
-  <input type="checkbox" id="check">
-    <label for="check">
-      <i class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-    <header>Optiuni</header>
-    <ul>
-        <li <?php if($ok==false)session_start(); if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
-        <?php if(isset($_SESSION['login']))
-            echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
-        ?>
-        <li><a href="/aboutUs/aboutUS"><i class="fas Despre_noi"></i>Despre noi</a></li>
-        <li><a href="/QA/QA"><i class="fas Intrebari"></i>Intrebari frecvente</a></li>
-        <li><a href="/contactUs/contactUS"><i class="fas Contact"></i>Contact</a></li>
-        <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
-    </ul>
-</div>
-
-    
 
 <?php
+include HTMLS.'side-bar.phtml';
 include HTMLS.'nav-bar.phtml';
 ?>
 

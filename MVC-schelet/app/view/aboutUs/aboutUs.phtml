@@ -15,28 +15,7 @@
 
   </head>
   <body>
-
-    <input type="checkbox" id="check">
-    <label for="check">
-        <i onclick="navroll(true)" class='fas fa-grip-lines' id="btn" style='font-size:40px;color: black'></i>
-        <i onclick="navroll(false)" class="fas fa-times" id="cancel"></i>
-    </label>
-
-
-    <div class="sidebar">
-    <header>Optiuni</header>
-  <ul>
-    <li <?php session_start();if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
-    <?php if(isset($_SESSION['login'])) 
-       echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
-    ?>
-    <li><a href="/aboutUs/aboutUS"><i class="fas Despre_noi"></i>Despre noi</a></li>
-    <li><a href="/QA/QA"><i class="fas Intrebari"></i>Intrebari frecvente</a></li>
-    <li><a href="/contactUs/contactUS"><i class="fas Contact"></i>Contact</a></li>
-    <li><a href="/home/index"><i class="fas home"></i>Home</a></li>
-  </ul>
-   </div> 
-
+<?php include HTMLS.'side-bar.phtml';?>
 
    <div class="aboutus">
     
@@ -54,9 +33,7 @@
         </div>
 
 
-    <?php
-    include HTMLS.'nav-bar.phtml';
-    ?>
+<?php include HTMLS.'nav-bar.phtml'; ?>
 
 
  <section></section>

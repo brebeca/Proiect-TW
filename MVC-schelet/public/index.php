@@ -21,6 +21,3 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modu
 spl_autoload_register('spl_autoload', false);
 
 new Application();
-/*$h = file_get_html('https://www.ebay.com/p/22012252202#ProductDetails');
-echo $h->find("span.star--rating",0)->aria-label;
-    echo $html->find("img.vi-image-gallery__image vi-image-gallery__image--absolute-center",0)->src;*/

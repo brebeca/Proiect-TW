@@ -9,23 +9,19 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 class PostProduct
 {
     public static  function add($data,$session){
-        if(isset($data['category'])&&isset($data['title'])&&isset($data['link'])&&isset($data['img_link'])
-            &&isset($data['details'])&&isset($data['price'])) {
+        if(isset($data['category'])&&isset($data['title'])&&isset($data['link'])
+            &&isset($data['img_link'])&&isset($data['price'])) {
+
             $db = new DBManagement();
+
             if(!isset($data['source']))
                 $source="outside";
-            else $source=$data['source'];
-            $document = [
-                'category' => $data['category'],
-                'title' => $data['title'],
-                'link' => $data['link'],
-                'img_link' => $data['img_link'],
-                'source' => $source,
-                'details' => $data['details'],
-                'price' => $data['price'],
-                'owner' => $session,
-                'id' => 1000
-            ];
+            //de tratat asta
+            else {
+                    $document=get_document($session,$data,$data['source']);
+            }
+
+
             $id=$db->insert_products($document);
 
             http_response_code(200);
@@ -38,4 +34,30 @@ class PostProduct
         }
     }
 
+
+}
+function get_document($session,$data,$source){
+   $details=array();
+    if($source=='emag')
+        $details=Scrapping::detalii_emag($data['link']);
+    else if($source=='altex'){
+        $details=Scrapping::detalii_altex($data['link']);
+    }
+    if(isset($data['rating']))
+        $rating=$data['rating'];
+    else
+        $rating=0;
+    $document=[
+        'category' => $data['category'],
+        'title' => $data['title'],
+        'link' => $data['link'],
+        'img_link' => $data['img_link'],
+        'source' => $source,
+        'details' => $details,
+        'price' => $data['price'],
+        'owner' => $session,
+        'id' => 1000,
+        'rating'=>$rating
+    ];
+    return $document;
 }

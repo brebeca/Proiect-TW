@@ -18,11 +18,23 @@ class BD2{
         return self::$conexiune_bd;
     }
 }
+class BD3{
+    private static $conexiune_bd = NULL;
+    public static function obtine_conexiune(){
+        if (is_null(self::$conexiune_bd))
+        {
+            self::$conexiune_bd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME3, DB_USER2, DB_PASS2);
+        }
+        return self::$conexiune_bd;
+    }
+}
 
 class ProduseModel extends Model{
     protected $bd2;
+    protected $bd3;
     public function __construct(){
         $this->bd2= new BD2;
+        $this->bd3= new BD3;
     }
 	public static function cautaProdus($produs_de_cuatat, $numar_de_produse_returnate){
 	 $product = ebay::get_product_xml($produs_de_cuatat, $numar_de_produse_returnate);
@@ -104,15 +116,16 @@ class ProduseModel extends Model{
         return json_decode($res,true);
 
     }
-    public  function get_produs_db($id,$categorie){
+    public  function get_produs_db($id,$categorie,$sursa){
             $sql = "SELECT * FROM ".$categorie." where id = :id ";
-            $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
+            if($sursa=="emag")
+                $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
+            else
+                $cerere = $this->bd3->obtine_conexiune()->prepare($sql);
             $cerere->execute([
                 'id'=>$id
             ]);
             $result=$cerere->fetch();
-            /*if(sizeof( $result)==0)
-                return "nimic returnat";*/
             return $result;
     }
     public function trimite_produs($id,$params){

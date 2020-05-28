@@ -52,7 +52,7 @@ function display_altex($id, $nume, $link, $imagine, $pret, $disponibilitate) //g
 {
     echo '<div class="grid-item">
                 <img class="aimg "src=' . $imagine . '></img>
-                <button class="compara" type="button" title="Compara">
+                <button class="compara" type="button" onclick=produs_ales(' . $id . ') title="Compara">
                   <span class="tooltip">Compara</span>
                   <i class="fas fa-check hovtip"></i>
                   </button>

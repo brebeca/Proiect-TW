@@ -45,9 +45,18 @@ class produseController extends Controller {
 
         $id=$_GET['id'];
         $this->model('produseModel');
-        $produs=$this->model->get_produs_db($_GET['index'], $_GET['category']);
+        $source='';
+        if(strpos($_GET['source'], 'emag') !==false)
+            $source='emag';
+        else  if(strpos($_GET['source'], 'altex') !==false)
+            $source='altex';
+        $produs=$this->model->get_produs_db($_GET['index'], $_GET['category'],$source);
+        if(isset($produs['rating']))
+            $rating=$produs['rating'];
+        else $rating=0;
         $de_trimis=array("category"=>$_GET['category'],"title"=>$produs['nume'],"link"=>$produs['link'],"img_link"=>$produs['imagine']
-        ,"price"=>$produs['pret'],"rating"=>$produs['rating'],"source"=>$_GET['source']);
+        ,"price"=>$produs['pret'],"rating"=>$rating,
+            "source"=>$source);
         $this->model->trimite_produs2($de_trimis,$id);
 
     }

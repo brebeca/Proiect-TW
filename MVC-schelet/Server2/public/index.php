@@ -19,11 +19,10 @@ define('GETS', ROOT . 'core' .DIRECTORY_SEPARATOR . 'get' . DIRECTORY_SEPARATOR)
 
 
 $modules=[ROOT, POSTS, GETS];
-
+require_once ROOT. 'core' . DIRECTORY_SEPARATOR ."Scrapping.php";
 set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modules));
 
 new Main();
-
 
 
 
