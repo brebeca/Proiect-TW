@@ -31,6 +31,12 @@ body {
   width:33%;
   text-align: center;
 }
+.c.csp {
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+}
 .c.cs {
   text-align: left;
   /*margin:auto;*/
@@ -417,7 +423,6 @@ ul.nav-menu li a:hover{
 .grid-item .ultimul{
   color:red;
 }
-
 .collapsible {
   background-color: #ddd;
   padding: 20px;

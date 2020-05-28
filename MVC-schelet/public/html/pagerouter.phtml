@@ -1,0 +1,18 @@
+<div id="router">
+    <button class="prev"><a href=<?php
+        if(intval($_GET['page'])>1)
+            $page=  intval($_GET['page'])-1;
+        else
+            $page=1;
+        echo "\"/produse/produse?categorie=".$_GET["categorie"]."&sursa=".$_GET["sursa"]."&page=".$page."\""
+        ?> >
+            <i class="fas fa-angle-left"></i></a></button>
+    <button class="next"><a href=<?php
+            if(intval($_GET['page'])<5)
+                $page=intval($_GET['page'])+1;
+            else
+                $page=10;
+            echo "\"/produse/produse?categorie=".$_GET["categorie"]."&sursa=".$_GET["sursa"]."&page=".$page."\""
+            ?>>
+            <i class="fas fa-angle-right"></i></a></button>
+</div>

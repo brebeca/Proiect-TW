@@ -12,7 +12,7 @@ if (count($produse_returnate) > 0):
 
 <?php foreach ($produse_returnate as $produs): ?>
     <div class="item" id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?>>
-        <div id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?> class="c">
+        <div id=<?php echo "\"".array_search($produs, $produse_returnate)."\"";?> class="c csp">
             <div class="ct">
                 <?php if ($produs->photoURL != ""): ?>
                 <img class="ci" id=<?php echo "\"".array_search($produs, $produse_returnate).".image\"";?> id=<?php echo "\"".array_search($produs, $produse_returnate).".image\"";?>  src=<?php echo "\"".$produs->photoURL."\""; endif;?>>

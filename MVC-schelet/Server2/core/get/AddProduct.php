@@ -13,22 +13,30 @@ class  AddProduct
         if (
             isset($_GET['title'])
            && isset($_GET['link']) && isset($_GET['imglink'])
-            && isset($_GET['details']) && isset($_GET['category']) && isset($_GET['source'])
+            && isset($_GET['category']) && isset($_GET['source'])
         ) {
 
             $db = new DBManagement();
             $key_word = "no_key_word";
             if (isset($_GET['key_word']))
                 $key_word = $_GET['key_word'];
-            $details = trim($_GET['details'],'|');
-            $details=explode('|', $details);
+            $details=null;
+            if(isset($_GET['details'])) {
+                $details = trim($_GET['details'],'|');
+                $details=explode('|', $details);
+            }
             $price=-1;
+            $rating=0;
             if (isset($_GET['price']))
                 $price=$_GET['price'];
             else {
-                $h=file_get_html($_GET['link']);
-                if(isset($h->find("h2.display-price",0)->innertext))
-                $price=intval(explode('$',$h->find("h2.display-price",0)->innertext)[1]);
+                if($_GET['source']=='Ebay') {
+                    $h = file_get_html($_GET['link']);
+                    if (isset($h->find("h2.display-price", 0)->innertext))
+                        $price = intval(explode('$', $h->find("h2.display-price", 0)->innertext)[1]);
+                    $rating = explode(' ',$h->find("span.star--rating", 0)->getAttribute("aria-label"))[0];
+                }
+
                 }
 
             $document = ['category' => $_GET['category'],
@@ -40,7 +48,8 @@ class  AddProduct
                 'details' => $details,
                 'owner' => $session,
                 'price'=> $price*4.44,
-                'id'=>1000
+                'id'=>1000,
+                'rating'=>$rating
             ];
             $db->insert_products($document);
 

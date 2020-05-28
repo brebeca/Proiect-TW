@@ -1,0 +1,16 @@
+#router {
+    position: relative;
+    margin-left: 50%;
+}
+#router button {
+    border-radius: 50%;
+    background: orange;
+    height: 30px;
+    width: 30px;
+}
+#router .prev {
+    border: 2px inset orange;
+}
+#router .next {
+    border: 2px outset orange;
+}

@@ -36,9 +36,10 @@ class ProduseModel extends Model{
      	$productObj->title = (string)$list->Title;
      	$productObj->detailsURL = (string)$list->DetailsURL;
 
-         if((string)$list->DisplayStockPhotos == 'true'){
-             $productObj->photoURL = (string)$list->StockPhotoURL;
+         if((string)$list->DisplayStockPhotos != 'true'){
+             continue;
          }
+         $productObj->photoURL = (string)$list->StockPhotoURL;
          if(isset($list->ItemSpecifics[0])){
              foreach ($list->ItemSpecifics[0] as $list1){
                  foreach ( $list1->Value as $item){

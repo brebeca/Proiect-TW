@@ -15,20 +15,24 @@ class Select
     if ($con->connect_error) {
       die("Nu s-a reusit conectarea la baza de date: " . $con->connect_error);
     }
-    if(isset($_GET['page'])){
-      $page=$_GET['page'];
-    }
   /*
     if (isset($_GET['nr_produse_pagina'])) {
       // daca exista, atunci e schimbat defaultul de 30
       $nr_produse_pagina = $_GET['nr_produse_pagina'];
     }
+  */
     if (isset($_GET['rating_minim'])) {
-      $clauza_where = $clauza_where . "rating>" . $_GET['rating_minim'];
+      $clauza_where =" rating >= " . $_GET['rating_minim'];
     }
+    else if (isset($_GET['pret1'])&&isset($_GET['pret2'])) {
+        $clauza_where =" pret BETWEEN " . $_GET['pret1']." and ".$_GET['pret2'];
+    }
+    else if(isset($_GET['page'])){
+            $page=$_GET['page'];
+        }
     if ($clauza_where != "")
       $clauza_where = " WHERE " . $clauza_where;
-  */
+
     $inceput=($page - 1) * $nr_produse_pagina; 
     $stmt = $con->prepare("SELECT * FROM " . $categorie . $clauza_where . $clauza_order . " LIMIT ?,?"); //luam din tabela cu numele transmis prin get
     $stmt->bind_param("ii", $inceput, $nr_produse_pagina);

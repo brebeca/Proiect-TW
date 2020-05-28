@@ -13,6 +13,7 @@
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/pagerouter.css" media="all">
   
 </head>
 
@@ -40,66 +41,22 @@
 
   <?php
   include HTMLS.'nav-bar.phtml';
+  if(isset($_GET["categorie"]))
+      include HTMLS.'filtre.phtml';
+  else
   ?>
-
-  <ul class="filtre">
-    <li>
-      <button type="button" class="collapsible">Pret</button>
-      <div class="content">
-        <label class="container"> 0-100
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container"> 100-500
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container"> 500-1500
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container"> 1500-2500
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container"> 2500-5000
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-        <label class="container"> 5000-
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-    </li>
-    <li>
-      <button type="button" class="collapsible">Rating minim</button>
-      <div class="content">
-        <input type="radio" id="5" name="rating" value="5">
-        <label for="5">5 stele</label><br>
-        <input type="radio" id="4" name="rating" value="4">
-        <label for="4">4 stele</label><br>
-        <input type="radio" id="3" name="rating" value="3">
-        <label for="3">3 stele</label><br>
-        <input type="radio" id="2" name="rating" value="2">
-        <label for="2">2 stele</label><br>
-      </div>
-    </li>
-  </ul>
-
+<br><br><br>
 <div class="grid-container">
     <?php //afisam obiectele luate din baza de date apeland functia
     require_once('core/makeItems.php');
     makeItems();
     ?>
 </div>
-
-
+  <?php
+  if(isset($_GET["categorie"]))
+  include HTMLS.'pagerouter.phtml';
+  ?>
+  <br>
   <footer class="footer-distributed">
  
  <div class="footer-left">
