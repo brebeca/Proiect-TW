@@ -27,6 +27,8 @@
         $result=$cerere->fetchAll();
         if(sizeof( $result)!=0)
             return $result[0]['session'];
+            //<=>un return false
+        //if ==0
         return true;
         
     }

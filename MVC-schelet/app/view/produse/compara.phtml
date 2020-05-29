@@ -4,7 +4,7 @@
     function load() {
         let url = new URL('http://localhost:800/produse/incarcaProduse');
         let params = {
-            id:<?php session_start();if(isset($_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo"\"-\""?>
+            id:<?php  if(!isset($ok)){session_start(); $ok=true;}if(isset($_SESSION['id'])){echo"\"". $_SESSION['id']."\""; }else echo"\"-\""?>
         } ;
 
         url.search = new URLSearchParams(params).toString();

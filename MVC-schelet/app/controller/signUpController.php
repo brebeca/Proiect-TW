@@ -18,7 +18,7 @@ class signUpController extends Controller {
             $password=urldecode(explode('=',  $params[2])[1]);
 
 
-            if( $this->model->sePoateIregistra($email, $name)!=false)
+            if( $this->model->sePoateIregistra($email, $name)==true)
              {
                 $this->model->addUser($name, $password, $email);
                 $this->view('login/login');

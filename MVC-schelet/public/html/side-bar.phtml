@@ -6,7 +6,7 @@
 <div class="sidebar">
     <header>Optiuni</header>
     <ul>
-        <li <?php if(!isset($ok))session_start(); if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
+        <li <?php if(!isset($ok)){session_start(); $ok=true;} if(isset($_SESSION['login'])) echo "style=\"display: none\""?>><a href="/login/login"><i class="fas Login" ></i>Login</a></li>
         <?php if(isset($_SESSION['login']))
             echo "<li><a href=\"/login/logout\"><i class=\"fas Despre_noi\"></i>LogOut</a></li>";
         ?>
