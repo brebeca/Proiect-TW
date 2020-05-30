@@ -23,6 +23,22 @@ if (isset($_GET['login_succes'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+      <script>
+          function register_cookie(){
+              let url = new URL('http://localhost:800/home/cookie');
+              const http = new XMLHttpRequest();
+              http.open("GET", url, true);
+              http.onreadystatechange = function()
+              {
+                  console.log(http.responseText);
+                  if(http.readyState === 4 && http.status === 200) {
+                      console.log(http.responseText);
+                  }
+              }
+              http.send(null);
+          }
+          window.onload=register_cookie;
+      </script>
   </head>
   <body>
 
@@ -154,16 +170,15 @@ include HTMLS.'nav-bar.phtml';
 
 <script>
 function showMyAPIid() {
-  var id = new String(<?php echo"\"". $_SESSION['id']."\"";?>);
-  var coloredId = id.fontcolor("black");
-  var mesaj = new String("ID-ul tau de API este: " + coloredId);
-  document.getElementById("myID").innerHTML = mesaj;
-  var afiseazaMesaj = document.getElementById("myID"); 
-  if (afiseazaMesaj.style.display === "none") {
-    afiseazaMesaj.style.display = "block";
-  } else {
-    afiseazaMesaj.style.display = "none";
-  }
+      let id = new String(<?php echo"\"". $_SESSION['id']."\"";?>);
+        let coloredId = id.fontcolor("black");
+        document.getElementById("myID").innerHTML = new String("ID-ul tau de API este: " + coloredId);
+      let afiseazaMesaj = document.getElementById("myID");
+      if (afiseazaMesaj.style.display === "none") {
+        afiseazaMesaj.style.display = "block";
+      } else {
+        afiseazaMesaj.style.display = "none";
+      }
 }
 </script>
 
@@ -260,5 +275,6 @@ else if(isset($_GET["cautare_esuata"])){
 
 ?>
 <script src="/JS-uri/navro.js"></script>
+
 </body>
 </html>

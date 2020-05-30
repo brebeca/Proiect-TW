@@ -21,6 +21,31 @@ class homeController extends Controller {
            
         }
 
+
+    }
+    public function cookie(){
+        //$_GET['value']
+        function getRequestHeaders() {
+            $headers = array();
+            foreach($_SERVER as $key => $value) {
+                if (substr($key, 0, 5) <> 'HTTP_') {
+                    continue;
+                }
+                $header = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+                $headers[$header] = $value;
+            }
+            return $headers;
+        }
+        $headers = getRequestHeaders();
+        if(!isset($_COOKIE['user'])){
+            $value=explode('=',$headers['Cookie'])[1];
+            setcookie("user",$value , time()+24*60*60);
+            $this->model('ModelRegister');
+            $this->model->send_cookie( $value);
+            echo "se seteaza din nou cu ".$headers['Cookie'];
+        }
+        else echo $_COOKIE['user'];
+
     }
 
 }

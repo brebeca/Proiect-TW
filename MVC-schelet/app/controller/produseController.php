@@ -28,7 +28,7 @@ class produseController extends Controller {
     public function incarcaProduse(){
         $this->model('produseModel');
         $produse=$this->model->toate_produsele(md5($_GET['id']));
-        echo json_encode($produse['produse']);
+        echo $produse;
     }
     public function scrap(){
         //model

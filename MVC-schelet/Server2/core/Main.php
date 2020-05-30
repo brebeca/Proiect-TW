@@ -51,6 +51,7 @@ class Main
                             return;
                         }
                         else if(strpos($request[0],'GetProductsAllCategory')===0){
+                          //  echo "intra in if ";
                             GetForOwner::get_all_category($session);
                             return;
                         }
@@ -69,6 +70,10 @@ class Main
                             AddUser::add($data['Session']);
                             return;
                    }
+                    if (strpos($request[0], 'AddCookieUser') === 0) {
+                        AddUser::addCookie($data['Cookie']);
+                        return;
+                    }
                     if (strpos($request[0], 'AppInsert') === 0) {
                         PostProduct::add($data,$session);
                        // echo json_encode($data);

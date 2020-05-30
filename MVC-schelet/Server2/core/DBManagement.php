@@ -54,6 +54,10 @@ class DBManagement
         }
         return false;
     }
+    public  function get_all_session(){
+        $collection = $this->connection->selectCollection('Users');
+        return $collection->find( )->toArray();
+    }
 
     public function get_products_for_owner($owner){
         $collection = $this->connection->selectCollection('Products');

@@ -26,11 +26,6 @@ if (count($produse_returnate) > 0):
                     <?php echo $produs->title; ?></a>
             </div>
         </div>
-        <div class="purchase">
-            <div class="vpurchase">
-                <button class="pbutton" onclick=<?php echo "\"eca(".array_search($produs, $produse_returnate).")\"";?>><span style="color: #92999f; font-size: 7vh;"><i class="fas fa-cart-plus"></i></span></button>
-            </div>
-        </div>
         <div class="none">
             <?php foreach ($produs->items as $item):
                 echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";

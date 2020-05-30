@@ -87,30 +87,41 @@
 <script src="/JS-uri/Collapse.js"></script>
 <script src="/JS-uri/navro.js"></script>
   <script>
-      function produs_ales(id){
-          let url = new URL('http://localhost:800/produse/alegere');
-          let params = {
-              category:<?php if(isset($_GET["categorie"]))echo"\"". $_GET["categorie"]."\"";else echo"\"-\"" ?>,
-              id:<?php if(isset($_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo"\"-\""?>,
-              index:id,
-              source:<?php if(isset($_GET["sursa"]))echo"\"". $_GET["sursa"]."\"";else echo"\"-\"" ?>
-          } ;
-
-          url.search = new URLSearchParams(params).toString();
-          const http = new XMLHttpRequest();
-
-          http.open("GET", url, true);
-          http.onreadystatechange = function()
+      function produs_ales(id_produs){
+         function call2(id_produs, id_user)
           {
-              console.log(http.responseText);
-              if(http.readyState === 4 && http.status === 200) {
+              let url = new URL('http://localhost:800/produse/alegere');
+              let params = {
+                  category:<?php if (isset($_GET["categorie"])) echo "\"" . $_GET["categorie"] . "\""; else echo "\"-\"" ?>,
+                  id:id_user,
+                  index: id_produs,
+                  source:<?php if (isset($_GET["sursa"])) echo "\"" . $_GET["sursa"] . "\""; else echo "\"-\"" ?>
+              };
+
+              url.search = new URLSearchParams(params).toString();
+              const http = new XMLHttpRequest();
+
+              http.open("GET", url, true);
+              http.onreadystatechange = function () {
                   console.log(http.responseText);
+                  if (http.readyState === 4 && http.status === 200) {
+                      console.log(http.responseText);
+                  }
               }
+              http.send(null);
           }
-          http.send(null);
+          if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
+              let id_user=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
+              call2(id_produs, id_user);
+          }
+          else
+          {
+              let id_user=document.cookie.split('=')[1];
+              call2(id_produs, id_user);
+          }
       }
       function eca(a) {
-          function call(a){
+          function call(a,id){
               let img_link="no_link";
               if(document.getElementById(a + ".image")!==null)
                   img_link= document.getElementById(a + ".image").getAttribute("src").trim();
@@ -128,7 +139,7 @@
                   link:document.getElementById(a + ".link").getAttribute("href").trim(),
                   imglink:img_link,
                   details: result,
-                  id:<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>
+                  id:id
               } ;
 
               url.search = new URLSearchParams(params).toString();
@@ -143,9 +154,16 @@
               }
               http.send(null);
           }
-          if(true===<?php if(  isset($_SESSION['id'])) echo "true"; else echo "false";?>)
-              call(a);
-          else alert("Nu esti logat");
+          if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
+              let id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
+              call(a, id);
+          }
+          else
+          {
+              let id=document.cookie.split('=')[1];
+              //console.log(id);
+              call(a, id);
+          }
       }
 
   </script>

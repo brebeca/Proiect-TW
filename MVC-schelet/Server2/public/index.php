@@ -23,6 +23,8 @@ require_once ROOT. 'core' . DIRECTORY_SEPARATOR ."Scrapping.php";
 set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modules));
 
 new Main();
+/*$db= new DBManagement();
+echo json_encode($db->get_products_for_owner("bn99m6uf1qjufsg7dao59kbed1"));*/
 
 
 

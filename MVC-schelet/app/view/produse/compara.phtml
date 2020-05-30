@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro" dir="ltr">
-<script>
-    function load() {
-        let url = new URL('http://localhost:800/produse/incarcaProduse');
-        let params = {
-            id:<?php  if(!isset($ok)){session_start(); $ok=true;}if(isset($_SESSION['id'])){echo"\"". $_SESSION['id']."\""; }else echo"\"-\""?>
-        } ;
 
-        url.search = new URLSearchParams(params).toString();
-        const http = new XMLHttpRequest();
-
-        http.open("GET", url, true);
-        http.onreadystatechange = function()
-        {
-
-            if(http.readyState === 4 && http.status === 200) {
-                const myArr = JSON.parse(http.responseText);
-                console.log(myArr);
-            }
-        }
-
-        http.send(null);
-    }
-    window.onload = load;
-</script>
 <head>
     <meta charset="utf-8">
     <title>Produse</title>
@@ -51,5 +28,37 @@
 </div>
 
 <script src="/JS-uri/navro.js"></script>
+    <script>
+        var id;
+        if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
+            id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
+        }
+        else
+        {
+            id=document.cookie.split('=')[1];
+        }
+        function load() {
+            let url = new URL('http://localhost:800/produse/incarcaProduse');
+            let params = {
+                id: id
+            } ;
+
+            url.search = new URLSearchParams(params).toString();
+            const http = new XMLHttpRequest();
+
+            http.open("GET", url, true);
+            http.onreadystatechange = function()
+            {
+
+                if(http.readyState === 4 && http.status === 200) {
+                    const myArr = JSON.parse(http.responseText);
+                    console.log(myArr);
+                }
+            }
+
+            http.send(null);
+        }
+        window.onload = load;
+    </script>
 </body>
 </html>

@@ -11,7 +11,20 @@ class AddUser
     public static  function add($session){
         $db=new DBManagement();
         $document=[
-            'session'=>$session
+            'session'=>$session,
+            'temp'=>false
+        ];
+        $db->insert_users($document);
+
+        http_response_code(200);
+        echo json_encode(array("Success" => "true"));
+        return;
+    }
+    public static function addCookie($cookie){
+        $db=new DBManagement();
+        $document=[
+            'session'=>$cookie,
+            'temp'=>true
         ];
         $db->insert_users($document);
 

@@ -19,6 +19,28 @@
         }
         else return false;
     }
+    public function send_cookie($cookie){
+        $postData = array(
+            'Cookie' => $cookie
+        );
+        $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
+        $ch = curl_init('http://localhost:801/AddCookieUser');
+        curl_setopt_array($ch, array(
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type:application/json',
+                'Session:'.$session
+            ),
+            CURLOPT_POSTFIELDS => json_encode($postData)
+        ));
+        $response = curl_exec($ch);
+        if($response === FALSE){
+            die(curl_error($ch));
+        }
+        echo $response;
+
+    }
 
     public function sePoateIregistra( $email){
         $sql = "SELECT * FROM users where  email = :email ";

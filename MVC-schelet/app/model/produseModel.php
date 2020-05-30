@@ -97,7 +97,7 @@ class ProduseModel extends Model{
         $res = curl_exec($cURLConnection);
         curl_close($cURLConnection);
 
-        return json_decode($res,true);
+        return $res;
 
     }
     public static function cauta_produs_db($word)
