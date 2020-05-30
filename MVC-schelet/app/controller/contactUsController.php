@@ -1,27 +1,19 @@
 <?php
 class contactUsController extends Controller {
 
+    public function contactUS(){
+        $this->view('contactUs\contactUs');
+        $this->view->render();
+    }
 
-
-    public function contactUs($data=''){
-
-        if($data==''){
-            //echo "no data0;";
-           $this->view('contactUs\contactUs');
-         $this->view->render();
-        }
-        else{
+    public function contact_unregister($data=''){
             $this->model('contactModel');
-
-            $params =explode('&',  urldecode($data));
-
-            $email=explode('=',  $params[0])[1];
-            $telephone_nr=explode('=',  $params[1])[1];
-            $message=explode('=',  $params[2])[1];
-
-            $this->model->addAnonimusContact( $email, $telephone_nr, $message);
-
-
-        }
+            $email=$_GET['email'];
+            $telephone_nr=$_GET['telephone'];
+            $message=$_GET['text'];
+            $name=$_GET['name'];
+            gettype($this->model->addAnonimusContact( $name,$email, $telephone_nr, $message));
+            header("Location:/index.php?message=Mesaj trimis");
      }
+
 }

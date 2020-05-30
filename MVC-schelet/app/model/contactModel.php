@@ -1,22 +1,23 @@
 <?php
  class contactModel extends Model{
 
-    public function addAnonimusContact($name, $email, $telephone_nr, $message){ 
-        $sql = "INSERT INTO not_logged_messages ( name , email, telephone_nr, message) VALUES (:username, :tel, :email, :mes)";
+    public function addAnonimusContact($name, $email, $telephone, $message){
+        $sql = "INSERT INTO not_logged_messages ( name ,  telephone, email, text) 
+                                       VALUES (:username, :telephone, :email, :text)";
         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
         return $cerere -> execute ([
-            'name'=>$name,
-            'tel'=>$telephone_nr,
+            'username'=>$name,
+            'telephone'=>$telephone,
             'email'=>$email,
-            'mes'=>$message
+            'text'=>$message
         ]);
     }
 
-    public function addUserContact($id, $message){ 
-        $sql = "INSERT INTO users_messages ( id ,  message ) VALUES (:id, :mes)";
+    public function addUserContact($email, $message){
+        $sql = "INSERT INTO users_messages ( email ,  message ) VALUES (:email, :mes)";
         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
         return $cerere -> execute ([
-            'id'=>$id,
+            'email'=>$email,
             'mes'=>$message
         ]);
     }

@@ -38,6 +38,8 @@ class ProduseModel extends Model{
     }
 	public static function cautaProdus($produs_de_cuatat, $numar_de_produse_returnate){
 	 $product = ebay::get_product_xml($produs_de_cuatat, $numar_de_produse_returnate);
+	 if($product===false)
+	     return false;
      $xml = simplexml_load_string($product);
 
      $products = array();
