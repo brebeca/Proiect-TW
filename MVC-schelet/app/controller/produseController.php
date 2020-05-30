@@ -12,11 +12,12 @@ class produseController extends Controller {
             $params= explode('?',$_SERVER['REQUEST_URI'])[1];
             //$id=explode("&id=",$params)[1];
             $id=$_GET['id'];
-            echo $id;
+           // echo $id;
             $params=explode("&id=", $params)[0];
-            echo $params;
+           // echo $params;
             $this->model('produseModel');
             $this->model->trimite_produs($id,$params);
+          //  echo json_encode(array("params"=>$params));
 
     }
     public function compara(){

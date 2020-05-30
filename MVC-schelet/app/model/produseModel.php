@@ -142,7 +142,7 @@ class ProduseModel extends Model{
         $res = curl_exec($cURLConnection);
         curl_close($cURLConnection);
 
-        $jsonArrayResponse = json_decode($res);
+        echo $res;
         //print_r($jsonArrayResponse);
     }
     public function trimite_produs2($produs,$id){

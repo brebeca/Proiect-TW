@@ -1,5 +1,5 @@
 <?php
- class ModelRegister extends Model{
+ class contactModel extends Model{
 
     public function addAnonimusContact($name, $email, $telephone_nr, $message){ 
         $sql = "INSERT INTO not_logged_messages ( name , email, telephone_nr, message) VALUES (:username, :tel, :email, :mes)";

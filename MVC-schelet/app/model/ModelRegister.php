@@ -1,4 +1,6 @@
 <?php
+
+//require 'Model.php';
  class ModelRegister extends Model{
 
     public function addUser($username, $password, $email){ //create
@@ -18,7 +20,7 @@
         else return false;
     }
 
-    public function sePoateIregistra(  $email){
+    public function sePoateIregistra( $email){
         $sql = "SELECT * FROM users where  email = :email ";
         $cerere = $this->bd->obtine_conexiune()->prepare($sql);
         $cerere->execute([
@@ -27,8 +29,6 @@
         $result=$cerere->fetchAll();
         if(sizeof( $result)!=0)
             return $result[0]['session'];
-            //<=>un return false
-        //if ==0
         return true;
         
     }
@@ -53,8 +53,7 @@
             die(curl_error($ch));
         }
         $responseData = json_decode($response, TRUE);
-
-       //print_r($responseData);
+        return $response["Success"];
     }
 
 }

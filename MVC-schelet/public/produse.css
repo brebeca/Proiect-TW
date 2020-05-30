@@ -88,9 +88,17 @@ label #cancel{
   margin-left: 250px;
 }
 .purchase {
+  positon: relative;
+  height: auto;
+}
+.purchase .vpurchase {
+  transform: translateX(33%) translateY(33%);
+}
+.purchase .pbutton {
   background: transparent;
+  position: relative;
   border: none;
-  float: bottom;
+  margin: auto;
 }
 .item {
   margin: auto;
@@ -105,36 +113,9 @@ label #cancel{
 .item:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.c {
-  float: left;
-  width:33%;
-  text-align: center;
-}
-.c.csp {
-  margin: 0;
-  top: 50%;
-  -ms-transform: translateY(50%);
-  transform: translateY(50%);
-}
-.c.cs {
-  text-align: left;
-  /*margin:auto;*/
-}
-.c.ct{
-  height:50%;
-}
-.c.cp {
-  border: #747474;
-  float: center;
-  margin: 0 auto;
-}
-.ci {
-  max-width: 100%;
-  height: auto;
-}
 .img {
-  width:100%;
-  object-fit: cover;
+  max-height: 34.7vh;
+  object-fit: contain;
 }
 .extraspec { text-align: center;
 
@@ -194,7 +175,7 @@ ul.nav-menu li.comparaBtn a:before{
   height: 100%;
   width: 5px;
   background:#004d00;
-  transform: 0.5s;
+  /*transform: 0.5s;*/
   transform: rotate(0deg) skewY(-45deg);
 }
 ul.nav-menu li.comparaBtn a:after{
@@ -205,11 +186,11 @@ ul.nav-menu li.comparaBtn a:after{
   height: 5px;
   width: 100%;
   background:#004d00;
-  transform: 0.5s;
+  /*transform: 0.5s;*/
   transform: rotate(0deg) skewX(-45deg);
 }
 ul.nav-menu li.comparaBtn a:hover{
-  box-shadow: -20px 20px 10px rgba(00, 00, 00);
+  box-shadow: -20px 20px 10px rgba(00, 00, 00, 00);
   transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
 }
 
@@ -313,12 +294,12 @@ ul.nav-menu li a:hover{
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat( auto-fit, minmax(290px, 1fr));
   padding-bottom: 180px;
-  padding-left: 5%;
+  /*padding-left: 5%;
   padding-right: 5%;
-  column-gap: 5%;
-  row-gap: 50px;
+  */column-gap: 4vh;
+  row-gap: 3vh;
   grid-template-rows: 500px;
 }
 .grid-item {
@@ -326,7 +307,7 @@ ul.nav-menu li a:hover{
   padding: 10px;
   margin: auto;
   border: 1px #828282;
-  border-radius: 1vh;
+  border-radius: 1.75vh;
   --font-size: 30px;
   text-align: center;
   line-height: normal;
@@ -336,7 +317,7 @@ ul.nav-menu li a:hover{
 .grid-item:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.grid-item .compara {
+.compara {
   position: absolute;
   display: inline-block;
   border: 2px outset orange;
@@ -348,17 +329,17 @@ ul.nav-menu li a:hover{
   cursor: pointer;
 }
 
-.grid-item .compara:hover {
+.compara:hover {
   background-color: orange;
 }
-.grid-item .compara .hovtip {
+.compara .hovtip {
   display:none;
   padding-top: 2px;
 }
-.grid-item .compara:hover .hovtip {
+.compara:hover .hovtip {
   display: block;
 }
-.grid-item .compara .tooltip {
+.compara .tooltip {
   visibility: hidden;
   background-color: black;
   color: white;
@@ -374,7 +355,7 @@ ul.nav-menu li a:hover{
   transition: opacity 1s; /*animatie aici + in hover*/
 }
 
-.grid-item .compara:hover .tooltip {
+.compara:hover .tooltip {
   visibility: visible;
   opacity: 1;
 }
@@ -448,7 +429,9 @@ ul.nav-menu li a:hover{
 .deschis, .collapsible:hover {
   background-color: #ccc;
 }
-
+.none {
+  display: none;
+}
 
 .content {
   padding: 0 1em;
