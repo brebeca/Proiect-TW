@@ -102,10 +102,10 @@ label #cancel{
 }
 .item {
   margin: auto;
-  width: 70%;
+  width: 250px;
   min-height: 400px;
   background-color: white;
-  padding: 3vh;
+  padding: 4vh;
   border-radius: 1vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -244,8 +244,7 @@ ul.nav-menu li.comparaBtn a:hover{
 
 
 section{
-  background: linear-gradient(182deg, #2c292f
-  , #e0ac1c);
+  background: linear-gradient(182deg, #2c292f, #e0ac1c);
   background-position: center;
   background-size: cover;
   height: 100vh;

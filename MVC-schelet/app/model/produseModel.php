@@ -54,8 +54,9 @@ class ProduseModel extends Model{
          $productObj->photoURL = (string)$list->StockPhotoURL;
          if(isset($list->ItemSpecifics[0])){
              foreach ($list->ItemSpecifics[0] as $list1){
+                 array_push($productObj->items, $list1->Name.": ");
                  foreach ( $list1->Value as $item){
-                     array_push($productObj->items, $list1->Name.": ".$item);
+                    array_push($productObj->items, $item.", ");
                  }
              }
          }

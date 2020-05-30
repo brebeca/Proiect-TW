@@ -1,5 +1,8 @@
 
 <nav class="navbar">
+  <?php if(isset($_SESSION['login']))
+    echo "<li class=\"comparaBtn\"><a href=\"/produse/compara\"><b>COMPARA</b></a></li>";
+  ?>
   <div class="drop">
     <button class="dropper">Imbracaminte</button>
     <div class="dropwrap">
@@ -7,9 +10,6 @@
       <a href="/produse/produse?categorie=imbracaminte&sursa=produse_altex&page=1">Altex</a>
     </div>
   </div>
-    <?php if(isset($_SESSION['login']))
-        echo "<li class=\"comparaBtn\"><a href=\"/produse/compara\"><b>COMPARA</b></a></li>";
-    ?>
   <div class="drop">
     <button class="dropper">Electrocasnice</button>
     <div class="dropwrap">
@@ -30,5 +30,8 @@
       <a href="/produse/produse?categorie=calculatoare&sursa=produse_emag&page=1">Emag</a>
       <a href="/produse/produse?categorie=calculatoare&sursa=produse_altex&page=1">Altex</a>
     </div>
+  </div>
+  <div class="drop">
+    <button class="docAPIbtn" id="myBtn">Documentatie API</button>
   </div>
 </nav>

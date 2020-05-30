@@ -291,8 +291,11 @@ ul.nav-menu li.comparaBtn a:hover{
   @media only screen and (max-width: 850px){
   .loginbox{
     top:68%;
-      width: 490px;
+    width: 490px;
     height: 450px;
+  }
+  .formBtn{
+    width: 430px;
   }
   }
 
