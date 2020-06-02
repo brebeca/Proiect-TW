@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Produse</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/produse.css">
+    <link rel="stylesheet" href="/compara.css">
 
     <link rel="shortcat icon" type="image/png" href="/images/logo_mic2.png">
     <link rel="stylesheet" href="/css/nav-bar.css" media="all">
@@ -18,18 +18,19 @@
 
 <body>
 
-    <?php
-    include HTMLS . 'side-bar.phtml';
-    include HTMLS.'nav-bar.phtml';
-    ?>
+<?php
+  include HTMLS . 'side-bar.phtml';
+  include HTMLS . 'nav-bar.phtml';
+?>
 
-
-
-</div>
+<div class="products" id="products">
+</div>    
 
 <script src="/JS-uri/navro.js"></script>
     <script>
         var id;
+        var myArr;
+
         if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
             id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
         }
@@ -37,6 +38,7 @@
         {
             id=document.cookie.split('=')[1];
         }
+
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
             let params = {
@@ -49,16 +51,75 @@
             http.open("GET", url, true);
             http.onreadystatechange = function()
             {
-
                 if(http.readyState === 4 && http.status === 200) {
-                    const myArr = JSON.parse(http.responseText);
+                    myArr = JSON.parse(http.responseText);
                     console.log(myArr);
+                    let productsStr = '';
+                    if (myArr["Success"] === "true") {
+                        for (var i in myArr.produse) {
+                          //productsStr += `<h2>` + myArr.produse[i] + `</h2>`;  
+                          for (var j in myArr.produse[i]) {
+                              productsStr += getProductHtml(myArr.produse[i][j]);
+                          }
+                        }
+                    }
+                    document.getElementById('products').innerHTML = productsStr;
                 }
             }
 
             http.send(null);
         }
-        window.onload = load;
-    </script>
+
+        load();
+
+        function getProductHtml(product){
+         return ` <table>
+                    <tr>
+                      <td class="image"><img class="productImg" src= "${product.img_link}"></td>
+                      <td class="price">
+                          <ul>
+                            <li>Pret: ${product.price} </li>
+                            <li>Rating: ${product.rating} </li>
+                          </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Titlu: </td>
+                      <td>${product.title}</td>
+                    </tr>
+                    <tr>
+                      <td>Link produs: </td>
+                      <td><a href="${product.link}">${product.link}</a></td>
+                    </tr>
+                    <tr>
+                      <td>Detalii: </td>
+                      <td>`
+                      + getProductDetailsHtml(product) +
+                     `</td>
+                    </tr>
+                  </table><br> `;
+        }
+
+        function getProductDetailsHtml(product){
+            var productsStr = '';
+            productsStr += `<ol>`;
+            for(var k in product.details){
+                if(product.details[k].search(":") >= 0){
+                    productsStr += `<li>` + product.details[k];
+                }
+                else{
+                    productsStr += product.details[k];
+                }
+
+                if(product.details[k+1] <= product.details.length  && product.details[k+1].search(":") >= 0){
+                    productsStr += `</li>`;
+                }
+            }
+            productsStr += `</ol>`; 
+            return productsStr;
+        }
+              
+   </script>
+
 </body>
 </html>
