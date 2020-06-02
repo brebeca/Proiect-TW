@@ -39,9 +39,9 @@ class PostProduct
 function get_document($session,$data,$source){
    $details=array();
     if($source=='emag')
-        $details=Scrapping::detalii_emag($data['link']);
+        $details=Scrapping::detalii_emag($data['link'],$data['category']);
     else if($source=='altex'){
-        $details=Scrapping::detalii_altex($data['link']);
+        $details=Scrapping::detalii_altex($data['link'],$data['category']);
     }
     if(isset($data['rating']))
         $rating=$data['rating'];

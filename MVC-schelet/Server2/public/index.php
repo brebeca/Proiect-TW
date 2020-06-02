@@ -1,5 +1,5 @@
 <?php
-spl_autoload_register('spl_autoload', false);
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -25,7 +25,7 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modu
 new Main();
 /*$db= new DBManagement();
 echo json_encode($db->get_products_for_owner("bn99m6uf1qjufsg7dao59kbed1"));*/
-
+//print_r(Scrapping:: detalii_altex("https://altex.ro/laptop-asus-x509fl-ej030-intel-core-i5-1035g1-pana-la-3-6ghz-15-6-full-hd-8gb-ssd-512gb-intel-hd-graphics-520-free-dos-gri/cpd/LAPX509JAEJ030/","calculatoare"));
 
 
 

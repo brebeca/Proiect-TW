@@ -48,8 +48,8 @@ function ebay_document($session){
     $rating=0;
     $h = file_get_html($_GET['link']);
     if (isset($h->find("h2.display-price", 0)->innertext))
-        $price = intval(explode('$', $h->find("h2.display-price", 0)->innertext)[1]);
-    $rating = explode(' ',$h->find("span.star--rating", 0)->getAttribute("aria-label"))[0];
+        $price = floatval(explode('$', $h->find("h2.display-price", 0)->innertext)[1]);
+    $rating = floatval(explode(' ',$h->find("span.star--rating", 0)->getAttribute("aria-label"))[0]);
 
     $document = ['category' => $_GET['category'],
         'key_word' => $key_word,

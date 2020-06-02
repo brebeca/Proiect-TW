@@ -8,6 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 require_once 'post/AddUser.php';
 require_once 'post/PostProduct.php';
 require_once 'get/AddProduct.php';
+require_once 'get/GetForOwner.php';
 require_once 'Delete/DeleteProduct.php';
 require_once 'put/UpdatePrice.php';
 
