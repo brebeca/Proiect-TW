@@ -36,8 +36,8 @@ class ProduseModel extends Model{
         $this->bd2= new BD2;
         $this->bd3= new BD3;
     }
-    public static function updat($dbname, $categorie, $id, $link) //e de ajuns unul dintre link si id, dar o interogare in minus nu strica
-    { //aici vom face scraping chiar de pe pagina produsului
+    public static function update_produs($dbname, $categorie, $id, $link) //e de ajuns unul dintre link si id, dar o interogare in minus nu strica
+    {
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -169,7 +169,8 @@ class ProduseModel extends Model{
         return $res;
 
     }
-    public static function cauta_produs_db($word)
+
+    public static function cauta_produs_db_mongo($word)
     {
 
         $cURLConnection = curl_init();

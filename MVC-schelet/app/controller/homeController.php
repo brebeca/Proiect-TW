@@ -38,7 +38,7 @@ class homeController extends Controller {
         }
         $headers = getRequestHeaders();
         if(!isset($_COOKIE['user'])){
-            $value=explode('=',$headers['Cookie'])[1];
+            $value=$headers['Cookie'];
             setcookie("user",$value , time()+24*60*60);
             $this->model('ModelRegister');
             $this->model->send_cookie( $value);

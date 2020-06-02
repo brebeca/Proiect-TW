@@ -1,12 +1,30 @@
 <?php
+require_once('core/Scrapping.php');
 function makeItems()
 {
     if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
-      //  include VIEW . 'produse/search_db.phtml';
+        $produse = Select::get_products_by_name($_GET["nume-produs"],"produse_emag");
+       /* echo "<pre>";
+        print_r($produse);
+        echo "</pre>";*/
+        if ($produse == false)
+            header("Location:/index.php?scrap_esuat=1");
+        foreach ($produse as $i => $values) {
+            foreach ($values as  $value)
+                display_emag($value['id'], $value['nume'], $value['link'],
+                    $value['imagine'], $value['rating'], $value['pret'],
+                    $value['disponibilitate'],$i);
+
+            }
+        $produse = Select::get_products_by_name($_GET["nume-produs"],"produse_altex");
+        foreach ($produse as $i => $values) {
+            foreach ($values as  $value)
+                display_altex($value['id'], $value['nume'], $value['link'],
+                    $value['imagine'],  $value['pret'],
+                    $value['disponibilitate'],$i);
+        }
         include VIEW . 'produse/search_ebay.phtml';
     } else if (isset($_GET["categorie"]) && isset($_GET["sursa"])) {
-        require_once('core/Scrapping.php');
-
         $produse = Select::scrapping($_GET["categorie"], $_GET["sursa"]);
         if ($produse == false)
             header("Location:/index.php?scrap_esuat=1");
@@ -14,23 +32,24 @@ function makeItems()
             foreach ($produse as $produs) {
                 display_emag($produs['id'], $produs['nume'], $produs['link'],
                              $produs['imagine'], $produs['rating'], $produs['pret'],
-                             $produs['disponibilitate']);
+                             $produs['disponibilitate'],$_GET["categorie"]);
             }
         } else if ($_GET["sursa"] == "produse_altex") {
             foreach ($produse as $produs) {
                 display_altex($produs['id'], $produs['nume'], $produs['link'],
                               $produs['imagine'], $produs['pret'],
-                              $produs['disponibilitate']);
+                              $produs['disponibilitate'],$_GET["categorie"]);
             }
         }
     }
 }
 
-function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilitate) //generam pentru fiecare
+function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilitate,$categorie) //generam pentru fiecare
 {
+    $sursa="produse_emag";
     echo '<div class="grid-item">
                 <img class="aimg" src=' . $imagine . '></img>
-                <button class="compara" type="button"  onclick=produs_ales(' . $id . ') title="Compara">
+                <button class="compara" type="button" onclick=produs_ales(' . $id . ',\'produse_emag\','.'\''.$categorie.'\')  title="Compara">
                   <span class="tooltip">Compara</span>
                   <i class="fas fa-check hovtip"></i>
                   </button>
@@ -48,11 +67,12 @@ function display_emag($id, $nume, $link, $imagine, $rating, $pret, $disponibilit
     echo "</div>";
 }
 
-function display_altex($id, $nume, $link, $imagine, $pret, $disponibilitate) //generam pentru fiecare
+function display_altex($id, $nume, $link, $imagine, $pret, $disponibilitate,$categorie) //generam pentru fiecare
 {
+    $sursa="produse_altex";
     echo '<div class="grid-item">
                 <img class="aimg "src=' . $imagine . '></img>
-                <button class="compara" type="button" onclick=produs_ales(' . $id . ') title="Compara">
+                <button class="compara" type="button" onclick="produs_ales(' . $id . ',\'produse_altex\','.'\''.$categorie.'\')" title="Compara">
                   <span class="tooltip">Compara</span>
                   <i class="fas fa-check hovtip"></i>
                   </button>

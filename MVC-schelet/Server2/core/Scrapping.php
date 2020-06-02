@@ -8,8 +8,10 @@ class Scrapping
             return detalii_emag_telefoane($link);
         else if(strpos($categorie,'calculatoare')!==false)
             return detalii_emag_calculatoare($link);
-        else if(strpos($categorie,'')!==false)
-            return detalii_emag_calculatoare($link);
+        else if(strpos($categorie,'electrocasnice')!==false)
+            return detalii_emag_electrocasnice($link);
+        else if(strpos($categorie,'imbracaminte')!==false)
+            return detalii_emag_electrocasnice($link);
     }
 
     public static function detalii_altex($link,$categorie){
@@ -17,10 +19,26 @@ class Scrapping
             return detalii_altex_telefoane($link);
         else if(strpos($categorie,'calculatoare')!==false)
             return detalii_altex_calculatoare($link);
-        else if(strpos($categorie,'calculatoare')!==false)
-            return detalii_emag_calculatoare($link);
+        else if(strpos($categorie,'electrocasnice')!==false)
+            return detalii_altex_electrocasnice($link);
     }
 
+}
+function detalii_emag_electrocasnice($link){
+    $html = file_get_html($link);
+    $product_det = array();
+    foreach($html->find('table[class="table table-striped product-page-specifications"] tbody tr') as $a) {
+        $product_det[$a->find('td.col-xs-4.text-muted', 0)->plaintext]=$a->find('td.col-xs-8', 0)->plaintext;
+    }
+    return $product_det;
+}
+function detalii_altex_electrocasnice($link){
+    $html = file_get_html($link);
+    $product_det = array();
+    foreach($html->find('table[class="Specs-table"] tbody tr') as $a) {
+        $product_det[$a->find('td.Specs-cell', 0)->plaintext] = $a->find('td.Specs-cell', 1)->plaintext;
+    }
+    return $product_det;
 }
 function count_capitals2($s) {
     return strlen(preg_replace('![^A-Z]+!', '', $s));

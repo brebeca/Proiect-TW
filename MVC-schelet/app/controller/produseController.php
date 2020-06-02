@@ -51,6 +51,7 @@ class produseController extends Controller {
             $source='emag';
         else  if(strpos($_GET['source'], 'altex') !==false)
             $source='altex';
+
         $produs=$this->model->get_produs_db($_GET['index'], $_GET['category'],$source);
         if(isset($produs['rating']))
             $rating=$produs['rating'];
@@ -59,6 +60,7 @@ class produseController extends Controller {
         ,"price"=>$produs['pret'],"rating"=>$rating,
             "source"=>$source);
         $this->model->trimite_produs2($de_trimis,$id);
+       // $this->model->update_produs($_GET['source'],$_GET['category'],$_GET['index'],$produs['link']);
 
     }
 

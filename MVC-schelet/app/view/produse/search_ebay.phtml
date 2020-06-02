@@ -4,8 +4,9 @@ if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
 {
 $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
 
-if($produse_returnate==false)
-    header("Location:/index.php?cautare_esuata=1");
+if($produse_returnate==false){
+    include VIEW.'produse/error.phtml';
+}
 
 if (count($produse_returnate) > 0):
 ?>

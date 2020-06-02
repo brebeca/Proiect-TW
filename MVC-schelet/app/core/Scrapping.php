@@ -8,19 +8,13 @@ class Select
     $dbname = $db;
     $page = 1;
     $nr_produse_pagina = 30;
-    $clauza_where = ""; //pentru filtre
-    $clauza_order = ""; //pentru crescator/descrescator
-    $con = new mysqli($servername, $username, $password, $dbname); //cream conexiunea
-  
+    $clauza_where = "";
+    $clauza_order = "";
+    $con = new mysqli($servername, $username, $password, $dbname);
+
     if ($con->connect_error) {
       die("Nu s-a reusit conectarea la baza de date: " . $con->connect_error);
     }
-  /*
-    if (isset($_GET['nr_produse_pagina'])) {
-      // daca exista, atunci e schimbat defaultul de 30
-      $nr_produse_pagina = $_GET['nr_produse_pagina'];
-    }
-  */
     if (isset($_GET['rating_minim'])) {
       $clauza_where =" rating >= " . $_GET['rating_minim'];
     }
@@ -41,4 +35,23 @@ class Select
     $output = $rezultat->fetch_all(MYSQLI_ASSOC);
     return $output;
   }
+    public static function get_products_by_name($nume,$db_name){
+        $categorii=array('telefoane','calculatoare','electrocasnice');
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $con = new mysqli($servername, $username, $password, $db_name);
+
+        if ($con->connect_error) {
+            die("Nu s-a reusit conectarea la baza de date: " . $con->connect_error);
+        }
+        $output=array();
+        foreach ($categorii as $categorie) {
+            $stmt =$con->prepare("SELECT * FROM ".$categorie." WHERE nume like  '%".$nume."%' ");
+            $stmt->execute();
+            $rezultat = $stmt->get_result();
+            $output[$categorie]=$rezultat->fetch_all(MYSQLI_ASSOC);
+        }
+        return $output;
+    }
 }
