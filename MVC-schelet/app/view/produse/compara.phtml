@@ -43,10 +43,11 @@
     id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
   }
   else {
-    id=document.cookie.split('=')[1];
+    id=document.cookie;
   }
 </script>
 <script src="/JS-uri/afisareProduse.js"></script>
+<script src="/JS-uri/stergeProdus.js"></script>
 
 
 </body>

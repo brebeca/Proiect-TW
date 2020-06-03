@@ -10,8 +10,8 @@ class Scrapping
             return detalii_emag_calculatoare($link);
         else if(strpos($categorie,'electrocasnice')!==false)
             return detalii_emag_electrocasnice($link);
-        else if(strpos($categorie,'imbracaminte')!==false)
-            return detalii_emag_electrocasnice($link);
+        else if(strpos($categorie,'casti')!==false)
+            return detalii_emag_casti($link);
     }
 
     public static function detalii_altex($link,$categorie){
@@ -21,6 +21,8 @@ class Scrapping
             return detalii_altex_calculatoare($link);
         else if(strpos($categorie,'electrocasnice')!==false)
             return detalii_altex_electrocasnice($link);
+        else if(strpos($categorie,'casti')!==false)
+            return detalii_altex_casti($link);
     }
 
 }
@@ -352,6 +354,70 @@ function detalii_altex_calculatoare($link){
                 break;
             }
         }
+    }
+    return $product_det;
+}
+function detalii_altex_casti($link)
+{
+    $html = file_get_html($link);
+    $product_det = array();
+    foreach ($html->find('table[class="Specs-table"] tbody tr') as $a) {
+        $tag = $a->find('td.Specs-cell', 0)->plaintext;
+        switch ($tag) {
+            case "Tehnologie":
+            {
+                $product_det[$tag]=$a->find('td.Specs-cell', 1)->plaintext;
+                break;
+            }
+            case "Stil":{
+                $product_det["Tip"]=$a->find('td.Specs-cell', 1)->plaintext;
+                break;
+            }
+            case "Raspuns in frecventa (Hz)":
+            {
+                $product_det["Raspuns in frecventa"]=$a->find('td.Specs-cell', 1)->plaintext;
+                break;
+            }
+            case "Impedanta (ohm)":
+            {
+                $product_det[$tag]=intval(explode(' ',$a->find('td.Specs-cell', 1)->plaintext)[0]);
+                break;
+            }
+            case "Diametru difuzor (mm)":
+            {
+                $product_det[$tag]=floatval(explode('m',$a->find('td.Specs-cell', 1)->plaintext)[0]);
+                break;
+            }
+        }
+    }
+    return $product_det;
+}
+function detalii_emag_casti($link)
+{
+    $html = file_get_html($link);
+    $product_det = array();
+    foreach ($html->find('table[class="table table-striped product-page-specifications"] tbody tr') as $a) {
+        $tag = $a->find('td.col-xs-4.text-muted', 0)->plaintext;
+        switch ($tag) {
+            case "Tehnologie":
+            case "Raspuns in frecventa":
+            case "Tip":
+            {
+                $product_det[$tag] = $a->find('td.col-xs-8', 0)->plaintext;
+                break;
+            }
+            case "Impedanta iesire":
+            {
+                $product_det["Impedanta (ohm)"] = intval(explode(' ', $a->find('td.col-xs-8', 0)->plaintext)[0]);
+                break;
+            }
+            case "Diametru difuzor":
+            {
+                $product_det[$tag] = floatval(explode(' ',$a->find('td.col-xs-8', 0)->plaintext)[0]);
+                break;
+            }
+        }
+
     }
     return $product_det;
 }

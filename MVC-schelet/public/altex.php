@@ -43,6 +43,9 @@ function altex($categorie)
             array_push($URL_categorie, "combine-frigorifice");
             $page = 2;
             break;
+        case "casti":
+            array_push($URL_categorie,"casti-telefon");
+            break;
         default:
             echo "\nInterogare gresita/Incercare de atac";
             exit(-1);
@@ -85,10 +88,10 @@ function altex($categorie)
     echo"\n $i produse inserate cu succes";
     $conn->close();
 }
-altex("calculatoare");
-altex("telefoane");
-altex("electrocasnice");
-
+//altex("calculatoare");
+//altex("telefoane");
+//altex("electrocasnice");
+altex("casti");
 
 /*
 altex("imbracaminte");//nu exista

@@ -24,11 +24,11 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modu
 
 new Main();
 /*$db= new DBManagement();
-$db->delete_temp_users();*/
+$db->delete_temp_users();
+print_r(Scrapping::detalii_altex("https://altex.ro/casti-promate-tribe-cu-fir-in-ear-microfon-rosu/cpd/CASTRIBERD/","casti"));
+print_r(Scrapping::detalii_emag("https://www.emag.ro/casti-audio-in-ear-skullcandy-smokin-buds-2-wireless-black-red-s2pghw-521/pd/D35M03BBM/?ref=other_customers_viewed_go_3_2&provider=rec&recid=rec_52_32d11851b67005b4713c24c1a9e0c7dbcfabeb130d923359c1b6c215329799a5_1591195294&scenario_ID=52","casti"));
 
-
-
-
+*/
 
 
 
