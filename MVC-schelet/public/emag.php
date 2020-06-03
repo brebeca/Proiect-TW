@@ -7,8 +7,6 @@ function emag($categorie)
     $URL_categorie = "";
     $dbname = "produse_emag";
     require_once 'simple_html_dom.php';
-    //trebuie marita memoria la simple_html_dom; la linia 45 merge ok defined('MAX_FILE_SIZE') || define('MAX_FILE_SIZE', 6000000);
-    //ne folosim de biblioteca
 
     $conn = mysqli_connect($servername, $username, $password, $dbname); //ne conectam la bd
     // Check connection

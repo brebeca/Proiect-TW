@@ -24,7 +24,7 @@
             'Cookie' => $cookie
         );
         $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
-        $ch = curl_init('http://localhost:801/AddCookieUser');
+        $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AddCookieUser');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -60,7 +60,7 @@
             'Session' => $id
         );
         $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
-        $ch = curl_init('http://localhost:801/AddUsers');
+        $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AddUsers');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,

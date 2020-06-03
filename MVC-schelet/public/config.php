@@ -11,6 +11,8 @@
   define ('DB_USER',  $ini['db_user']);
   define ('DB_PASS',  $ini['db_pass']);
   define('APP_ID',$ini['app_id']);
+  define('PORT_LOCAL_SERVER',$ini['port1']);
+  define('PORT_SERVER2',$ini['port2']);
   if($ini['sursa1_activ']==1){
       define('SURSA1',$ini['sursa1']);
   }

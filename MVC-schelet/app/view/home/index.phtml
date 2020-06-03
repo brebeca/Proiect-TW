@@ -25,7 +25,7 @@ if (isset($_GET['login_succes'])) {
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
       <script>
           function register_cookie(){
-              let url = new URL('http://localhost:800/home/cookie?cookie='+document.cookie);
+              let url = new URL('http://localhost:<?php echo PORT_LOCAL_SERVER?>/home/cookie?cookie='+document.cookie);
               const http = new XMLHttpRequest();
               http.open("GET", url, true);
               http.onreadystatechange = function()

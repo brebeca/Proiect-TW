@@ -91,7 +91,7 @@
       function produs_ales(id_produs,sursa,category){
          function call2(id_produs, id_user,sursa,category)
           {
-              let url = new URL('http://localhost:800/produse/alegere');
+              let url = new URL('http://localhost:<?php echo PORT_LOCAL_SERVER?>/produse/alegere');
               let params = {
                   category:category,
                   id:id_user,
@@ -131,7 +131,7 @@
               for (let i=0, len=lis.length|0; i<len; i=i+1|0) {
                   result.push(lis[i].textContent+'|');
               }
-              let url = new URL('http://localhost:800/produse/alegere_ebay');
+              let url = new URL('http://localhost:<?php echo PORT_LOCAL_SERVER?>/produse/alegere_ebay');
               let params = {
                   category:'search',
                   key_word:<?php if(isset($_GET["nume-produs"]))echo"\"". $_GET["nume-produs"]."\"";else echo"\"-\"" ?>,

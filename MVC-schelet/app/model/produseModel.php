@@ -140,7 +140,7 @@ class ProduseModel extends Model{
 
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsByCategory?category='.$category);
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsByCategory?category='.$category);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$id
@@ -157,7 +157,7 @@ class ProduseModel extends Model{
 
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsAllCategory');
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsAllCategory');
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$id
@@ -175,7 +175,7 @@ class ProduseModel extends Model{
 
         $cURLConnection = curl_init();
         $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/GetProductsByName?word='.urlencode($word));
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsByName?word='.urlencode($word));
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$session
@@ -204,7 +204,7 @@ class ProduseModel extends Model{
         //print_r($responseData);
         $cURLConnection = curl_init();
          $id=md5($id);
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/AppInsert?'.$params);
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/AppInsert?'.$params);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$id
@@ -218,7 +218,7 @@ class ProduseModel extends Model{
     }
     public function trimite_produs2($produs,$id){
 
-        $ch = curl_init('http://localhost:801/AppInsert');
+        $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AppInsert');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -240,7 +240,7 @@ class ProduseModel extends Model{
     public function sterge($id, $session){
         $cURLConnection = curl_init();
 
-        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:801/DeleteProduct?id='.$id);
+        curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/DeleteProduct?id='.$id);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
