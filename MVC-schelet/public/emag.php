@@ -47,6 +47,9 @@ function emag($categorie)
         case "imbracaminte":
             $URL_categorie = "search/imbracaminte";
             break;
+        case "casti":
+            $URL_categorie = "casti-audio";
+            break;
     }
 
     $i = 0;
@@ -109,7 +112,8 @@ function emag($categorie)
     echo "$i obiecte inserate cu succes";
     $conn->close();
 }
-emag("calculatoare");
-emag("telefoane");
-emag("electrocasnice");
-emag("imbracaminte");
+//emag("calculatoare");
+//emag("telefoane");
+//emag("electrocasnice");
+//emag("imbracaminte");
+emag("casti");

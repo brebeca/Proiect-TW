@@ -30,16 +30,12 @@ class produseController extends Controller {
         $produse=$this->model->toate_produsele(md5($_GET['id']));
         echo $produse;
     }
-    public function scrap(){
-        //model
-
-        $this->view('produse\produse_scrap?categorie=');
-        $this->view->render();
-    }
 
     public function sterge_produs(){
-        $this->model('produseModel');
-        $this->model->sterge($_GET['product_id'],$_GET['session']);
+         $this->model('produseModel');
+         echo $_GET['session'];
+         echo $_GET['product_id'];
+         $this->model->sterge($_GET['session'],$_GET['product_id']);
     }
 
     public function alegere(){

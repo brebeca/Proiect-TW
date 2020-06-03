@@ -75,7 +75,7 @@
             die(curl_error($ch));
         }
         $responseData = json_decode($response, TRUE);
-        return $response["Success"];
+        return $responseData["Success"];
     }
 
 }

@@ -6,7 +6,6 @@
             let params = {
                 id: id
             } ;
-
             url.search = new URLSearchParams(params).toString();
             const http = new XMLHttpRequest();
 
@@ -14,24 +13,21 @@
             http.onreadystatechange = function()
             {
                 if(http.readyState === 4 && http.status === 200) {
-                  console.log(http.responseText);
                     myArr = JSON.parse(http.responseText);
-                    //console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
                         for (var i in myArr.produse) {
-                          //if(myArr.produse[i].length > 0)  
                           for (var j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                productsStr += `<p><div>` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
-                              else productsStr += getProductHtml(myArr.produse[i][j]);
+                                  productsStr += `<p><div>` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
+                              else
+                                  productsStr += getProductHtml(myArr.produse[i][j]);
                           }
                         }
                     }
                     document.getElementById('products').innerHTML = productsStr;
                 }
             }
-
             http.send(null);
         }
 
