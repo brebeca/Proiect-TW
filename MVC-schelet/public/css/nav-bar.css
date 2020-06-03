@@ -179,6 +179,20 @@ li.comparaBtn a:hover{
    margin-left: 120px;
 }  
 
+@media only screen and (max-width: 990px){
+  .modal-content{ 
+   padding: 1%;
+   padding-bottom: 2%;
+   padding-left: 0px;
+   border: 1px solid #888;
+   width: 500px;
+   height: 500px; 
+   margin: 5%;
+   margin-top: 5px;
+   overflow: scroll;
+ }
+}
+
 /* The Close Button */
 .close {
    color: #111;
@@ -206,3 +220,12 @@ li.comparaBtn a:hover{
 .myAPIidBtn:hover{
    transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
 }  
+
+@media only screen and (max-width: 990px){
+ .myAPIidBtn{
+   height: 40px;
+   width: 200px;
+   margin-left: 150px;
+   margin-bottom: 15px;
+ }
+}

@@ -23,104 +23,29 @@
   include HTMLS . 'nav-bar.phtml';
 ?>
 
-<div class="products" id="products">
-</div>    
+<table class="criteriiComp">
+    <tr>
+      <td><h2>Cel mai bun ca: </h2></td>
+      <td class="criteriiCompBtn">
+        <a href="#"><b>PRET</b></a>
+      </td>
+      <td class="criteriiCompBtn">
+        <a href="#"><b>RATING</b></a>
+      </td>
+    </tr>
+</table>
 
 <script src="/JS-uri/navro.js"></script>
-    <script>
-        var id;
-        var myArr;
+<script >
+  if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
+    id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
+  }
+  else {
+    id=document.cookie.split('=')[1];
+  }
+</script>
+<script src="/JS-uri/afisareProduse.js"></script>
 
-        if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
-            id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
-        }
-        else
-        {
-            id=document.cookie;
-        }
-
-        function load() {
-            let url = new URL('http://localhost:<?php echo PORT_LOCAL_SERVER?>/produse/incarcaProduse');
-            let params = {
-                id: id
-            } ;
-
-            url.search = new URLSearchParams(params).toString();
-            const http = new XMLHttpRequest();
-
-            http.open("GET", url, true);
-            http.onreadystatechange = function()
-            {
-                if(http.readyState === 4 && http.status === 200) {
-                    //console.log(http.responseText);
-                    myArr = JSON.parse(http.responseText);
-                    console.log(myArr);
-                    let productsStr = '';
-                    if (myArr["Success"] === "true") {
-                        for (var i in myArr.produse) {
-                          //productsStr += `<h2>` + myArr.produse[i] + `</h2>`;  
-                          for (var j in myArr.produse[i]) {
-                              productsStr += getProductHtml(myArr.produse[i][j]);
-                          }
-                        }
-                    }
-                    document.getElementById('products').innerHTML = productsStr;
-                }
-            }
-
-            http.send(null);
-        }
-
-        load();
-
-        function getProductHtml(product){
-         return ` <table>
-                    <tr>
-                      <td class="image"><img class="productImg" src= "${product.img_link}"></td>
-                      <td class="price">
-                          <ul>
-                            <li>Pret: ${product.price} </li>
-                            <li>Rating: ${product.rating} </li>
-                          </ul>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Titlu: </td>
-                      <td>${product.title}</td>
-                    </tr>
-                    <tr>
-                      <td>Link produs: </td>
-                      <td><a href="${product.link}">${product.link}</a></td>
-                    </tr>
-                    <tr>
-                      <td>Detalii: </td>
-                      <td>`
-                      + getProductDetailsHtml(product) +
-                     `</td>
-                    </tr>
-                  </table><br> `;
-        }
-
-        function getProductDetailsHtml(product){
-            var productsStr = '';
-            productsStr += `<ol>`;
-            for(var k in product.details){
-                if(product.details[k].search(":") >= 0){
-                    productsStr += `<li>` + product.details[k];
-                }
-                else{
-                    productsStr += product.details[k];
-                }
-
-                if(product.details[k+1] <= product.details.length  && product.details[k+1].search(":") >= 0){
-                    productsStr += `</li>`;
-                }
-            }
-            productsStr += `</ol>`; 
-            return productsStr;
-        }
-              
-   </script>
 
 </body>
 </html>
