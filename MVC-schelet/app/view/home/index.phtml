@@ -25,13 +25,12 @@ if (isset($_GET['login_succes'])) {
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
       <script>
           function register_cookie(){
-              let url = new URL('http://localhost:800/home/cookie');
+              let url = new URL('http://localhost:800/home/cookie?cookie='+document.cookie);
               const http = new XMLHttpRequest();
               http.open("GET", url, true);
               http.onreadystatechange = function()
               {
-                  console.log(http.responseText);
-                  if(http.readyState === 4 && http.status === 200) {
+                  if(http.readyState === 4) {
                       console.log(http.responseText);
                   }
               }
