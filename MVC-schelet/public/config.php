@@ -10,6 +10,7 @@
   define ('DB_PASS3',  '');
   define ('DB_USER',  $ini['db_user']);
   define ('DB_PASS',  $ini['db_pass']);
+  define('APP_ID',$ini['app_id']);
   if($ini['sursa1_activ']==1){
       define('SURSA1',$ini['sursa1']);
   }
