@@ -14,16 +14,15 @@
             http.onreadystatechange = function()
             {
                 if(http.readyState === 4 && http.status === 200) {
-                  console.log(http.responseText);
                     myArr = JSON.parse(http.responseText);
-                    //console.log(myArr);
+                    console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
                         for (var i in myArr.produse) {
                           //if(myArr.produse[i].length > 0)  
                           for (var j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                productsStr += `<p><div>` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
+                                productsStr += `<p><div class="first">` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
                               else productsStr += getProductHtml(myArr.produse[i][j]);
                           }
                         }
@@ -44,15 +43,15 @@
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
                     <td>
-                     <ul>
+                     <ul class="pret">
                        <li>Pret: ${product.price} </li>
-                       <li>Rating: ${product.rating} </li>
+                       <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>
                      </ul>
                     </td>
                    </tr>
                   </table>
                   <br>
-                  <p class="titlu"> ${product.title}</p>
+                  <p class="titlu"> ${product.title}</p><br>
                   <p> <a href="${product.link}">${product.link}</a></p>
                 </div>`;
         }

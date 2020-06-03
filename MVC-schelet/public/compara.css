@@ -152,7 +152,7 @@ label #cancel{
   padding-left: 3%;
   padding-right: 3%;
   column-gap: 4vh;
-  grid-row-gap: : 3vh;
+  grid-row-gap: 3vh;
   grid-template-rows: 500px;
 }
 .grid-item {
@@ -184,14 +184,32 @@ label #cancel{
 .grid-item img {
   object-fit: contain;
   mix-blend-mode: multiply;
-  width: 40%;
-  height: 40%;
+  width: 80%;
+  height: 80%;
   padding: 0px;
 }
 
 .grid-item .pret {
   color: rgb(200, 100, 0);
-  font-size:30px;
+  font-size: 28px;
+}
+
+.grid-item .rating::before {
+  content: '★★★★★';
+  --width: calc(var(--rating) / 5 * 100%);
+  /*rating e intre 0 si 5, 20% reprezinta o stea*/
+  background: linear-gradient(to right, rgb(255, 200, 0) var(--width), rgb(15, 15, 15) var(--width));
+  /* prima culoare e cea de umplere, a doua cea de fundal (rating 5=5 stele galbene)*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  font-size: calc(var(--font-size)*2);
+  /*facem stelele duble fata de text*/
+}
+
+.first .grid-item{
+  background: #85bb65;
+  margin-bottom: 0px;
 }
 
 @media only screen and (max-width: 990px){
