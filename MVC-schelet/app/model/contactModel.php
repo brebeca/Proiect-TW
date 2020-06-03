@@ -1,4 +1,5 @@
 <?php
+include VIEW.'admin/adminView.php';
  class contactModel extends Model{
 
     public function addAnonimusContact($name, $email, $telephone, $message){
@@ -21,4 +22,23 @@
             'mes'=>$message
         ]);
     }
+    public function getAllMessages(){
+        $sql = "SELECT * FROM not_logged_messages  ";
+        $cerere = $this->bd->obtine_conexiune()->prepare($sql);
+        if( $cerere->execute()===false)
+            return false;
+        return $cerere->fetchAll();
+    }
+     public function getNewMessages(){
+         $sql = "SELECT * FROM not_logged_messages where seen is null ";
+         $cerere = $this->bd->obtine_conexiune()->prepare($sql);
+         if( $cerere->execute()===false)
+             return false;
+         return $cerere->fetchAll();
+     }
+     public function updateToSeen(){
+         $sql = "UPDATE not_logged_messages SET seen = 1 ";
+         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
+         $cerere -> execute ();
+     }
 }

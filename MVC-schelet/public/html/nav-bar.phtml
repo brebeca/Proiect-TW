@@ -1,34 +1,40 @@
 
 <nav class="navbar">
-  <?php if(isset($_SESSION['login']))
-    echo "<li class=\"comparaBtn\"><a href=\"/produse/compara\"><b>COMPARA</b></a></li>";
-  ?>
+<li class=comparaBtn><a href=/produse/compara><b>COMPARA</b></a></li>
   <div class="drop">
     <button class="dropper">Imbracaminte</button>
     <div class="dropwrap">
-      <a href="/produse/produse?categorie=imbracaminte&sursa=produse_emag&page=1">Emag</a>
-      <a href="/produse/produse?categorie=imbracaminte&sursa=produse_altex&page=1">Altex</a>
+        <?php if(defined('SURSA1'))
+            echo '<a href="/produse/produse?categorie=imbracaminte&sursa='.DB_NAME2.'&page=1">'.SURSA1.'</a>'?>
+        <?php if(defined('SURSA2'))
+            echo '<a href="#">'.SURSA2.'</a>'?>
     </div>
   </div>
   <div class="drop">
     <button class="dropper">Electrocasnice</button>
     <div class="dropwrap">
-      <a href="/produse/produse?categorie=electrocasnice&sursa=produse_emag&page=1">Emag</a>
-      <a href="/produse/produse?categorie=electrocasnice&sursa=produse_altex&page=1">Altex</a>
+        <?php if(defined('SURSA1'))
+            echo '<a href="/produse/produse?categorie=electrocasnice&sursa='.DB_NAME2.'&page=1">'.SURSA1.'</a>'?>
+        <?php if(defined('SURSA2'))
+            echo '<a href="/produse/produse?categorie=electrocasnice&sursa='.DB_NAME3.'&page=1">'.SURSA2.'</a>'?>
     </div>
   </div>
   <div class="drop">
     <button class="dropper">Telefoane</button>
     <div class="dropwrap">
-      <a href="/produse/produse?categorie=telefoane&sursa=produse_emag&page=1">Emag</a>
-      <a href="/produse/produse?categorie=telefoane&sursa=produse_altex&page=1">Altex</a>
+        <?php if(defined('SURSA1'))
+            echo '<a href="/produse/produse?categorie=telefoane&sursa='.DB_NAME2.'&page=1">'.SURSA1.'</a>'?>
+        <?php if(defined('SURSA2'))
+            echo '<a href="/produse/produse?categorie=telefoane&sursa='.DB_NAME3.'&page=1">'.SURSA2.'</a>'?>
     </div>
   </div>
   <div class="drop">
     <button class="dropper">Calculatoare</button>
     <div class="dropwrap">
-      <a href="/produse/produse?categorie=calculatoare&sursa=produse_emag&page=1">Emag</a>
-      <a href="/produse/produse?categorie=calculatoare&sursa=produse_altex&page=1">Altex</a>
+        <?php if(defined('SURSA1'))
+            echo '<a href="/produse/produse?categorie=calculatoare&sursa='.DB_NAME2.'&page=1">'.SURSA1.'</a>'?>
+        <?php if(defined('SURSA2'))
+            echo '<a href="/produse/produse?categorie=calculatoare&sursa='.DB_NAME3.'&page=1">'.SURSA2.'</a>'?>
     </div>
   </div>
   <div class="drop">

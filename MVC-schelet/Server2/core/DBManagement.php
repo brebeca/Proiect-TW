@@ -105,6 +105,9 @@ class DBManagement
         });
         return $products;
     }
+    public function delete_temp_users(){
+        $this->users_collection->deleteMany(array("temp"=>true));
+    }
 
 
 

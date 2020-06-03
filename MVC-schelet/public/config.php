@@ -1,11 +1,19 @@
 <?php
-  define ('DB_HOST',  'localhost');
-  define ('DB_NAME',  'app');
-  define ('DB_NAME2',  'produse_emag');
-  define ('DB_NAME3',  'produse_altex');
-  define ('DB_USER2',  'root');
+  $ini = parse_ini_file('app.ini');
+  define ('DB_HOST',  $ini['db_host']);
+  define ('DB_NAME', $ini['db_name'] );
+  define ('DB_NAME2',  $ini['db_name2']);
+  define ('DB_USER2',  $ini['db_user2']);
   define ('DB_PASS2',  '');
-  define ('DB_USER',  'app');
-  define ('DB_PASS',  'app');
-  define('APP_ID','birleanu-CompIT-PRD-4c545f399-aad3d24d');
-?>
+  define ('DB_NAME3',  $ini['db_name3']);
+  define ('DB_USER3',  $ini['db_user3']);
+  define ('DB_PASS3',  '');
+  define ('DB_USER',  $ini['db_user']);
+  define ('DB_PASS',  $ini['db_pass']);
+  define('APP_ID',$ini['app_id']);
+  if($ini['sursa1_activ']==1){
+      define('SURSA1',$ini['sursa1']);
+  }
+  if($ini['sursa2_activ']==1){
+      define('SURSA2',$ini['sursa2']);
+  }

@@ -26,7 +26,8 @@ class AddUser
             'session'=>$cookie,
             'temp'=>true
         ];
-        $db->insert_users($document);
+        if($db->verify_session($cookie)===false)
+            $db->insert_users($document);
 
         http_response_code(200);
         echo json_encode(array("Success" => "true"));
