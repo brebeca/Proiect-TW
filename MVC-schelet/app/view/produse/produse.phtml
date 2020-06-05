@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+<div id="main">
 <?php
   include HTMLS.'side-bar.phtml';
   include HTMLS.'nav-bar.phtml';
@@ -85,9 +85,11 @@
      </div>
  </div>
 </footer>
+</div>
 <script src="/JS-uri/Collapse.js"></script>
 <script src="/JS-uri/navro.js"></script>
   <script>
+
       function produs_ales(id_produs,sursa,category){
          function call2(id_produs, id_user,sursa,category)
           {
@@ -127,9 +129,9 @@
               if(document.getElementById(a + ".image")!==null)
                   img_link= document.getElementById(a + ".image").getAttribute("src").trim();
               let lis =  document.getElementsByClassName(a+"specs");
-              let result=Array();
+              let result='';
               for (let i=0, len=lis.length|0; i<len; i=i+1|0) {
-                  result.push(lis[i].textContent+'|');
+                  result+='!'+lis[i].textContent;
               }
               let url = new URL('http://localhost:<?php echo PORT_LOCAL_SERVER?>/produse/alegere_ebay');
               let params = {
@@ -166,7 +168,6 @@
               call(a, id);
           }
       }
-
   </script>
 
 </body>

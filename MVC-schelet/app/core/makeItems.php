@@ -3,10 +3,7 @@ require_once('core/Scrapping.php');
 function makeItems()
 {
     if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
-        $produse = Select::get_products_by_name($_GET["nume-produs"],"produse_emag");
-       /* echo "<pre>";
-        print_r($produse);
-        echo "</pre>";*/
+        /*$produse = Select::get_products_by_name($_GET["nume-produs"],"produse_emag");
         if ($produse == false)
             header("Location:/index.php?scrap_esuat=1");
         foreach ($produse as $i => $values) {
@@ -22,7 +19,7 @@ function makeItems()
                 display_altex($value['id'], $value['nume'], $value['link'],
                     $value['imagine'],  $value['pret'],
                     $value['disponibilitate'],$i);
-        }
+        }*/
         include VIEW . 'produse/search_ebay.phtml';
     } else if (isset($_GET["categorie"]) && isset($_GET["sursa"])) {
         $produse = Select::scrapping($_GET["categorie"], $_GET["sursa"]);

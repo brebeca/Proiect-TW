@@ -115,6 +115,7 @@ label #cancel{
 }
 .img {
   max-height: 34.7vh;
+  max-width:  34vh;
   object-fit: contain;
 }
 .extraspec { text-align: center;
@@ -294,13 +295,14 @@ ul.nav-menu li a:hover{
 .grid-container {
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(290px, 1fr));
-  padding-bottom: 180px;
+  padding: 10px;
   /*padding-left: 5%;
   padding-right: 5%;
-  */column-gap: 4vh;
-  row-gap: 3vh;
+  */column-gap: 7vh;
+  row-gap: 4.3vh;
   grid-template-rows: 500px;
 }
+
 .grid-item {
   background-color: whitesmoke;
   padding: 10px;
@@ -497,5 +499,4 @@ td:hover{
 
 #main {
   transition: margin-left .5s;
-  padding: 16px;
 }

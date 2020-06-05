@@ -14,14 +14,15 @@
             {
                 if(http.readyState === 4 && http.status === 200) {
                     myArr = JSON.parse(http.responseText);
+                    console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
-                        for (var i in myArr.produse) {
-                          for (var j in myArr.produse[i]) {
+                        for (let i in myArr.produse) {
+                          for (let j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                  productsStr += `<p><div class="first">` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
+                                  productsStr += `<p><div class="first" id="${myArr.produse[i][j].id}">` + getProductHtml(myArr.produse[i][j],id) + `</div></p>`;
                               else
-                                  productsStr += getProductHtml(myArr.produse[i][j]);
+                                  productsStr += getProductHtml(myArr.produse[i][j],id);
                           }
                         }
                     }
@@ -33,9 +34,9 @@
 
         load();
 
-        function getProductHtml(product){
+        function getProductHtml(product,user_id){
          return `<div class="grid-item">
-                  <span class="close">&times;</span>
+                  <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
                   <table>
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
@@ -70,4 +71,37 @@
             }
             productsStr += `</ol>`; 
             return productsStr;
+        }
+
+        function RSS() {
+            let lis =  document.getElementsByClassName("first");
+            let idList=Array();
+            for (let i=0, len=lis.length|0; i<len; i=i+1|0) {
+                idList.push(parseInt(lis[i].getAttribute("id")));
+            }
+            let rssObjects=Array();
+            for (let i in myArr.produse) {
+                for (let j in myArr.produse[i]) {
+                    if(idList.includes(myArr.produse[i][j].id)){
+                        let rssObject={
+                            title:myArr.produse[i][j].title,
+                            link:myArr.produse[i][j].link,
+                            description:myArr.produse[i][j].details,
+                            category:myArr.produse[i][j].category
+                        }
+                        rssObjects.push(rssObject);
+                    }
+                }
+            }
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "http://localhost:800/produse/RSS");
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.onreadystatechange = function()
+            {
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                    console.log(xmlhttp.responseText);
+                    window.location.replace('http://localhost:800/produse/renderRSS?rss='+ xmlhttp.responseText);
+                }
+            }
+            xmlhttp.send(JSON.stringify(rssObjects));
         }

@@ -56,8 +56,9 @@ class GetForOwner
             $calc=$db->get_products_by_category('calculatoare',$session);
             $div=$db->get_products_by_category('search',$session);
             $imbr=$db->get_products_by_category('imbracaminte',$session);
+            $casti=$db->get_products_by_category('casti',$session);
             $produse=array("electrocasnice"=>$elect,"telefoane"=>$tel,"calculatoare"=>$calc,
-                "diverse"=>$div,"imbracaminte"=>$imbr);
+                "diverse"=>$div,"imbracaminte"=>$imbr,"casti"=>$casti);
             http_response_code(200);
             echo json_encode(array("Success" => "true","produse"=>$produse));
     }

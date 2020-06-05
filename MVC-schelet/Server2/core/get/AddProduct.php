@@ -41,17 +41,21 @@ function ebay_document($session){
         $key_word = $_GET['key_word'];
     $details=null;
     if(isset($_GET['details'])) {
-        $details = trim($_GET['details'],'|');
-        $details=explode('|', $details);
+        $details = trim($_GET['details'],'!');
+        $details=explode('!', $details);
     }
-    $price=-1;
+    $price=1;
     $rating=0;
-    $h = file_get_html($_GET['link']);
-    if (isset($h->find("h2.display-price", 0)->innertext))
-        $price = floatval(explode('$', $h->find("h2.display-price", 0)->innertext)[1]);
-    $rating = floatval(explode(' ',$h->find("span.star--rating", 0)->getAttribute("aria-label"))[0]);
-
-    $document = ['category' => $_GET['category'],
+    $category=$_GET['category'];
+    $html = file_get_html($_GET['link']);
+    if (isset($html->find("h2.display-price", 0)->innertext)) {
+        $category=Scrapping::ebay_category($_GET['link']);
+        $details=Scrapping::detalii_ebay($_GET['link'],$category);
+        $price_aux=explode('$', $html->find("h2.display-price", 0)->innertext)[1];
+        $price = floatval(str_replace(',','',$price_aux));
+        $rating = floatval(explode(' ', $html->find("span.star--rating", 0)->getAttribute("aria-label"))[0]);
+    }
+    $document = ['category' => $category,
         'key_word' => $key_word,
         'title' => $_GET['title'],
         'link' => $_GET['link'],
@@ -69,7 +73,7 @@ function emag_document($session){
 
     $price=-1;
     $rating=0;
-    $details=Scrapping::detalii_emag($_GET['link']);
+    $details=Scrapping::detalii_emag($_GET['link'],$_GET['category']);
 
     $document = ['category' => $_GET['category'],
         'key_word' =>'-',

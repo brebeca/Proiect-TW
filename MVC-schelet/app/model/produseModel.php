@@ -117,16 +117,14 @@ class ProduseModel extends Model{
          $productObj->photoURL = (string)$list->StockPhotoURL;
          if(isset($list->ItemSpecifics[0])){
              foreach ($list->ItemSpecifics[0] as $list1){
-                 array_push($productObj->items, $list1->Name.": ");
-                 foreach ( $list1->Value as $item){
-                    if(count($list1->Value) > 1){
-                      if(array_search($item, (array)$list1->Value) === count($list1->Value)) 
-                        array_push($productObj->items, $item);
-                      else array_push($productObj->items, $item.", ");
-                    }
-                    else 
-                      array_push($productObj->items, $item);
+                 $string=$list1->Name.": ";
+                 foreach ( $list1->Value as $i=>$item) {
+                     if(array_search($item, (array)$list1->Value)==0)
+                         $string.=$item;
+                     else
+                         $string.=",".$item;
                  }
+                 array_push($productObj->items, $string);
              }
          }
          array_push($products, $productObj);
@@ -246,7 +244,6 @@ class ProduseModel extends Model{
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(
             'Session:'.$session
         ));
-
         $res = curl_exec($cURLConnection);
         curl_close($cURLConnection);
         $jsonArrayResponse = json_decode($res);
