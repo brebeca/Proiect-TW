@@ -14,12 +14,13 @@
             {
                 if(http.readyState === 4 && http.status === 200) {
                     myArr = JSON.parse(http.responseText);
+                    console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
                         for (var i in myArr.produse) {
                           for (var j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                  productsStr += `<p><div>` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
+                                  productsStr += `<p><div class="first">` + getProductHtml(myArr.produse[i][j]) + `</div></p>`;
                               else
                                   productsStr += getProductHtml(myArr.produse[i][j]);
                           }

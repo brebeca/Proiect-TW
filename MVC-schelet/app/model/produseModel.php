@@ -120,7 +120,7 @@ class ProduseModel extends Model{
                  array_push($productObj->items, $list1->Name.": ");
                  foreach ( $list1->Value as $item){
                     if(count($list1->Value) > 1){
-                      if(array_search($item, (array)$list1->Value) === count($list1->Value)) 
+                    if(array_search($item, (array)$list1->Value) === count($list1->Value)) 
                         array_push($productObj->items, $item);
                       else array_push($productObj->items, $item.", ");
                     }
