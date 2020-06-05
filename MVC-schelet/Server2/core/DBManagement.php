@@ -23,12 +23,11 @@ class DBManagement
     public  function insert_users($doc){
         $collection = $this->connection->selectCollection('Users');
         $collection->insertOne($doc);
-
+        $this->delete_temp_users();
     }
 
     public function get_next_id(){
         $collection = $this->connection->selectCollection('Products');
-        //$query = array('owner' => '');
         $result= $collection->find(array(), array('id' => 1));
         $max=1000;
         foreach ($result as $item){
@@ -106,7 +105,9 @@ class DBManagement
         return $products;
     }
     public function delete_temp_users(){
-        $this->users_collection->deleteMany(array("temp"=>true));
+        $to_delete=$this->users_collection->find(array("temp"=>true,"expire"=> array( '$lt' => time())))->toArray();
+        $this->products_collection->deleteMany(array('owner' => array('$in' => $to_delete)));
+        $this->users_collection->deleteMany(array("temp"=>true,"expire"=> array( '$lt' => time())));
     }
 
 

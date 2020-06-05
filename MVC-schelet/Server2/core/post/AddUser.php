@@ -24,7 +24,8 @@ class AddUser
         $db=new DBManagement();
         $document=[
             'session'=>$cookie,
-            'temp'=>true
+            'temp'=>true,
+            'expire'=>time() + (86400 * 30) // o zi
         ];
         if($db->verify_session($cookie)===false)
             $db->insert_users($document);
