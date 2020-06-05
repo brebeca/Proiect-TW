@@ -1,7 +1,7 @@
 <?php
-require_once ('model/produseModel.php');
+require_once ('model/ProduseModel.php');
 if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])){
-$produse_returnate=ProduseModel::cauta_produs_db_mongo($_GET["nume-produs"]);
+$produse_returnate=ProduseModel::cautaProdusDbMongo($_GET["nume-produs"]);
 if($produse_returnate==false)
     include VIEW.'produse/error.phtml';
 if (count($produse_returnate) > 0):

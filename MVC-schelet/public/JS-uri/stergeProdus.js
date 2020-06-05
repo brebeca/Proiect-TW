@@ -1,5 +1,5 @@
 function sterge(id_produs,id_user) {
-    let url = new URL('http://localhost:800/produse/sterge_produs');
+    let url = new URL('http://localhost:800/produse/stergeProdus');
     let params = {
         product_id: id_produs,
         session:id_user

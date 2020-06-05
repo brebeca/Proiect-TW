@@ -1,5 +1,5 @@
 <?php
-require_once ('model/produseModel.php');
+require_once ('model/ProduseModel.php');
 if(isset($_GET["nume-produs"]) && isset($_GET["nr-produse"]))
 {
 $produse_returnate=ProduseModel::cautaProdus($_GET["nume-produs"], $_GET["nr-produse"]);
@@ -26,14 +26,6 @@ if (count($produse_returnate) > 0):
                 <a id=<?php echo "\"".array_search($produs, $produse_returnate).".link\"";?> href=<?php echo "\"" . $produs->detailsURL . "\"" ?>  >
                     <?php echo $produs->title; ?></a>
             </div>
-        </div>
-        <div class="none">
-            <?php foreach ($produs->items as $item):
-                echo "<p class=\"".array_search($produs, $produse_returnate)."specs\">";
-                echo $item;
-                echo "</p>";
-            endforeach;
-            ?>
         </div>
     </div>
 <?php endforeach; ?>

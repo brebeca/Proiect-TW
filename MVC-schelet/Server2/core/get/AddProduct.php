@@ -40,10 +40,6 @@ function ebay_document($session){
     if (isset($_GET['key_word']))
         $key_word = $_GET['key_word'];
     $details=null;
-    if(isset($_GET['details'])) {
-        $details = trim($_GET['details'],'!');
-        $details=explode('!', $details);
-    }
     $price=1;
     $rating=0;
     $category=$_GET['category'];
@@ -52,7 +48,7 @@ function ebay_document($session){
         $category=Scrapping::ebay_category($_GET['link']);
         $details=Scrapping::detalii_ebay($_GET['link'],$category);
         $price_aux=explode('$', $html->find("h2.display-price", 0)->innertext)[1];
-        $price = floatval(str_replace(',','',$price_aux));
+        $price = round(floatval(str_replace(',','',$price_aux)),2);
         $rating = floatval(explode(' ', $html->find("span.star--rating", 0)->getAttribute("aria-label"))[0]);
     }
     $document = ['category' => $category,
@@ -63,7 +59,7 @@ function ebay_document($session){
         'source' => $_GET['source'],
         'details' => $details,
         'owner' => $session,
-        'price'=> $price*4.44,
+        'price'=> round($price*4.44,2),
         'id'=>1000,
         'rating'=>$rating
     ];

@@ -3,7 +3,7 @@
 
 use PHPUnit\Framework\TestCase;
 include 'config.php';
-require MODEL.'produseModel.php';
+require MODEL.'ProduseModel.php';
 class ProduseTests extends TestCase
 {
     public function testCautaProdusFail_wrongParams(){

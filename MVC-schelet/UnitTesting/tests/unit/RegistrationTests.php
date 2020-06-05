@@ -2,7 +2,7 @@
 include 'config.php';
 use PHPUnit\Framework\TestCase;
 require MODEL.'ModelRegister.php';
-require MODEL.'loginModel.php';
+require MODEL . 'LoginModel.php';
 class RegistrationTests extends TestCase
 {
 

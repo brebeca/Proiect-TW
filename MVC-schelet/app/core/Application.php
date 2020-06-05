@@ -1,9 +1,9 @@
 <?php
 class Application{
 
-protected $controller='homeController';
-protected $action='index';
-protected $params=[];
+private $controller='homeController';
+private $action='index';
+private $params=[];
 
 public function __construct(){
    $this-> prepareURL();
@@ -28,13 +28,13 @@ public function __construct(){
     }
 }
 
-protected function prepareURL(){
+private function prepareURL(){
 
     $request =trim($_SERVER['REQUEST_URI'],'/');
     if(!empty($request)){
 
         $uri=explode('/',str_replace ( '?',  '/' ,  $request));
-        $this->controller =isset($uri[0]) ? $uri[0].'Controller': 'homeController';
+        $this->controller =isset($uri[0]) ? ucfirst($uri[0]).'Controller': 'HomeController';
         
         $this->action =isset($uri[1]) ? $uri[1]: 'index';
 

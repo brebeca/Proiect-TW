@@ -8,7 +8,7 @@ define('DATA', ROOT . 'public' .DIRECTORY_SEPARATOR );
 define('CORE', ROOT . 'app' .DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR);
 define('CONTROLLER', ROOT . 'app' .DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR);
 
-require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."ebayClass.php";
+require_once ROOT . 'public' . DIRECTORY_SEPARATOR . "EbayClass.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 
 $modules=[ROOT, APP, CORE, CONTROLLER,DATA];

@@ -1,10 +1,10 @@
 <?php
 
 
-class adminView
+class AdminView
 {
 
-    public static function display_messages($messages){
+    public static function displayMessages($messages){
         echo '<h3>Mesajele utilizatorilor</h3>';
         if(sizeof( $messages)==0)
            echo '<p> Nu sunt mesaje noi </p>';

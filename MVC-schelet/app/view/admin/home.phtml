@@ -5,7 +5,7 @@
 
 <h3>Admin page</h3>
 
-<form action="/admin/change_password">
+<form action="/admin/changePassword">
   <label for="fname">New password:</label><br>
   <input type="text" id="fname" name="new_password" ><br>
   <input type="submit" value="Submit">
@@ -13,16 +13,12 @@
 <form action="http://localhost/phpmyadmin/sql.php?server=1&db=<?php echo DB_NAME ?>&table=users&pos=0">
     <input type="submit" value="Go to database" />
 </form>
-<form action="/admin/all_user_messages">
+<form action="/admin/allUserMessages">
     <input type="submit" value="See all user messages " />
 </form>
-<form action="/admin/new_user_messages">
+<form action="/admin/newUserMessages">
     <input type="submit" value="See all user messages " />
 </form>
-<form action="/admin/change_db_name">
-    <label for="fname">New db name:</label><br>
-    <input type="text"  name="new_db_name" ><br>
-    <input type="submit" value="Submit" />
-</form>
+
 </body>
 </html>

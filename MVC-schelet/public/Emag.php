@@ -1,5 +1,5 @@
 <?php
-function emag($categorie)
+function Emag($categorie)
 {
     $servername = "localhost";
     $username = "root";

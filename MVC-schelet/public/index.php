@@ -13,7 +13,7 @@ $modules=[ROOT, APP, CORE, CONTROLLER,DATA,HTMLS];
 
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."config.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."simple_html_dom.php";
-require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."ebayClass.php";
+require_once ROOT . 'public' . DIRECTORY_SEPARATOR . "EbayClass.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR .'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."googleConfig.php";
 

@@ -1,5 +1,5 @@
 <?php
-class loginController extends Controller {
+class LoginController extends Controller {
 
   public function login($data="")
   {
@@ -7,7 +7,7 @@ class loginController extends Controller {
       $this->view('login\login');
       $this->view->render();
     } else {
-      $this->model('loginModel');
+      $this->model('LoginModel');
       $params = explode('&', $data);
       $email = explode('=', $params[0])[1];
       $password = explode('=', $params[1])[1];

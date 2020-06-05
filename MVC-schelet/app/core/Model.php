@@ -14,7 +14,6 @@ class Model{
  
     protected $name=null;
     protected $bd;
- 
 
     public function __construct(){
         $this->bd= new BD;

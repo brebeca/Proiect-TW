@@ -19,7 +19,7 @@
         }
         else return false;
     }
-    public function send_cookie($cookie){
+    public function sendCookie($cookie){
         $postData = array(
             'Cookie' => $cookie
         );
@@ -41,7 +41,6 @@
         echo $response;
 
     }
-
     public function sePoateIregistra( $email){
         $sql = "SELECT * FROM users where  email = :email ";
         $cerere = $this->bd->obtine_conexiune()->prepare($sql);
