@@ -94,7 +94,7 @@ label #cancel{
 .criteriiComp{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  margin-left: 15%;
+  margin-left: 25%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
@@ -143,6 +143,19 @@ label #cancel{
   transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
 }
 
+a.rssFeed {
+ background-color: #660066;
+ margin-left: 95px;
+}
+a.rssFeed:before {
+  background-color: #330033;
+}
+a.rssFeed:after {
+  background-color: #330033;
+}
+a.rssFeed:hover {
+ background-color: #660066;
+}
 
 
 .grid-container {
@@ -151,6 +164,8 @@ label #cancel{
   padding-bottom: 180px;
   padding-left: 3%;
   padding-right: 3%;
+  padding-top: 3%;
+  margin-left: 180px;
   column-gap: 4vh;
   grid-row-gap: 3vh;
   grid-template-rows: 500px;
@@ -177,6 +192,7 @@ label #cancel{
   color: black;
   text-decoration: none;
   text-justify: auto;
+  color: black;
 }
 .grid-item .titlu:hover {
   color: grey;

@@ -1,7 +1,7 @@
         var id;
         var myArr;
 
-        function comparaPret() {
+        function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
             let params = {
                 id: id
@@ -17,11 +17,6 @@
                     //console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
-                        //ordonam crescator dupa pret
-                        for (let i in myArr["produse"]) {
-                          myArr.produse[i].sort(function(a, b){return a.price-b.price});
-                        }
-
                         for (let i in myArr.produse) {
                           for (let j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
@@ -39,40 +34,47 @@
             http.send(null);
         }
 
-        function comparaRating() {
-            let url = new URL('http://localhost:800/produse/incarcaProduse');
-            let params = {
-                id: id
-            } ;
-            url.search = new URLSearchParams(params).toString();
-            const http = new XMLHttpRequest();
+        load();
 
-            http.open("GET", url, true);
-            http.onreadystatechange = function()
-            {
-                if(http.readyState === 4 && http.status === 200) {
-                    myArr = JSON.parse(http.responseText);
-                    let productsStr = '';
-                    if (myArr["Success"] === "true") {
-                        //ordonam descrescator dupa rating
-                        for (let i in myArr["produse"]) {
-                          myArr.produse[i].sort(function(a, b){return b.rating-a.rating}); 
-                        }
+        function comparaPret() {
+          //ordonam crescator produsele dupa pret
+           for (let i in myArr["produse"]) {
+               myArr.produse[i].sort(function(a, b){return a.price-b.price});
+           }
 
-                        for (let i in myArr.produse) {
-                          for (let j in myArr.produse[i]) {
-                              if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                  productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
-                                                   + getProductHtml(myArr.produse[i][j], id) +
-                                                 `</div> <div></div> <div></div>`;
-                              else
-                                  productsStr += getProductHtml(myArr.produse[i][j], id);
-                          }
-                        }
-                    }
-                    document.getElementById('products').innerHTML = productsStr;
+           let productsStr = '';
+           for (let i in myArr.produse) {
+                for (let j in myArr.produse[i]) {
+                    if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
+                        productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
+                                         + getProductHtml(myArr.produse[i][j], id) +
+                                        `</div> <div></div> <div></div>`;
+                    else
+                        productsStr += getProductHtml(myArr.produse[i][j], id);
                 }
             }
+            document.getElementById('products').innerHTML = productsStr;
+            http.send(null);
+        }
+
+        function comparaRating() {
+            let productsStr = '';
+            //ordonam descrescator produsele dupa rating
+            for (let i in myArr["produse"]) {
+                myArr.produse[i].sort(function(a, b){return b.rating-a.rating}); 
+            }
+
+            for (let i in myArr.produse) {
+                for (let j in myArr.produse[i]) {
+                    if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
+                        productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
+                                         + getProductHtml(myArr.produse[i][j], id) +
+                                       `</div> <div></div> <div></div>`;
+                    else
+                        productsStr += getProductHtml(myArr.produse[i][j], id);
+                }
+            }
+            document.getElementById('products').innerHTML = productsStr;
             http.send(null);
         }
 
@@ -91,8 +93,7 @@
                    </tr>
                   </table>
                   <br>
-                  <p class="titlu"> ${product.title}</p><br>
-                  <p> <a href="${product.link}">${product.link}</a></p>
+                  <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;
         }
 
