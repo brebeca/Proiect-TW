@@ -3,7 +3,7 @@
 
 use PHPUnit\Framework\TestCase;
 include 'config.php';
-require MODEL.'contactModel.php';
+require MODEL . 'ContactModel.php';
 class ContactUSTests extends TestCase
 {
 

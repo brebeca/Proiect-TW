@@ -1,11 +1,10 @@
 <?php
 
-class homeController extends Controller {
+class HomeController extends Controller {
 
     public function index(){
-
-     $this->view('home\index');
-       $this->view->render();
+        $this->view('home\index');
+        $this->view->render();
     }
 
     public function cauta($de_cautat=''){
@@ -20,12 +19,10 @@ class homeController extends Controller {
             header("Location:/produse/produse?nume-produs=".$produs_de_cuatat."&nr-produse=".$numar_de_produse_returnate);
            
         }
-
-
     }
     public function cookie(){
         $this->model('ModelRegister');
-        $this->model->send_cookie($_GET['cookie']);
+        $this->model->sendCookie($_GET['cookie']);
     }
 
 }

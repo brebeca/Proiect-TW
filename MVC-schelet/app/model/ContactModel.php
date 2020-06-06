@@ -1,8 +1,7 @@
 <?php
-include VIEW.'admin/adminView.php';
- class contactModel extends Model{
-
-    public function addAnonimusContact($name, $email, $telephone, $message){
+include VIEW . 'admin/AdminView.php';
+ class ContactModel extends Model{
+     public function addAnonimusContact($name, $email, $telephone, $message){
         $sql = "INSERT INTO not_logged_messages ( name ,  telephone, email, text) 
                                        VALUES (:username, :telephone, :email, :text)";
         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
@@ -13,8 +12,7 @@ include VIEW.'admin/adminView.php';
             'text'=>$message
         ]);
     }
-
-    public function addUserContact($email, $message){
+     public function addUserContact($email, $message){
         $sql = "INSERT INTO users_messages ( email ,  message ) VALUES (:email, :mes)";
         $cerere =$this->bd->obtine_conexiune()->prepare($sql);
         return $cerere -> execute ([
@@ -22,7 +20,7 @@ include VIEW.'admin/adminView.php';
             'mes'=>$message
         ]);
     }
-    public function getAllMessages(){
+     public function getAllMessages(){
         $sql = "SELECT * FROM not_logged_messages  ";
         $cerere = $this->bd->obtine_conexiune()->prepare($sql);
         if( $cerere->execute()===false)

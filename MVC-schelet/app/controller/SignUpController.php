@@ -1,12 +1,10 @@
 <?php
-class signUpController extends Controller {
+class SignUpController extends Controller {
 
 
     public function signUp($data=""){
-        
         if($data==""){
             $this->view('signUp/signUp');
-
            $this->view->render();
         }
         else {

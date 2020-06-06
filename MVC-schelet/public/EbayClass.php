@@ -1,10 +1,10 @@
 <?php
-class ebay {
+class Ebay {
 
- public static function get_product_xml($produs='', $nr_de_produse=1){
+ public static function getProductsInXml($produs='', $nr_de_produse=1){
 
     if($produs=='')return false;
-   $produs=urlencode($produs);
+    $produs=urlencode($produs);
     $url ="https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&appid=".APP_ID."&siteid=0&version=967&QueryKeywords=".$produs."&AvailableItemsOnly=true&MaxEntries=".$nr_de_produse;
     $ch =curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

@@ -1,59 +1,55 @@
 <?php
 
 
-class adminController extends Controller
+class AdminController extends Controller
 {
 
     public function home()
     {
-        //echo $_GET['code'];
-
         $this->model('loginModel');
         if(isset($_GET['code']))
-            if($this->model->admin_login($_GET['code'])===true){
+            if($this->model->adminLogin($_GET['code'])===true){
                 $this->view('admin\home');
                 $this->view->render();
             }
         else {
-            //$this->login();
             echo "error";
-           // include error_page
         }
     }
+
     public function login(){
         $this->view('admin\login');
         $this->view->render();
     }
-    public function change_password(){
-        $this->model('loginModel');
+
+    public function changePassword(){
+        $this->model('LoginModel');
         if(isset($_GET['new_password']))
-            if($this->model->admin_change_password($_GET['new_password'])===true){
+            if($this->model->adminChangePassword($_GET['new_password'])===true){
                 $this->view('admin\home');
                 $this->view->render();
             }
             else {
-                //$this->login();
                 echo "error";
-                // include error_page
             }
     }
 
-    public function all_user_messages(){
-        $this->model('contactModel');
+    public function allUserMessages(){
+        $this->model('ContactModel');
         $messages=$this->model->getAllMessages();
         if($messages!==false){
-          adminView::display_messages($messages);
+          AdminView::displayMessages($messages);
         }
         else {
             echo "error";
         }
     }
 
-    public function new_user_messages(){
-        $this->model('contactModel');
+    public function newUserMessages(){
+        $this->model('ContactModel');
         $messages=$this->model->getNewMessages();
         if($messages!==false){
-            adminView::display_messages($messages);
+            AdminView::displayMessages($messages);
             $this->model->updateToSeen();
         }
         else {

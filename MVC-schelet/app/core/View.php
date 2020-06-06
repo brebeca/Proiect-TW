@@ -2,7 +2,6 @@
 class View{
     protected $view_file;
     protected $view_data;
-    protected $page_title;
     
     public function __construct($view_file, $view_data){
         $this->view_file= $view_file;
@@ -15,4 +14,3 @@ class View{
        include VIEW . $this->view_file . '.phtml';
    }
 }
-?>

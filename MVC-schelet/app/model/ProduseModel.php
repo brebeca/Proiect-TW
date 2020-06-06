@@ -30,13 +30,13 @@ class BD3{
 }
 
 class ProduseModel extends Model{
-    protected $bd2;
-    protected $bd3;
+    private $bd2;
+    private $bd3;
     public function __construct(){
         $this->bd2= new BD2;
         $this->bd3= new BD3;
     }
-    public static function update_produs($dbname, $categorie, $id, $link) //e de ajuns unul dintre link si id, dar o interogare in minus nu strica
+    public static function updateProdus($dbname, $categorie, $id, $link) //e de ajuns unul dintre link si id, dar o interogare in minus nu strica
     {
         $servername = "localhost";
         $username = "root";
@@ -98,7 +98,7 @@ class ProduseModel extends Model{
         $conn->close();
     }
 	public static function cautaProdus($produs_de_cuatat, $numar_de_produse_returnate){
-	 $product = ebay::get_product_xml($produs_de_cuatat, $numar_de_produse_returnate);
+	 $product = Ebay::getProductsInXml($produs_de_cuatat, $numar_de_produse_returnate);
 	 if($product===false)
 	     return false;
      $xml = simplexml_load_string($product);
@@ -133,7 +133,7 @@ class ProduseModel extends Model{
      return $products;
     
 	}
-    public static function produsele_mele($id,$category)
+    public static function produseleMele($id,$category)
     {
 
         $cURLConnection = curl_init();
@@ -150,7 +150,7 @@ class ProduseModel extends Model{
         return json_decode($res,true);
 
     }
-    public static function toate_produsele($id)
+    public static function toateProdusele($id)
     {
 
         $cURLConnection = curl_init();
@@ -167,8 +167,7 @@ class ProduseModel extends Model{
         return $res;
 
     }
-
-    public static function cauta_produs_db_mongo($word)
+    public static function cautaProdusDbMongo($word)
     {
 
         $cURLConnection = curl_init();
@@ -185,7 +184,7 @@ class ProduseModel extends Model{
         return json_decode($res,true);
 
     }
-    public  function get_produs_db($id,$categorie,$sursa){
+    public  function getProdusDb($id,$categorie,$sursa){
             $sql = "SELECT * FROM ".$categorie." where id = :id ";
             if($sursa=="emag")
                 $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
@@ -197,9 +196,7 @@ class ProduseModel extends Model{
             $result=$cerere->fetch();
             return $result;
     }
-    public function trimite_produs($id,$params){
-
-        //print_r($responseData);
+    public function trimiteProdus($id,$params){
         $cURLConnection = curl_init();
          $id=md5($id);
         curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/AppInsert?'.$params);
@@ -214,7 +211,7 @@ class ProduseModel extends Model{
         echo $res;
         //print_r($jsonArrayResponse);
     }
-    public function trimite_produs2($produs,$id){
+    public function trimiteProdus2($produs,$id){
 
         $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AppInsert');
         curl_setopt_array($ch, array(
