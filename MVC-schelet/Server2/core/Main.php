@@ -136,7 +136,7 @@ class Main
         return false;
     }
     $db = new DBManagement();
-    return $db->verify_session($headers['Session']);
+    return $db->verifySession($headers['Session']);
 }
 }
 
