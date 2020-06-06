@@ -1,7 +1,7 @@
         var id;
         var myArr;
 
-        function load() {
+        function comparaPret() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
             let params = {
                 id: id
@@ -14,15 +14,22 @@
             {
                 if(http.readyState === 4 && http.status === 200) {
                     myArr = JSON.parse(http.responseText);
-                    console.log(myArr);
+                    //console.log(myArr);
                     let productsStr = '';
                     if (myArr["Success"] === "true") {
+                        //ordonam crescator dupa pret
+                        for (let i in myArr["produse"]) {
+                          myArr.produse[i].sort(function(a, b){return a.price-b.price});
+                        }
+
                         for (let i in myArr.produse) {
                           for (let j in myArr.produse[i]) {
                               if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                  productsStr += `<p><div class="first" id="${myArr.produse[i][j].id}">` + getProductHtml(myArr.produse[i][j],id) + `</div></p>`;
+                                  productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
+                                                   + getProductHtml(myArr.produse[i][j], id) +
+                                                 `</div> <div></div> <div></div>`;
                               else
-                                  productsStr += getProductHtml(myArr.produse[i][j],id);
+                                  productsStr += getProductHtml(myArr.produse[i][j], id);
                           }
                         }
                     }
@@ -32,9 +39,44 @@
             http.send(null);
         }
 
-        load();
+        function comparaRating() {
+            let url = new URL('http://localhost:800/produse/incarcaProduse');
+            let params = {
+                id: id
+            } ;
+            url.search = new URLSearchParams(params).toString();
+            const http = new XMLHttpRequest();
 
-        function getProductHtml(product,user_id){
+            http.open("GET", url, true);
+            http.onreadystatechange = function()
+            {
+                if(http.readyState === 4 && http.status === 200) {
+                    myArr = JSON.parse(http.responseText);
+                    let productsStr = '';
+                    if (myArr["Success"] === "true") {
+                        //ordonam descrescator dupa rating
+                        for (let i in myArr["produse"]) {
+                          myArr.produse[i].sort(function(a, b){return b.rating-a.rating}); 
+                        }
+
+                        for (let i in myArr.produse) {
+                          for (let j in myArr.produse[i]) {
+                              if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
+                                  productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
+                                                   + getProductHtml(myArr.produse[i][j], id) +
+                                                 `</div> <div></div> <div></div>`;
+                              else
+                                  productsStr += getProductHtml(myArr.produse[i][j], id);
+                          }
+                        }
+                    }
+                    document.getElementById('products').innerHTML = productsStr;
+                }
+            }
+            http.send(null);
+        }
+
+        function getProductHtml(product, user_id){
          return `<div class="grid-item">
                   <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
                   <table>
@@ -105,3 +147,5 @@
             }
             xmlhttp.send(JSON.stringify(rssObjects));
         }
+
+        
