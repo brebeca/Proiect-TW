@@ -146,7 +146,7 @@ label #cancel{
 
 
 .grid-container {
-  display: grid;
+  display: table;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   padding-bottom: 180px;
   padding-left: 3%;
@@ -156,10 +156,11 @@ label #cancel{
   grid-template-rows: 500px;
 }
 .grid-item {
+  display: inline-table;
   background-color: whitesmoke;
   padding: 10px;
-  margin-top: 10px;
-  width: 100%;
+  margin: 10px;
+  width: 400px;
   border: 1px #828282;
   border-radius: 1.75vh;
   text-align: center;
@@ -208,8 +209,9 @@ label #cancel{
 }
 
 .first .grid-item{
+  display: table-cell;
   background: #85bb65;
-  margin-bottom: 0px;
+  width: 400px;
 }
 
 @media only screen and (max-width: 990px){
