@@ -14,19 +14,18 @@ class DBManagement
 
     public function __construct()
     {
-        $this->connection=DBConnection::obtine_conexiune();
+        $this->connection=DBConnection::obtineConexiune();
         $this->products_collection=$this->connection->selectCollection('Products');
         $this->users_collection=$this->connection->selectCollection('Users');
-
     }
 
-    public  function insert_users($doc){
+    public  function insertUsers($doc){
         $collection = $this->connection->selectCollection('Users');
         $collection->insertOne($doc);
-        $this->delete_temp_users();
+        $this->deleteTempUsers();
     }
 
-    public function get_next_id(){
+    public function getNextId(){
         $collection = $this->connection->selectCollection('Products');
         $result= $collection->find(array(), array('id' => 1));
         $max=1000;
@@ -37,14 +36,14 @@ class DBManagement
         return ($max+1);
 
     }
-    public  function insert_products($doc){
+    public  function insertProducts($doc){
         $collection = $this->connection->selectCollection('Products');
-        $doc['id'] = $this->get_next_id();
+        $doc['id'] = $this->getNextId();
         $collection->insertOne( $doc );
         return $doc['id'];
     }
 
-    public  function verify_session($session){
+    public  function verifySession($session){
         $collection = $this->connection->selectCollection('Users');
         $record = $collection->find( )->toArray();
         foreach ($record as $item){
@@ -53,18 +52,18 @@ class DBManagement
         }
         return false;
     }
-    public  function get_all_session(){
+    public  function getAllSession(){
         $collection = $this->connection->selectCollection('Users');
         return $collection->find( )->toArray();
     }
 
-    public function get_products_for_owner($owner){
+    public function getProductsForOwner($owner){
         $collection = $this->connection->selectCollection('Products');
         $query = array('owner' => $owner);
         return $collection->find( $query)->toArray();
     }
 
-    public function get_products_by_name($word, $id='')
+    public function getProductsByName($word, $id='')
     {
         $collection = $this->connection->selectCollection('Products');
         if($id=='')
@@ -74,27 +73,27 @@ class DBManagement
         return $collection->find( $query)->toArray();
     }
 
-    public function dose_product_exist($session, $id)
+    public function doseProductExist($session, $id)
     {
         if($this->products_collection->countDocuments(array("owner"=>$session,"id"=>intval($id)))>0)
             return true;
         return false;
     }
 
-    public function delete_product($id)
+    public function deleteProduct($id)
     {
        $this->products_collection->deleteOne(array("id"=>intval($id)));
     }
 
-    public function update_price($id, $new_price)
+    public function updatePrice($id, $new_price)
     {
         $newdata = array('$set' => array("price" => intval($new_price)));
         $this->products_collection->updateOne(array("id"=>intval($id)),$newdata);
     }
 
-    public function get_products_by_category($category,$session)
+    public function getProductsByBategory($category,$session)
     {
-        $products=$this->get_products_by_name($category,$session);
+        $products=$this->getProductsByName($category,$session);
         $result=$this->products_collection->find(array('category'=>$category,'owner'=>$session))->toArray();
         foreach ($result as $item){
             array_push($products,$item);
@@ -104,13 +103,10 @@ class DBManagement
         });
         return $products;
     }
-    public function delete_temp_users(){
+
+    public function deleteTempUsers(){
         $to_delete=$this->users_collection->find(array("temp"=>true,"expire"=> array( '$lt' => time())))->toArray();
         $this->products_collection->deleteMany(array('owner' => array('$in' => $to_delete)));
         $this->users_collection->deleteMany(array("temp"=>true,"expire"=> array( '$lt' => time())));
     }
-
-
-
-
 }

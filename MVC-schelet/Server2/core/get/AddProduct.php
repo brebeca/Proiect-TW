@@ -13,29 +13,26 @@ class  AddProduct
     {
         if (
             isset($_GET['title'])
-           && isset($_GET['link']) && isset($_GET['imglink'])
+            && isset($_GET['link']) && isset($_GET['imglink'])
             && isset($_GET['category']) && isset($_GET['source'])
         ) {
-
             $db = new DBManagement();
-            $document=null;
-            if($_GET['source']=='Ebay')
-                $document=ebay_document($session);
-            else if($_GET['source']=='emag')
-                $document=emag_document($session);
-            $db->insert_products($document);
+            $document = null;
+            if ($_GET['source'] == 'Ebay')
+                $document = ebayDocument($session);
+            else if ($_GET['source'] == 'emag')
+                $document = emagDocument($session);
+            $db->insertProducts($document);
 
             http_response_code(200);
             echo json_encode(array("Success" => "true"));
         } else {
-
             http_response_code(400); // bad request
-            echo json_encode(array("Success" => "false","Reason" => "Need more data"));
-
+            echo json_encode(array("Success" => "false", "Reason" => "Need more data"));
         }
     }
 }
-function ebay_document($session){
+function ebayDocument($session){
     $key_word = "no_key_word";
     if (isset($_GET['key_word']))
         $key_word = $_GET['key_word'];
@@ -45,8 +42,8 @@ function ebay_document($session){
     $category=$_GET['category'];
     $html = file_get_html($_GET['link']);
     if (isset($html->find("h2.display-price", 0)->innertext)) {
-        $category=Scrapping::ebay_category($_GET['link']);
-        $details=Scrapping::detalii_ebay($_GET['link'],$category);
+        $category=Scrapping::ebayCategory($_GET['link']);
+        $details=Scrapping::detaliiEbay($_GET['link'],$category);
         $price_aux=explode('$', $html->find("h2.display-price", 0)->innertext)[1];
         $price = round(floatval(str_replace(',','',$price_aux)),2);
         $rating = floatval(explode(' ', $html->find("span.star--rating", 0)->getAttribute("aria-label"))[0]);
@@ -65,11 +62,12 @@ function ebay_document($session){
     ];
     return $document;
 }
-function emag_document($session){
+
+function emagDocument($session){
 
     $price=-1;
     $rating=0;
-    $details=Scrapping::detalii_emag($_GET['link'],$_GET['category']);
+    $details=Scrapping::detaliiEmag($_GET['link'],$_GET['category']);
 
     $document = ['category' => $_GET['category'],
         'key_word' =>'-',

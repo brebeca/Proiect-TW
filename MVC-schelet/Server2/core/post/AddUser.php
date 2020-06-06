@@ -14,7 +14,7 @@ class AddUser
             'session'=>$session,
             'temp'=>false
         ];
-        $db->insert_users($document);
+        $db->insertUsers($document);
 
         http_response_code(200);
         echo json_encode(array("Success" => "true"));
@@ -27,8 +27,8 @@ class AddUser
             'temp'=>true,
             'expire'=>time() + (86400 * 30) // o zi
         ];
-        if($db->verify_session($cookie)===false)
-            $db->insert_users($document);
+        if($db->verifySession($cookie)===false)
+            $db->insertUsers($document);
 
         http_response_code(200);
         echo json_encode(array("Success" => "true"));

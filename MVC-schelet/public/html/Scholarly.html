@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <link rel="icon" href="../sprites/rq-icon.ico" type="image/x-icon" />
+    <script src="https://w3c.github.io/scholarly-html/js/scholarly.min.js"></script>
+</head>
+
+<body prefix="schema: http://schema.org" style="font-family: calibri !important; font-size: 14pt;">
+<header>
+    <h1>Comp IT</h1>
+</header>
+
+<div role="contentinfo">
+    <dl>
+        <dt>Autori</dt>
+        <dd>
+            <a href="https://github.com/brebeca">Birleanu Rebeca</a>
+            ,
+            <a href="https://github.com/infoROM2000">Olteanu Dragos</a>
+            si
+            <a href="https://github.com/Camelia7v">Lupancu Camelia Viorica</a>
+        </dd>
+    </dl>
+</div>
+<section id="introduction" role="doc-introduction">
+    <h2>Introducere</h2>
+    <p>
+        Aplicația web <i>CompIT</i> ofera informații cu privire la câteva categorii de produse ,preluate din
+        surse multiple, din care utilizatorul logat sau nu poate sa aleaga cu scopul de a obține studii comparative
+        pentru acele produse pe baza anumitor criterii universale precum pret sau rating, dar și specifice fiecarei
+        categorii.
+    </p>
+</section>
+<section id="motivation">
+    <h2>Motivație</h2>
+    <p>
+        Aceata aplicație web reprezintă proiectul pe care noi am ales sa il abordam in cadrul cursul Tehnologii Web al Facultății de
+        Informatică al Universității Alexandru Ioan Cuza.
+    </p>
+</section>
+<section id="cerinta">
+    <h2>Cerința proiectului</h2>
+    <p>
+        Pe baza unui API REST ori GraphQL propriu, realizati o aplicatie Web – disponibila, de asemenea, ca extensie de
+        navigator Web– care furnizeaza utilizatorilor autentificati sau nu studii comparative privitoare la (fluctuatia
+        de) preturi ori alte caracteristici – e.g., model mai recent, varianta similara etc. – asociate unor
+        articole/servicii apartinand unei/unor categorii de interes (electrocasnice, incaltaminte sport, API-uri de
+        recomandare etc.). Datele analizate vor fi preluate din surse multiple (fluxuri de stiri, API-uri disponibile,
+        via scraping - minim 3) oferite de situri de profil ce vor putea fi precizate de utilizator. Recomandarile generate
+        vor fi disponibile si sub forma de fluxuri de stiri RSS.
+    </p>
+</section>
+<section id="dezvoltare">
+    <h2>Implementarea aplicției pe partea de client</h2>
+    <section id="dezvoltare-client">
+        <h3>Inceputul - Partea de Front-End</h3>
+        <p>Prima etapa a fost cea a dezvoltarii parții de Front-End . Am inceput prin
+            a gandi cum va arata aplicația, care vor fi paginilie, care vor fi culorile principale etc. Am trecut la
+            implementarea continutul static de HTML și CSS de baza, mai apoi pe parcursul dezvoltarii aplicației
+            adaugând și alte elemente in funcție necesitați.
+        </p>
+        <p>
+            Paginile principale pe care le-am construit de la început au fost: home, login/register, pagnia pentru
+            afisarea produselor, o pagina pentru contactarea administrației si o pagina de prezentare a misiunii
+            aplicației.
+        </p>
+        <p>
+            In dezvolatarea acestora ma cautat sa abordam designul Web responsiv prin diferite metode prezentate
+            la laborator (media queries, folosirea procentelor in definirea de proprietați ca width ). Paginile
+            au fost analizate să fie valide în conformitate cu standardele. Au fost folosite tool-uri pentru validare
+            de html și de css.
+        </p>
+    </section>
+    <section id="dezvoltare-server">
+        <h3>Implementarea aplicației pe partea de server</h3>
+        <p>
+            Dupa ce am avut pagnile de baza gata primul lucru pe care l-am facut a fost sa contruim serverul dupa modeul
+            MVC care sa servearca pagnilie la cerere. Pentru structura de MVC am realizat trei clase principale Controller,
+            View si Model pentru generalizare care urmau sa fie extinse de controllere-le si modelele concrete.
+            Pentru rezolvarea cererilor am realizat clasa Application care este responsabila cu apelarea acțiunii potrivite
+            din controller-ul potrivit.
+        </p>
+        <p>
+            A urmat impementarilor serviciilor de creare de cont, de logare in cont si de contact la administrației. Pentru
+            acestea am folosit o baza de date locala oferita de XAMPP (myPHPAdmin).  Aceasta foloseste MySQL, foarte usor de
+            folosit cu PHP.
+        </p>
+        <p>
+            Am început sa ne documentam cu privire la sursele de unde aveam sa preluăm produsele. Prima sursa abordata a
+            fost API-ul oferit de <a href ="https://developer.ebay.com/">Ebay</a> pentru a prelua produse din diferite
+            categorii. Cu ajutorul acestui API am implementat și serviciul de cautare a unui produs dupa cuvinte cheie
+            oferit de pagina principala.
+        </p>
+        <p>
+            Tot pe partea de preluare de informații privitoare la categoriile alese de noi, am ales sa facem scraping
+            de pe situri de specialitate. Am stocat inforatii genrice in baza de date locala deoarece sa am realizat
+            ca sa facem scraping dinamic la fiacre incarcare de pagina dureaza destul de mult. Pentru consistența
+            am decis ca baza de date sa fie updata constant.
+        </p>
+        <p>
+            Pentru a nu incarca foarte mult baza de date si pentru a distribui munca, am constuit un la doilea server
+            care sa se ocupe excusiv cu managerierea produselor alese de utilizatori pentru comparare. Sub forma
+            uni API REST, am expus posibilitatea ca utilizatorii cu cont sa trimita direct poroduse pentru a le compara.
+            Ei sunt recunoscuti pe baza unei chei oferite in cont. Acest server se ocupa si cu scraping-ul pentru
+            detaliile produselor. Pentru stocarea datelor se foloseste o baze de date aliniate paradigmei NoSQL in
+            cloud, MongoDb.
+        </p>
+
+
+
+    </section>
+    <section id="server">
+        <h3>Pornirea server-ului</h3>
+        <p>
+            Întrucât începusem să învățăm javascript cu implementarea jocului și din operațiile de frontend, ne-am
+            hotărât să păstrăm limbajul și să apelăm la tehnologiile NodeJS. De asemenea aveam la început intenția
+            să integrăm algoritmii pentru coliziune și alte funcționalități ale jocului pe server, pentru
+            performanță, însă s-a dovedit că trebuie să le păstrăm pe client.
+        </p>
+        <p>
+            Serverul trebuie atât să întoarcă fișierele pentru pagini, cât și să comunice cu clientul prin
+            api de tip REST. La început, făceam un switch pentru a detecta dacă resursa cerută este un document sau un api și apelam
+            funcțiile potrivite. Un fișier de configurare pe server în format json ne spunea ce fișiere aveam, ruta
+            pe care puteau fi accesate și tipul lor. Însă după am renunțat la acest fișier de configurare pentru
+            pagini și am recurs la o implementare mai organizată, cea de tip MVC.
+        </p>
+    </section>
+    <section id="mvc">
+        <h3>Arhitectura MVC</h3>
+        <p>
+            Pentru a realiza o arhitectură MVC am creat clasele Router, Controller și Model. Router-ul face legătura
+            dintre ruta la care primim request-ul și controller-ul care trebuie să întoarcă răspunsul. Sunt două
+            tipuri de controllere: ApiController și ResourceController. ResourceController se ocupă cu citirea
+            fișierelor resursă și trimiterea lor, iar ApiController execută o anumită procedură și întoarce
+            rezultatul acesteia. Controller-ele comunică cu clasa Model, responsabilă cu accesul la baza de date și
+            logica aplicației. Pentru fișierele pe care trebuiau aplicate template-uri, am fi putut utiliza o clasă
+            View care să substituie câmpurile ce aveau conținutul '{{ variabilă }}' cu valoarea respectivă din
+            Model, însă noi am folosit mai mult api-uri ca să ne umplem conținutul, având nevoie de versiunea live,
+            și nu versiunea la încărcare.
+        </p>
+        <p>
+            Model folosește o clasă asemănătoare cu PageLoader, ApiLoader, și el cu rol de a încărca asincron
+            api-urile și a întoarce în același timp răspunsul. Diferența este că în timp ce PageLoader stoca datele
+            primite la nivel global, ApiLoader nu poate pune în variabile globale rezultatele și le oferă
+            callback-urilor un context local în care să-și pună rezultatul interogarilor și de asemenea rezolva
+            request-ul primit doar dacă toate callback-urile au reușit, iar în caz contrar trimite un cod de eroare.
+        </p>
+    </section>
+    <section id="socketio">
+        <h3>Comunicarea prin SocketIO</h3>
+        <p>
+            Websocket-urile permit comunicarea în timp real cu clienții, lucru necesar în momentul în care vrem
+            ca jucătorii să se poată vedea unii pe ceilalți în același timp. Pe această tehnologie se bazează
+            librăria SocketIO, pe care am integrat-o cu jocul nostru, atât pe partea de server cât și pe partea de
+            client. În momentul conectării se creează socket-uri, clientul și serverul rămânând conectați pe tot
+            parcursul jocului. Comunicarea începe cu clientul trimițând o cerere HTTP către server cu
+            conținutul "Upgrade: websocket". Dacă serverul acceptă, comunicarea se realizează din acel moment cu
+            protocolul WS, care trimite și acceptă pachete mai mici, pentru a crește viteza.
+        </p>
+        <p>
+            Serverul și clientul își pot trimite unul altuia evenimente și un buffer de date odată cu acel
+            eveniment.
+        </p>
+        <p>
+            Cea mai des implementată aplicație a websocket-urilor sunt chat-urile, și am vrut să includem și noi o
+            fereastră de comunicare. Așa putem folosi funcționalitatea de broadcast a serverului de websocket-uri, care
+            atunci când primește un eveniment de la client că s-a trimis un mesaj, face broadcast pentru toți
+            clienții conectați cu datele primite.
+        </p>
+    </section>
+    <section id="bd">
+        <h3>Baza de date</h3>
+        <p>
+            Pentru baza de date am folosit MongoDB, fiind o alegere recomandată pentru serverele de NodeJS, și dorind
+            să experimentăm cu o baza de date NoSQL. De asemenea serviciile MongoDB ne permiteau să folosim o bază
+            de date în cloud gratis, și asta ne-a permis să nu mai îngreunăm proiectul cu o configurație locală a
+            bazei de date, noi lucrând fiecare separat.
+        </p>
+    </section>
+    <section id="api">
+        <h3>Api-urile create</h3>
+        <p>
+            Aplicația folosește activ informațiile găsite pe server și le preia comunicând REST cu acesta.
+        </p>
+        <section id="livescores">
+            <h4>Livescores</h4>
+            <h5>Ruta: /api/livescores</h5>
+            <p>
+                Acest api primește că parametru în url o constantă "count", și întoarce primele "count" înregistrări
+                de utilizatori din lista de jucători activi, sortați după punctaj. Înregistrările sunt în format
+                json cu un vector de obiecte.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+[{"username": "player1", "currentPoints":"100"}, {"username":"player2", "currentPoints": "11"}...]
+                    </pre>
+            </figure>
+        </section>
+        <section id="leaderboards">
+            <h4>LeaderBoards</h4>
+            <h5>Ruta: /api/leaderboards</h5>
+            <p>
+                Acest api returnează primii "count" jucători după punctaj care au terminat jocul, și care au un
+                punctaj mai mare decât parametrul opțional "myScore". Pe lângă vectorul de obiecte, dacă am vrea să
+                știm câți jucători au un punctaj mai mare decât myScore, dar totuși să întoarcem doar "count"
+                elemente, api-ul întoarce numărul de astfel de jucători sub câmpul "myPlace".
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+{"players":[{"username": "player1", "currentPoints":"100"}, {"username":"player2", "currentPoints": "11"}...], "myPlace":"1"}
+                    </pre>
+            </figure>
+        </section>
+        <section id="weathertime">
+            <h4>Time And Weather</h4>
+            <h5>Ruta: /api/environment</h5>
+            <p>
+                Api-ul oferă informații despre vreme și timp la coordonatele trimise ca parametri: ["lat", "lng"].
+                În obiectul "weather" sunt mai multe informații, dar jocul folosește în special câmpul "main",
+                care poate fi ["Rain", "Snow", etc.] și câmpul "time" care precizează ora în minute.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+{"weather": {...},"time": 900}
+                    </pre>
+            </figure>
+        </section>
+        <section id="nearby">
+            <h4>Nearby Features</h4>
+            <h5>Ruta: /api/nearbymessage</h5>
+            <p>
+                Acest api întoarce o descriere a locației curente a utilizatorului (trimise ca ["lat", "lng"]),
+                clientul putând afla numele celei mai apropiate străzi, clădiri sau monument. Mesajele
+                sunt personalizate cu formulări misterioase cu rolul de a păstra o nuanță de poveste într-un context
+                realistic.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+{"name": "Strada Palas","topText": "","bottomText": " is in your sight"}
+                    </pre>
+            </figure>
+        </section>
+        <section id="aconfig">
+            <h4>Config</h4>
+            <h5>Ruta: /api/configuration</h5>
+            <p>
+                Nu în ultimul rând este api-ul de config, care întoarce clientului parametri pentru joc, așa cum au
+                fost stabiliți de administator.
+            </p>
+            <figure typeof="schema:SoftwareSourceCode">
+                    <pre>
+{"maxNrOfMonsters":10,"isNight":false,"rain":false,"snow":false,"playerMaxHealth":100,"moneyPowerUpValue":50,"displacement":0.000002,"speedDisplacement":1.45,"scale":2.5,"leaderBoardCount":7}
+                    </pre>
+            </figure>
+        </section>
+    </section>
+    <section id="config">
+        <h3>Modulul de configurare</h3>
+        <p>
+            Ca și administratori ai serverului, putem ajusta anumiți parametri ai jocului în funcție de feedback-ul
+            pe care îl primim de la jucători sau dacă observăm un mod prin care putem îmbunătăți experiența jucătorului.
+            Aceasta o facem printr-un fișier de configurare, care conține constante pentru joc: câți monștri sunt
+            creați la început, numărul de puncte de viață ale jucătorului, vremea globală pentru joc,
+            la ce scară este desenată harta etc.
+        </p>
+    </section>
+
+<section id="development">
+    <h2>Procesul de dezvoltare</h2>
+
+    <section id="repo">
+        <h3>Github</h3>
+        <p>
+            Pentru managementul codului sursă am folosit Github. Această platforma a venit cu o mulțime de avantaje,
+            și am fost foarte mulțumiți de ea. Pe lângă posibilitatea de a vedea în browser codul sursă și a
+            modificărilor făcute pe parcursul proiectului, Github ne-a permis să facem și un "Project Board". Pe aceasta
+            pagină noi putem stabili și crea task-uri, ca să știm care este partea din proiect de care trebuie să se
+            ocupe fiecare. De asemenea ne arată și statistici, cât de mult am scris, cât de des, și cât mai avem
+            până terminăm toate cerințele.
+        </p>
+    </section>
+    <section id="static">
+        <h3>Analiza statică</h3>
+        <p>
+            DeepScan este un analizator static pentru javascript, și ne-a permis să observăm erori sau să ne
+            îmbunătățim codul. De exemplu, acesta ne spunea când o variabilă este declarată dar nu este folosită
+            nicăieri, când o anumită condiție ajungea să fie îndeplinită mereu, etc. DeepScan oferă analiză gratis
+            la conectarea cu Github prin programul Github Student Developer Pack.
+        </p>
+    </section>
+    <section id="deployment">
+        <h3>Lansare continuă (Continuous Deployment)</h3>
+        <p>
+            Probabil cea mai folositoare metodă de testare pentru proiect a fost că am putut avea versiunea live a
+            proiectului încă de la început. Folosind oferta gratis de la DigitalOcean în parteneriat cu Github, am
+            putut configura o mașină virtuală pe care să pornim serverul nostru. La scurt timp, am adăugat o opțiune în Github
+            că la fiecare actualizare a codului să actualizăm și serverul. Am făcut asta utilizând o acțiune
+            open-source de la Github prin care putem să inserăm o cheie ssh care să se conecteze la mașină virtuală
+            și să facă un git pull, după care să repornească serverul. Inițial eram reticenți la folosirea unei chei
+            ssh pe un depozit(repository) public, gândindu-ne că oricine ar putea să ia cheia și să se conecteze la
+            server, însă
+            Github a implementat foarte inteligent soluția pentru astfel de probleme: pe Github există o secțiune
+            numită "Secrets". Aici se pot pune date de tip nume-valoare, date care pot fi folosite în acțiuni, iar
+            modul în care acestea oferă securitate sistemului este că odată inserată o valoare, ea nu poate fi
+            accesată de niciun membru, ci e posibil să fie utilizată doar în acțiuni. A fost prima dată când am
+            implementat o astfel de acțiune, dar cei de la Github au făcut că tot procesul să fie foarte ușor și la
+            îndemână de realizat, iar în final, am reușit. Serverul se actualiza la fiecare schimbare care o puneam
+            pe depozit.
+        </p>
+    </section>
+    <section id="logging">
+        <h3>Înregistrarea erorilor în fișier</h3>
+        <p>
+            Atunci când serverul nostru este la distanță, se poate întâmpla ca ceva să meargă rău, iar noi să nu
+            realizăm sau să putem vedea output-ul pentru că nu avem acces imediat la acea mașină. Pentru asta am
+            implementat la fiecare pornire,
+            serverul să facă un fișier de loguri într-un folder, și să îl numească utilizând data și ora la care a
+            fost
+            pornit. Astfel, dacă vom avea nevoie să vedem din ce motiv a picat serverul sau dacă s-a întâmplat ceva
+            neprevăzut, putem inspecta fișierele cu erori.
+        </p>
+        <p>
+            Mai trebuie menționat că fișierul de erori a trebuit să-l trecem ca excepție în .gitignore, pentru ca
+            să nu existe conflicte de vreun fel când serverul execută operația de pull (ar fi putut vedea un conflict
+            între două fișiere de erori numite la fel).
+        </p>
+    </section>
+    <section id="contributions">
+        <h3>Contributii</h3>
+        <p>Toata echipa a lucrat la joc si fiecare a progresat mult prin acest proiect.</p>
+        <p>Ștefan s-a ocupat in principal cu integrarea librăriilor, input-uri pe pagina jocului, proiectilele pentru user, design, resursele grafice, o parte din mvc, unele api-uri pe server, documentație, etc.</p>
+        <p>Călin s-a ocupat de pagina principală, monștri, gpx, csv, diagrama c4, o parte din mvc, documentație, etc.</p>
+        <p>George a realizat algoritmul de coliziune, proiectilele monștrilor, unele api-uri pe server, câteva bonusuri, documentație, etc.</p>
+    </section>
+</section>
+<section id="conclusion">
+    <h2>Concluzii</h2>
+    <p>
+        Dezvoltarea acestui joc ne-a invățat multe aspecte legate de web și ne-a permis să lucrăm la ceva de care suntem pasionați,
+        lucru care ne-a motivat pe parcurs. Am realizat că aplicațiile web sunt tehnologii complexe, care necesită multă atenție
+        în implementare.
+    </p>
+</section>
+
+<section id="biblio-references">
+    <h2>References</h2>
+    <ol>
+        <li property="schema:citation" role="doc-biblioentry" typeof="schema:ScholarlyArticle"  id="Scholarly-html"
+            resource="https://w3c.github.io/scholarly-html/">
+            <cite property="schema:name">
+                <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+            </cite>,
+            <span property="schema:author" typeof="schema:Person">
+                    <span property="schema:name">Tzviya Siegman (Wiley)</span>&amp;
+                    <span property="schema:name">Robin Berjon</span>
+                </span>
+        </li>
+        <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage"  id="mapbox-api"
+            resource="https://docs.mapbox.com/api/">
+            <cite property="schema:name">
+                <a href="https://docs.mapbox.com/api/">Documentație mapbox</a>
+            </cite>
+        </li>
+        <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage"  id="create-js"
+            resource="https://createjs.com/">
+            <cite property="schema:name">
+                <a href="https://createjs.com/">CreateJS</a>
+            </cite>
+        </li>
+        <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage"  id="socket-io"
+            resource="https://socket.io/">
+            <cite property="schema:name">
+                <a href="https://socket.io/">SocketIO</a>
+            </cite>
+        </li>
+        <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage"  id="joy-js"
+            resource="https://github.com/bobboteck/JoyStick/blob/master/joy.js">
+            <cite property="schema:name">
+                <a href="https://github.com/bobboteck/JoyStick/blob/master/joy.js">JOY-JS</a>
+            </cite>
+        </li>
+    </ol>
+</section>
+
+</section>
+
+
+</body>
+
+</html>

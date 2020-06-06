@@ -23,7 +23,7 @@
         $postData = array(
             'Cookie' => $cookie
         );
-        $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
+        $session=md5(APP_SESSION);
         $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AddCookieUser');
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
