@@ -3,7 +3,7 @@
 
 class Scrapping
 {
-    public static function ebay_category($link){
+    public static function ebayCategory($link){
         $html = file_get_html($link);
        foreach ( $html->find('nav[class="breadcrumb clearfix"] ol li a span') as $category){
            if(strpos($category->plaintext,"Cell Phones")!==false&&strpos($category->plaintext,"Smartphones")!==false)
@@ -17,39 +17,51 @@ class Scrapping
 
     }
 
-    public static function detalii_emag($link,$categorie){
+    public static function detaliiEmag($link,$categorie){
         if(strpos($categorie,'telefoane')!==false)
-            return detalii_emag_telefoane($link);
+            return detaliiEmagTelefoane($link);
         else if(strpos($categorie,'calculatoare')!==false)
-            return detalii_emag_calculatoare($link);
+            return detaliiEmagCalculatoare($link);
         else if(strpos($categorie,'electrocasnice')!==false)
-            return detalii_emag_electrocasnice($link);
+            return detaliiEmagElectrocasnice($link);
         else if(strpos($categorie,'casti')!==false)
-            return detalii_emag_casti($link);
+            return detaliiEmagCasti($link);
         return null;
     }
 
-    public static function detalii_altex($link,$categorie){
+    public static function detaliiAltex($link,$categorie){
         if(strpos($categorie,'telefoane')!==false)
-            return detalii_altex_telefoane($link);
+            return detaliiAltexTelefoane($link);
         else if(strpos($categorie,'calculatoare')!==false)
-            return detalii_altex_calculatoare($link);
+            return detaliiAltexCalculatoare($link);
         else if(strpos($categorie,'electrocasnice')!==false)
-            return detalii_altex_electrocasnice($link);
+            return detaliiAltexElectrocasnice($link);
         else if(strpos($categorie,'casti')!==false)
-            return detalii_altex_casti($link);
+            return detaliiAltexCasti($link);
         return null;
     }
 
-    public static function detalii_ebay($link,$categorie)
+    public static function detaliiEbay($link,$categorie)
     {
         if (strpos($categorie, 'telefoane') !== false)
-            return detalii_ebay_telefoane($link);
+            return detaliiEbayTelefoane($link);
 
-        return detalii_ebay_general($link);
+        return detaliiEbayGeneral($link);
+    }
+
+    public static function detaliiCel($link,$categorie){
+        if (strpos($categorie, 'telefoane') !== false)
+            return detaliiCelTelefoane($link);
+        if(strpos($categorie,'calculatoare')!==false)
+            return detaliiCelCalculatoare($link);
+        if(strpos($categorie,'casti')!==false)
+            return detaliiCelCasti($link);
+        if(strpos($categorie,'electrocasnice')!==false)
+            return detaliiCelCasti($link);
+        return null;
     }
 }
-function detalii_emag_electrocasnice($link){
+function detaliiEmagElectrocasnice($link){
     $html = file_get_html($link);
     $product_det = array();
     foreach($html->find('table[class="table table-striped product-page-specifications"] tbody tr') as $a) {
@@ -57,7 +69,7 @@ function detalii_emag_electrocasnice($link){
     }
     return $product_det;
 }
-function detalii_altex_electrocasnice($link){
+function detaliiAltexElectrocasnice($link){
     $html = file_get_html($link);
     $product_det = array();
     foreach($html->find('table[class="Specs-table"] tbody tr') as $a) {
@@ -68,7 +80,7 @@ function detalii_altex_electrocasnice($link){
 function count_capitals2($s) {
     return strlen(preg_replace('![^A-Z]+!', '', $s));
 }
-function detalii_emag_telefoane($link){
+function detaliiEmagTelefoane($link){
     $html = file_get_html($link);
     $product_det=array();
     $i=0;
@@ -163,7 +175,7 @@ function detalii_emag_telefoane($link){
     return $product_det;
 
 }
-function detalii_altex_telefoane($link){
+function detaliiAltexTelefoane($link){
     $html = file_get_html($link);
     $product_det=array();
     $i=0;
@@ -270,7 +282,7 @@ function detalii_altex_telefoane($link){
     }
     return $product_det;
 }
-function detalii_emag_calculatoare($link)
+function detaliiEmagCalculatoare($link)
 {
     $html = file_get_html($link);
     $product_det = array();
@@ -322,7 +334,7 @@ function detalii_emag_calculatoare($link)
         }
     return $product_det;
 }
-function detalii_altex_calculatoare($link){
+function detaliiAltexCalculatoare($link){
     $html = file_get_html($link);
     $product_det = array();
     foreach($html->find('table[class="Specs-table"] tbody tr') as $a){
@@ -379,7 +391,7 @@ function detalii_altex_calculatoare($link){
     }
     return $product_det;
 }
-function detalii_altex_casti($link)
+function detaliiAltexCasti($link)
 {
     $html = file_get_html($link);
     $product_det = array();
@@ -415,7 +427,7 @@ function detalii_altex_casti($link)
     }
     return $product_det;
 }
-function detalii_emag_casti($link)
+function detaliiEmagCasti($link)
 {
     $html = file_get_html($link);
     $product_det = array();
@@ -446,7 +458,7 @@ function detalii_emag_casti($link)
     }
     return $product_det;
 }
-function detalii_ebay_telefoane($link){
+function detaliiEbayTelefoane($link){
     $html = file_get_html($link);
     $product_det = array();
     $html=$html->find('div[class="btf-content"]',0)->first_child()->first_child()->first_child()->find('div[class="description"]',0)->first_child();
@@ -516,7 +528,7 @@ function detalii_ebay_telefoane($link){
 
     return $product_det;
 }
-function detalii_ebay_general($link){
+function detaliiEbayGeneral($link){
     $html = file_get_html($link);
     $product_det = array();
     $html=$html->find('div[class="btf-content"]',0)->first_child()->first_child()->first_child()->find('div[class="description"]',0)->first_child();
@@ -528,6 +540,197 @@ function detalii_ebay_general($link){
                 $value = $a2->find('div[class="s-value"]', 0)->plaintext;
                 $product_det[$tag]=$value;
             }
+        }
+    }
+    return $product_det;
+}
+function detaliiCelTelefoane($link){
+    $context = stream_context_create(
+        array(
+            "http" => array(
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
+        )
+    );
+    $html = file_get_html($link,false, $context);
+    $product_det = array();
+    $columns=array('oddTr','evenTr');
+    foreach ($columns as $col) {
+        foreach ($html->find('tr.' . $col) as $a) {
+            $tag = $a->find('td.charName', 0)->plaintext;
+            $value = '';
+            foreach ($a->find('div') as $val)
+                $value .= $val->plaintext . ',';
+            $value = trim($value, ',');
+            switch ($tag){
+                case "Dual Sim:":{
+                    if(strpos($value,"Da"))
+                        $product_det['Sloturi SIM']=2;
+                    else
+                        $product_det['Sloturi SIM']=1;
+                    break;
+                }
+                case "Sistem de operare:":{
+                    $product_det['Sistem de operare']=$value;
+                    break;
+                }
+                case "Numar nuclee procesor:":{
+                    if(strpos($value,'Octa')!==false)
+                        $product_det["Numar nuclee"] = 8;
+                    if(strpos($value,'Dual')!==false)
+                        $product_det["Numar nuclee"] = 2;
+                    if(strpos($value,'Quad')!==false)
+                        $product_det["Numar nuclee"] = 4;
+                    if(strpos($value,'Hexa')!==false)
+                        $product_det["Numar nuclee"] = 6;
+                    break;
+                }
+                case "Tehnologie:":{
+                    if(strpos($value,'3G')!==false) {
+                        $product_det["3G"] = 1;
+                        $product_det["2G"] = 1 ;
+                    }
+                    else {
+                        $product_det["3G"] = 0;
+                        $product_det["2G"] = 0 ;
+                    }
+                    if(strpos($value,'4G')!==false)
+                        $product_det["4G"] = 1 ;
+                    else
+                        $product_det["4G"] = 0 ;
+                    break;
+                }
+                case "Senzor:":{
+                    $nr=count(explode(',',$value));
+                    $product_det["Senzori"]=array("Numar" => $nr, "Senzori" => $value);
+                     break;
+                }
+                case "Dimensiune Display (inches):":{
+                    $product_det['Dimensiune ecran(inch)']=floatval($value);
+                    break;
+                }
+                case "Tip display:":{
+                    $product_det['Tip ecran']=$value;
+                    break;
+                }
+                case "Capacitate (GB):":{
+                    $product_det['Memorie interna(GB)']=intval(explode('G',$value)[0]);
+                    break;
+                }
+                case "Memorie RAM:":{
+                    $product_det['Memorie RAM(GB)']=intval(explode('G',$value)[0]);
+                    break;
+                }
+                case "Camera:":{
+                    $product_det["Cemera principala(MP)"]=intval(explode(' ',$value)[0]);
+                    break;
+                }
+                case "Rezolutie (pixeli):":{
+                    $product_det['Rezolutie ecran']=explode('pix',$value)[0];
+                }
+            }
+        }
+    }
+    return $product_det;
+}
+function detaliiCelCalculatoare($link)
+{
+    $context = stream_context_create(
+        array(
+            "http" => array(
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
+        )
+    );
+    $html = file_get_html($link, false, $context);
+    $product_det = array();
+    $columns = array('oddTr', 'evenTr');
+    $product_det['Porturi']='';
+    foreach ($columns as $col) {
+        foreach ($html->find('tr.' . $col) as $a) {
+            $tag = $a->find('td.charName', 0)->plaintext;
+            $value = '';
+            foreach ($a->find('div') as $val)
+                $value .= $val->plaintext . ',';
+            $value = trim($value, ',');
+            switch ($tag) {
+                case "Model Procesor:":{
+                    $product_det['Tip procesor']=$value;
+                    break;
+                }
+                case "Procesor:":{
+                    if(strpos($value,'Octa')!==false)
+                        $product_det["Numar nuclee"] = 8;
+                    if(strpos($value,'Dual')!==false)
+                        $product_det["Numar nuclee"] = 2;
+                    if(strpos($value,'Quad')!==false)
+                        $product_det["Numar nuclee"] = 4;
+                    if(strpos($value,'Hexa')!==false)
+                        $product_det["Numar nuclee"] = 6;
+                    break;
+                }
+                case "Memorie standard:":{
+                    $product_det["Capacitate memorie(GB)"]=intval(explode('G',$value)[0]);
+                    break;
+                }
+                case "Tip unitate stocare:":{
+                    $product_det["Tip stocare"]=$value;
+                    break;
+                }
+                case "Capacitate HDD:":{
+                    $product_det['Capacitate SSD(GB)']=intval(explode('G',$value)[0]);
+                    break;
+                }
+                case "Audio:":{
+                    $product_det['Tehnologii audio']=$value;
+                    break;
+                }
+                case "USB 2.0:":{
+                    $product_det['Porturi'].=' USB 2.0 ';
+                    break;
+                }
+                case "HDMI:":{
+                    $product_det['Porturi'].=' HDMI ';
+                    break;
+                }
+                case "Alte porturi:":{
+                    $product_det['Porturi'].=$value;
+                    break;
+                }
+                case "Wireless":{
+                    $product_det['Wi-Fi']=floatval(explode(' ',$value)[0]);
+                    break;
+                }
+                case "Bluetooth:":{
+                    $product_det["Bluetooth"]=floatval($value);
+                    break;
+                }
+
+            }
+        }
+    }
+    return $product_det;
+}
+function detaliiCelCasti($link){
+    $context = stream_context_create(
+        array(
+            "http" => array(
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
+        )
+    );
+    $html = file_get_html($link, false, $context);
+    $product_det = array();
+    $columns = array('oddTr', 'evenTr');
+    $product_det['Porturi']='';
+    foreach ($columns as $col) {
+        foreach ($html->find('tr.' . $col) as $a) {
+            $tag = $a->find('td.charName', 0)->plaintext;
+            $value = '';
+            foreach ($a->find('div') as $val)
+                $value .= $val->plaintext . ',';
+            $value = trim($value, ',');
+            $product_det[$tag]=$value;
         }
     }
     return $product_det;

@@ -13,6 +13,7 @@
   define('APP_ID',$ini['app_id']);
   define('PORT_LOCAL_SERVER',$ini['port1']);
   define('PORT_SERVER2',$ini['port2']);
+  define('APP_SESSION',$ini['app_session']);
   if($ini['sursa1_activ']==1){
       define('SURSA1',$ini['sursa1']);
   }

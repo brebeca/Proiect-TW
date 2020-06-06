@@ -171,7 +171,7 @@ class ProduseModel extends Model{
     {
 
         $cURLConnection = curl_init();
-        $session=md5("dGs0bXJqOTh1bmRlZmluZWQxNTg4NDEzMjE4ODA4Y3c");
+        $session=md5(APP_SESSION);
         curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsByName?word='.urlencode($word));
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, array(

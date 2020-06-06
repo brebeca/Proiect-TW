@@ -14,15 +14,14 @@ class PostProduct
 
             $db = new DBManagement();
 
-            if(!isset($data['source']))
-                $source="outside";
-            //de tratat asta
-            else {
-                    $document=get_document($session,$data,$data['source']);
+            if(!isset($data['source'])) {
+                $source = "outside";
+                $document=getDocument($session,$data,$source);
             }
-
-
-            $id=$db->insert_products($document);
+            else {
+                    $document=getDocument($session,$data,$data['source']);
+            }
+            $id=$db->insertProducts($document);
 
             http_response_code(200);
             echo json_encode(array("Success" => "true","Product ID"=>$id));
@@ -36,12 +35,18 @@ class PostProduct
 
 
 }
-function get_document($session,$data,$source){
+function getDocument($session,$data,$source){
    $details=array();
     if($source=='emag')
-        $details=Scrapping::detalii_emag($data['link'],$data['category']);
+        $details=Scrapping::detaliiEmag($data['link'],$data['category']);
     else if($source=='altex'){
-        $details=Scrapping::detalii_altex($data['link'],$data['category']);
+        $details=Scrapping::detaliiAltex($data['link'],$data['category']);
+    }
+    else if($source=='cel'){
+        $details=Scrapping::detaliiCel($data['link'],$data['category']);
+    }
+    else if($source=='outside'){
+        $details=$details['details'];
     }
     if(isset($data['rating']))
         $rating=$data['rating'];
