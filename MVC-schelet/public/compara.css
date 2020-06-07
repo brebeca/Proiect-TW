@@ -94,10 +94,13 @@ label #cancel{
 .criteriiComp{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  margin-left: 15%;
+  margin-left: 25%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
+.criteriiComp h2{
+  font-family: Apple Chancery, cursive;
+}  
 
 .criteriiCompBtn a{
   position: static;
@@ -143,6 +146,19 @@ label #cancel{
   transform: rotate(0deg) skew(1deg, 1deg) translate(0px, 0px);
 }
 
+a.rssFeed {
+ background-color: #660066;
+ margin-left: 95px;
+}
+a.rssFeed:before {
+  background-color: #330033;
+}
+a.rssFeed:after {
+  background-color: #330033;
+}
+a.rssFeed:hover {
+ background-color: #660066;
+}
 
 
 .grid-container {
@@ -151,6 +167,8 @@ label #cancel{
   padding-bottom: 180px;
   padding-left: 3%;
   padding-right: 3%;
+  padding-top: 3%;
+  margin-left: 180px;
   column-gap: 4vh;
   grid-row-gap: 3vh;
   grid-template-rows: 500px;
@@ -177,6 +195,7 @@ label #cancel{
   color: black;
   text-decoration: none;
   text-justify: auto;
+  color: black;
 }
 .grid-item .titlu:hover {
   color: grey;
@@ -214,16 +233,30 @@ label #cancel{
   width: 400px;
 }
 
+h3.categorie{
+  font-family: Apple Chancery, cursive;
+  font-variant-caps: petite-caps;
+  font-style: oblique;
+  font-size: 25px;
+  margin: 2%;
+  color: #660066;
+}
+
 @media only screen and (max-width: 990px){
 .grid-item {
   margin-top: 4px;
 }
 .grid-container {
   padding-bottom: 180px;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 1%;
+  padding-right: 1%;
   padding-top: 0px;
+  margin: 17%;
 }
+.criteriiComp{
+  margin-left: 1%;
+  margin-bottom: 0px;
+}  
 }
 
 /* The Delete Button */
