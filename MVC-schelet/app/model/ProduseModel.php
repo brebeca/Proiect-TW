@@ -28,13 +28,24 @@ class BD3{
         return self::$conexiune_bd;
     }
 }
-
+class BD4{
+    private static $conexiune_bd = NULL;
+    public static function obtine_conexiune(){
+        if (is_null(self::$conexiune_bd))
+        {
+            self::$conexiune_bd = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME4, DB_USER4, DB_PASS4);
+        }
+        return self::$conexiune_bd;
+    }
+}
 class ProduseModel extends Model{
     private $bd2;
     private $bd3;
+    private $bd4;
     public function __construct(){
         $this->bd2= new BD2;
         $this->bd3= new BD3;
+        $this->bd4= new BD4;
     }
     public static function updateProdus($dbname, $categorie, $id, $link) //e de ajuns unul dintre link si id, dar o interogare in minus nu strica
     {
@@ -185,12 +196,15 @@ class ProduseModel extends Model{
 
     }
     public  function getProdusDb($id,$categorie,$sursa){
-            $sql = "SELECT * FROM ".$categorie." where id = :id ";
+            $sql = "SELECT * FROM :categorie where id = :id ";
             if($sursa=="emag")
                 $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
-            else
+            else if($sursa=="altex")
                 $cerere = $this->bd3->obtine_conexiune()->prepare($sql);
+            else if($sursa=="cel")
+                $cerere = $this->bd4->obtine_conexiune()->prepare($sql);
             $cerere->execute([
+                'categorie'=>$categorie,
                 'id'=>$id
             ]);
             $result=$cerere->fetch();
