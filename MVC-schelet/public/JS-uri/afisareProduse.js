@@ -1,5 +1,7 @@
         var id;
         var myArr;
+        var produseSelectate = Array();
+        var modal = document.getElementById("myModal");
 
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
@@ -26,11 +28,13 @@
 
         function afisareProduse(produseArray) {
             let productsStr = '';
+            //console.log(produseArray);
             for (let i in produseArray.produse) {
                 for (let j in produseArray.produse[i]) {
                     if(produseArray.produse[i].indexOf(produseArray.produse[i][j]) === 0)
                         productsStr += `<h3 class="categorie">` + produseArray.produse[i][j].category + `: </h3>` +
-                                        `<div class="first" id="${produseArray.produse[i][j].id}">` 
+                                        `<div class="first" id="${produseArray.produse[i][j].id}" 
+                                            onclick="memorareProdusSelectat(`+ produseArray.produse[i][j].id +`)">` 
                                           + getProductHtml(produseArray.produse[i][j], id) +
                                         `</div> <div></div> <div></div>`;
                     else
@@ -38,6 +42,32 @@
                 }
             }
             return productsStr;
+        }
+
+        function afisareProduseModal(produseArray) {
+            let productsStr = '';
+            //console.log(produseArray);
+            for (let i in produseArray.produse) {
+                for (let j in produseArray.produse[i]) {
+                    productsStr += getProductHtmlModal(produseArray.produse[i][j], id);
+                }
+            }
+            return productsStr;
+        }
+
+        function memorareProdusSelectat(produs_id) {
+            for (let i in myArr.produse) {
+                for (let j in myArr.produse[i]) {
+                    if(myArr.produse[i][j].id === produs_id)
+                        produseSelectate.push(myArr.produse[i][j]);
+                }
+            }
+            console.log(produs_id);
+            if(produseSelectate.length >= 2){
+                document.getElementById('produseSelectate').innerHTML = afisareProduseModal(produseSelectate);
+                //modal.style.display = "block";
+                //produseSelectate.length = 0;
+            }
         }
 
         function comparaPret() {
@@ -59,7 +89,26 @@
         }
 
         function getProductHtml(product, user_id){
-         return `<div class="grid-item">
+         return `<div class="grid-item" onclick="memorareProdusSelectat(${product.id})"> 
+                  <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
+                  <table>
+                   <tr>
+                    <td><img class="aimg" src= "${product.img_link}"></img><td>
+                    <td>
+                     <ul class="pret">
+                       <li>Pret: ${product.price} </li>
+                       <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>
+                     </ul>
+                    </td>
+                   </tr>
+                  </table>
+                  <br>
+                  <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
+                </div>`;
+        }
+
+         function getProductHtmlModal(product, user_id){
+         return `<div class="grid-item"> 
                   <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
                   <table>
                    <tr>

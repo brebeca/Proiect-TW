@@ -6,7 +6,7 @@
 }
 body {
   font-family: 'Roboto', sans-serif;
-  background-color:  #e0ac1c;
+  background-color: white;
 }
 .sidebar {
   position: fixed;
@@ -271,6 +271,89 @@ h3.categorie{
 
 .grid-item .close span:hover,
 .grid-item .close span:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+
+/* The Modal (background) */
+.modal{
+   display: none; 
+   position: fixed; 
+   z-index: 1; /*Sit on top*/
+   top: 8.5%;
+   left: 0%;
+   width: 2000px;
+   height: 650px; 
+   overflow: auto; /*Enable scroll if needed*/
+   background-color: rgb(0,0,0); 
+   background-color: rgba(0,0,0,0.7);
+}
+
+/* Modal Content/Box */
+.modal-content{
+   font-family: "Times New Roman", Times, serif;
+   background-color: #e0ac1c;
+   color: #004d00;
+   margin: 4%; 
+   padding: 1%;
+   border: 1px solid #888;
+   width: 1100px;
+   height: 400px; 
+   padding-bottom: 2%;
+   overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+   width: 12px;
+   height: 12px;
+}
+
+::-webkit-scrollbar-track {
+   border: 1px solid #e0ac1c;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #004d00;  
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #004d00;  
+}
+
+.modal-content p{
+   margin-left: 120px;
+}  
+
+@media only screen and (max-width: 990px){
+  .modal-content{ 
+   padding: 1%;
+   padding-bottom: 2%;
+   padding-left: 0px;
+   border: 1px solid #888;
+   width: 500px;
+   height: 500px; 
+   margin: 5%;
+   margin-top: 5px;
+   overflow: scroll;
+ }
+}
+
+/* The Close Button */
+.close {
+   color: #111;
+   float: right;
+   font-size: 36px;
+   font-weight: bold;
+   margin-right: 35px;
+}
+
+.close:hover,
+.close:focus {
    color: black;
    text-decoration: none;
    cursor: pointer;
