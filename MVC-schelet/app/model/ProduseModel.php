@@ -196,7 +196,7 @@ class ProduseModel extends Model{
 
     }
     public  function getProdusDb($id,$categorie,$sursa){
-            $sql = "SELECT * FROM :categorie where id = :id ";
+            $sql = "SELECT * FROM ".$categorie." where id = :id ";
             if($sursa=="emag")
                 $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
             else if($sursa=="altex")
@@ -204,7 +204,6 @@ class ProduseModel extends Model{
             else if($sursa=="cel")
                 $cerere = $this->bd4->obtine_conexiune()->prepare($sql);
             $cerere->execute([
-                'categorie'=>$categorie,
                 'id'=>$id
             ]);
             $result=$cerere->fetch();

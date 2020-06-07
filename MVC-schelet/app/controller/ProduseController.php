@@ -49,6 +49,7 @@ class ProduseController extends Controller {
         $de_trimis=array("category"=>$_GET['category'],"title"=>$produs['nume'],"link"=>$produs['link'],"img_link"=>$produs['imagine']
         ,"price"=>$produs['pret'],"rating"=>$rating,
             "source"=>$source);
+       // print_r($de_trimis);
         $this->model->trimiteProdus2($de_trimis,$id);
        // $this->model->updateProdus($_GET['source'],$_GET['category'],$_GET['index'],$produs['link']);
 

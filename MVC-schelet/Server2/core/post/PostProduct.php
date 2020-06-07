@@ -28,7 +28,7 @@ class PostProduct
         }
         else{
             http_response_code(400); // bad request
-            echo json_encode(array("Success" => "true","Reason" => "Need more data"));
+            echo json_encode(array("Success" => "false","Reason" => "Need more data"));
 
         }
     }
