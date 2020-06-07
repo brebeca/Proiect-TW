@@ -47,7 +47,7 @@
             url.search = new URLSearchParams(params).toString();
             const http = new XMLHttpRequest();
 
-            http.open("GET", url, true);
+            http.open("GET`", url, true);
             http.onreadystatechange = function()
             {
                 if(http.readyState === 4 && http.status === 200) {

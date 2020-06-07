@@ -14,6 +14,8 @@
   define('PORT_LOCAL_SERVER',$ini['port1']);
   define('PORT_SERVER2',$ini['port2']);
   define('APP_SESSION',$ini['app_session']);
+  define('GOOGLE_CLIENT',$ini['google_client_id']);
+define('GOOGLE_SECRET',$ini['goole_client_secret']);
   if($ini['sursa1_activ']==1){
       define('SURSA1',$ini['sursa1']);
   }
