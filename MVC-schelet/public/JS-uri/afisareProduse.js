@@ -14,21 +14,9 @@
             {
                 if(http.readyState === 4 && http.status === 200) {
                     myArr = JSON.parse(http.responseText);
-                    //console.log(myArr);
-                    let productsStr = '';
                     if (myArr["Success"] === "true") {
-                        for (let i in myArr.produse) {
-                          for (let j in myArr.produse[i]) {
-                              if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                                  productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
-                                                   + getProductHtml(myArr.produse[i][j], id) +
-                                                 `</div> <div></div> <div></div>`;
-                              else
-                                  productsStr += getProductHtml(myArr.produse[i][j], id);
-                          }
-                        }
+                        document.getElementById('products').innerHTML = afisareProduse(myArr);
                     }
-                    document.getElementById('products').innerHTML = productsStr;
                 }
             }
             http.send(null);
@@ -36,46 +24,38 @@
 
         load();
 
+        function afisareProduse(produseArray) {
+            let productsStr = '';
+            for (let i in produseArray.produse) {
+                for (let j in produseArray.produse[i]) {
+                    if(produseArray.produse[i].indexOf(produseArray.produse[i][j]) === 0)
+                        productsStr += `<h3 class="categorie">` + produseArray.produse[i][j].category + `: </h3>` +
+                                        `<div class="first" id="${produseArray.produse[i][j].id}">` 
+                                          + getProductHtml(produseArray.produse[i][j], id) +
+                                        `</div> <div></div> <div></div>`;
+                    else
+                        productsStr += getProductHtml(produseArray.produse[i][j], id);
+                }
+            }
+            return productsStr;
+        }
+
         function comparaPret() {
-          //ordonam crescator produsele dupa pret
+           //ordonam crescator produsele dupa pret
            for (let i in myArr["produse"]) {
                myArr.produse[i].sort(function(a, b){return a.price-b.price});
            }
-
-           let productsStr = '';
-           for (let i in myArr.produse) {
-                for (let j in myArr.produse[i]) {
-                    if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                        productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
-                                         + getProductHtml(myArr.produse[i][j], id) +
-                                        `</div> <div></div> <div></div>`;
-                    else
-                        productsStr += getProductHtml(myArr.produse[i][j], id);
-                }
-            }
-            document.getElementById('products').innerHTML = productsStr;
-            http.send(null);
+           //afisam produsele ordonate dupa pret
+           document.getElementById('products').innerHTML = afisareProduse(myArr);
         }
 
         function comparaRating() {
-            let productsStr = '';
             //ordonam descrescator produsele dupa rating
             for (let i in myArr["produse"]) {
                 myArr.produse[i].sort(function(a, b){return b.rating-a.rating}); 
             }
-
-            for (let i in myArr.produse) {
-                for (let j in myArr.produse[i]) {
-                    if(myArr.produse[i].indexOf(myArr.produse[i][j]) === 0)
-                        productsStr += `<div class="first" id="${myArr.produse[i][j].id}">` 
-                                         + getProductHtml(myArr.produse[i][j], id) +
-                                       `</div> <div></div> <div></div>`;
-                    else
-                        productsStr += getProductHtml(myArr.produse[i][j], id);
-                }
-            }
-            document.getElementById('products').innerHTML = productsStr;
-            http.send(null);
+            //afisam produsele ordonate dupa rating
+            document.getElementById('products').innerHTML = afisareProduse(myArr);
         }
 
         function getProductHtml(product, user_id){

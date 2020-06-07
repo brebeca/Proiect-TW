@@ -98,6 +98,9 @@ label #cancel{
   margin-top: 2%;
   margin-bottom: 2%;
 }
+.criteriiComp h2{
+  font-family: Apple Chancery, cursive;
+}  
 
 .criteriiCompBtn a{
   position: static;
@@ -230,16 +233,30 @@ a.rssFeed:hover {
   width: 400px;
 }
 
+h3.categorie{
+  font-family: Apple Chancery, cursive;
+  font-variant-caps: petite-caps;
+  font-style: oblique;
+  font-size: 25px;
+  margin: 2%;
+  color: #660066;
+}
+
 @media only screen and (max-width: 990px){
 .grid-item {
   margin-top: 4px;
 }
 .grid-container {
   padding-bottom: 180px;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 1%;
+  padding-right: 1%;
   padding-top: 0px;
+  margin: 17%;
 }
+.criteriiComp{
+  margin-left: 1%;
+  margin-bottom: 0px;
+}  
 }
 
 /* The Delete Button */
