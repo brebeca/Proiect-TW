@@ -38,7 +38,13 @@
     </tr>
 </table>  
 
-<div class="grid-container" id="products"></div>    
+<div id="products" class="grid-container"></div>   
+
+<div id="modalProduse" class="modalProduse">
+  <div id="produseSelectate" class="modal-content">
+     <span class="inchide">&times;</span>
+  </div>
+</div> 
 
 <script src="/JS-uri/navro.js"></script>
 <script >
@@ -48,31 +54,11 @@
   else {
     id=document.cookie;
   }
-</script>
-<script src="/JS-uri/afisareProduse.js"></script>
-<script src="/JS-uri/stergeProdus.js"></script>
 
-
-
-<div id="myModal" class="modal">
-  <div class="modal-content" id="produseSelectate">
-     <span class="close">&times;</span>
-
-  </div>
-</div>
-
-
-<script>
 // Get the modal
-var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var modal = document.getElementById("modalProduse");
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-// When the user clicks the button, open the modal 
-/*btn.onclick = function() {
-  modal.style.display = "block";
-}*/
+var span = document.getElementsByClassName("inchide")[0];
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
@@ -85,6 +71,8 @@ window.onclick = function(event) {
 }
 </script>
 
+<script src="/JS-uri/afisareProduse.js"></script>
+<script src="/JS-uri/stergeProdus.js"></script>
 
 
 </body>
