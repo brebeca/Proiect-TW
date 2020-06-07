@@ -1,7 +1,7 @@
         var id;
         var myArr;
         var produseSelectate = Array();
-        var modal = document.getElementById("myModal");
+        var modal = document.getElementById("modalProduse");
 
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
@@ -28,13 +28,11 @@
 
         function afisareProduse(produseArray) {
             let productsStr = '';
-            //console.log(produseArray);
             for (let i in produseArray.produse) {
                 for (let j in produseArray.produse[i]) {
                     if(produseArray.produse[i].indexOf(produseArray.produse[i][j]) === 0)
                         productsStr += `<h3 class="categorie">` + produseArray.produse[i][j].category + `: </h3>` +
-                                        `<div class="first" id="${produseArray.produse[i][j].id}" 
-                                            onclick="memorareProdusSelectat(`+ produseArray.produse[i][j].id +`)">` 
+                                        `<div class="first" id="${produseArray.produse[i][j].id}">` 
                                           + getProductHtml(produseArray.produse[i][j], id) +
                                         `</div> <div></div> <div></div>`;
                     else
@@ -46,7 +44,6 @@
 
         function afisareProduseModal(produseArray) {
             let productsStr = '';
-            //console.log(produseArray);
             for (let i in produseArray.produse) {
                 for (let j in produseArray.produse[i]) {
                     productsStr += getProductHtmlModal(produseArray.produse[i][j], id);
@@ -65,7 +62,7 @@
             console.log(produs_id);
             if(produseSelectate.length >= 2){
                 document.getElementById('produseSelectate').innerHTML = afisareProduseModal(produseSelectate);
-                //modal.style.display = "block";
+                modal.style.display = "block";
                 //produseSelectate.length = 0;
             }
         }

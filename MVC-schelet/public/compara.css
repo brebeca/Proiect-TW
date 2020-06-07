@@ -278,7 +278,7 @@ h3.categorie{
 
 
 /* The Modal (background) */
-.modal{
+.modalProduse{
    display: none; 
    position: fixed; 
    z-index: 1; /*Sit on top*/
@@ -344,7 +344,7 @@ h3.categorie{
 }
 
 /* The Close Button */
-.close {
+.inchide {
    color: #111;
    float: right;
    font-size: 36px;
@@ -352,8 +352,8 @@ h3.categorie{
    margin-right: 35px;
 }
 
-.close:hover,
-.close:focus {
+.inchide:hover,
+.inchide:focus {
    color: black;
    text-decoration: none;
    cursor: pointer;
