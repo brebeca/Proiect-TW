@@ -59,7 +59,7 @@
                         produseSelectate.push(myArr.produse[i][j]);
                 }
             }
-            console.log(produs_id);
+            //console.log(produs_id);
             if(produseSelectate.length >= 2){
                 document.getElementById('produseSelectate').innerHTML = afisareProduseModal(produseSelectate);
                 modal.style.display = "block";

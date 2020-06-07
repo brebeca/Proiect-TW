@@ -89,8 +89,7 @@ label #cancel{
 }
 
 
-/* Products */
-
+/* The compare buttons */
 .criteriiComp{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -160,7 +159,7 @@ a.rssFeed:hover {
  background-color: #660066;
 }
 
-
+/* Containerul cu produse */
 .grid-container {
   display: table;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -173,6 +172,7 @@ a.rssFeed:hover {
   grid-row-gap: 3vh;
   grid-template-rows: 500px;
 }
+
 .grid-item {
   display: inline-table;
   background-color: whitesmoke;
@@ -259,8 +259,7 @@ h3.categorie{
 }  
 }
 
-/* The Delete Button */
-
+/* The Delete Product Button */
 .grid-item .close span{
    color: #111;
    float: right;
@@ -323,10 +322,6 @@ h3.categorie{
 
 ::-webkit-scrollbar-thumb:hover {
    background: #004d00;  
-}
-
-.modal-content p{
-   margin-left: 120px;
 }  
 
 @media only screen and (max-width: 990px){
@@ -343,7 +338,7 @@ h3.categorie{
  }
 }
 
-/* The Close Button */
+/* Close the Modal Button */
 .inchide {
    color: #111;
    float: right;
@@ -351,7 +346,6 @@ h3.categorie{
    font-weight: bold;
    margin-right: 35px;
 }
-
 .inchide:hover,
 .inchide:focus {
    color: black;
