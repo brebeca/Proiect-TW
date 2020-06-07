@@ -1,7 +1,6 @@
         var id;
         var myArr;
         var produseSelectate = Array();
-       // var modal = document.getElementById("modalProduse");
 
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
@@ -42,28 +41,44 @@
             return productsStr;
         }
 
-        function afisareProduseModal(produseArray) {
+        function afisareProduseModal(produseArray, product1, product2) {
             let productsStr = '';
-            console.log(produseArray);
+            console.log(product1);
+            console.log(product2);
             for (let i in produseArray) {
                 productsStr += getProductHtmlModal(produseArray[i], id);
-
             }
-                return productsStr;
-            }
-
-
-            var span = document.getElementsByClassName("inchide")[0];
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target === document.getElementById("modalProduse")) {
-                    modal.style.display = "none";
+            
+            productsStr += `<table>`;
+            for(let key in product1.details){
+                    productsStr += `<tr>`;
+                    if (product2.details[key] === null) 
+                        productsStr += `<td>` + key + `</td>
+                                        <td>` + product1.details[key] + `</td>
+                                        <td>-</td>`;
+                    else
+                        productsStr += `<td>` + key + `</td>
+                                        <td>` + product1.details[key] + `</td>
+                                        <td>` + product2.details[key] + `</td>`;
+                    productsStr += `</tr>`;
                 }
-            }
+            productsStr += `</table>`;
+            return productsStr;
+        }
+
+        // Get the modal
+        var modal = document.getElementById("modalProduse");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("inchide")[0];
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target === document.getElementById("modalProduse")) 
+                modal.style.display = "none";
+        }
 
 
             function memorareProdusSelectat(produs_id) {
@@ -73,12 +88,37 @@
                             produseSelectate.push(myArr.produse[i][j]);
                     }
                 }
-                if (produseSelectate.length >= 2) {
-                    document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate);
+                //console.log(produseSelectate[0]);
+                if (produseSelectate.length === 2) {     
+                    if(produseSelectate[0].details.length >= produseSelectate[1].details.length)
+                        document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[0], produseSelectate[1]);
+                    else
+                        document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[1], produseSelectate[0]);
+                    
                     document.getElementById("modalProduse").style.display = "block";
-                    //produseSelectate.length = 0;
+                    produseSelectate.length = 0;
                 }
             }
+
+
+            function getProductDetailsHtml(product1, product2) {
+                let productsStr = '';
+                
+                for(let key in product1.details){
+                    productsStr += `<tr>`;
+                    if (product2.details[key] === null) 
+                        productsStr += `<td>` + key + `</td>
+                                        <td>` + product1.details[key] + `</td>
+                                        <td>-</td>`;
+                    else
+                        productsStr += `<td>` + key + `</td>
+                                        <td>` + product1.details[key] + `</td>
+                                        <td>` + product2.details[key] + `</td>`;
+                    productsStr += `</tr>`;
+                }
+                return productsStr;
+            }
+
 
             function comparaPret() {
                 //ordonam crescator produsele dupa pret
@@ -123,7 +163,6 @@
 
             function getProductHtmlModal(product, user_id) {
                 return `<div class="grid-item"> 
-                  <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
                   <table>
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
@@ -140,23 +179,7 @@
                 </div>`;
             }
 
-            function getProductDetailsHtml(product) {
-                var productsStr = '';
-                productsStr += `<ol>`;
-                for (var k in product.details) {
-                    if (product.details[k].search(":") >= 0) {
-                        productsStr += `<li>` + product.details[k];
-                    } else {
-                        productsStr += product.details[k];
-                    }
 
-                    if (product.details[k + 1] <= product.details.length && product.details[k + 1].search(":") >= 0) {
-                        productsStr += `</li>`;
-                    }
-                }
-                productsStr += `</ol>`;
-                return productsStr;
-            }
 
             function RSS() {
                 let lis = document.getElementsByClassName("first");
