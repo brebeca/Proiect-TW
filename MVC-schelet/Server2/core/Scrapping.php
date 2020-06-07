@@ -57,7 +57,7 @@ class Scrapping
         if(strpos($categorie,'casti')!==false)
             return detaliiCelCasti($link);
         if(strpos($categorie,'electrocasnice')!==false)
-            return detaliiCelCasti($link);
+            return detaliiCelElectrocasnice($link);
         return null;
     }
 }
@@ -711,6 +711,29 @@ function detaliiCelCalculatoare($link)
     }
     return $product_det;
 }
+function detaliiCelElectrocasnice($link){
+    $context = stream_context_create(
+        array(
+            "http" => array(
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+            )
+        )
+    );
+    $html = file_get_html($link, false, $context);
+    $product_det = array();
+    $columns = array('oddTr', 'evenTr');
+    foreach ($columns as $col) {
+        foreach ($html->find('tr.' . $col) as $a) {
+            $tag = $a->find('td.charName', 0)->plaintext;
+            $value = '';
+            foreach ($a->find('div') as $val)
+                $value .= $val->plaintext . ',';
+            $value = trim($value, ',');
+            $product_det[$tag]=$value;
+        }
+    }
+    return $product_det;
+}
 function detaliiCelCasti($link){
     $context = stream_context_create(
         array(
@@ -722,7 +745,6 @@ function detaliiCelCasti($link){
     $html = file_get_html($link, false, $context);
     $product_det = array();
     $columns = array('oddTr', 'evenTr');
-    $product_det['Porturi']='';
     foreach ($columns as $col) {
         foreach ($html->find('tr.' . $col) as $a) {
             $tag = $a->find('td.charName', 0)->plaintext;
@@ -730,7 +752,26 @@ function detaliiCelCasti($link){
             foreach ($a->find('div') as $val)
                 $value .= $val->plaintext . ',';
             $value = trim($value, ',');
-            $product_det[$tag]=$value;
+           // $product_det[$tag]=$value;
+            switch($tag){
+                case "Tehnologie:":
+                case "Tip:":{
+                    $product_det[$tag]=$value;
+                    break;
+                }
+                case "Diametru:":{
+                    $product_det["Diametru difuzor"]=floatval(explode(' ',$value)[0]);
+                    break;
+                }
+                case "Impedanta:":{
+                    $product_det["Impedanta (ohm)"] = intval(explode(' ', $value)[0]);
+                    break;
+                }
+                case "Frecventa de raspuns:":{
+                    $product_det["Raspuns in frecventa"]=$value;
+                    break;
+                }
+            }
         }
     }
     return $product_det;

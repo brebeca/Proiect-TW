@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-function db($dbname){
+function db($dbname,$conn){
 // Create database
 $sql = "CREATE DATABASE $dbname";
 if (mysqli_query($conn, $sql)) {
@@ -20,7 +20,7 @@ if (!$conn) {
 }
 //db("produse_emag");
 //db("produse_altex");
-db("produse_cel");
+db("produse_cel",$conn);
 
 mysqli_close($conn);
-?>
+

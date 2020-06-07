@@ -38,6 +38,10 @@ function makeItems()
                               $produs['disponibilitate'],$_GET["categorie"]);
             }
         }
+        else if ($_GET["sursa"] == "produse_cel") {
+            //trrebuie apelata functia de display
+           print_r($produse);
+        }
     }
 }
 
