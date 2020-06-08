@@ -43,25 +43,110 @@
 
         function afisareProduseModal(produseArray, product1, product2) {
             let productsStr = '';
-            console.log(product1);
-            console.log(product2);
+            let locale = ["Nu", "Da"];
+            let scorProdus1=0;
+            let scorProdus2=0;
+            productsStr+= `<table id="cmpr"> <tr> <td> </td>`;
             for (let i in produseArray) {
+                productsStr += `<td>`;
                 productsStr += getProductHtmlModal(produseArray[i], id);
+                productsStr += `</td>`;
             }
-            
-            productsStr += `<table>`;
-            for(let key in product1.details){
-                    productsStr += `<tr>`;
-                    if (product2.details[key] === null) 
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
+            productsStr += `</tr>`;
+            for(let key in product1.details) {
+                productsStr += `<tr class="asl">`;
+                if (!/[1-5]G/.test(key))
+                {
+                    if (product2.details[key] === undefined)
+                        productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                        <td style="{background-color: #85bb65;}">&nbsp` + product1.details[key] + `</td>
                                         <td>-</td>`;
                     else
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>` + product2.details[key] + `</td>`;
+                        if(typeof(product2.details[key])=='number'){
+                            if(product2.details[key]>product1.details[key])
+                            {
+                                productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product2.details[key] + `</td>
+                                                <td>&nbsp` + product1.details[key] + `</td>`;
+                                scorProdus2++;
+                            }
+                            else if(product1.details[key]>product2.details[key])
+                            {
+                                productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td >&nbsp` + product2.details[key] + `</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product1.details[key] + `</td>`;
+                                scorProdus1++
+                            }
+                            else {
+                                productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td  style="background-color:#85bb65;">&nbsp` + product2.details[key] + `</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product1.details[key] + `</td>`;
+                                scorProdus2++;scorProdus1++;
+                            }
+                        }
+                        else {
+                            if( key==='Senzori'){
+                                if(product2.details[key].Numar>product1.details[key].Numar){
+                                    productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product2.details[key].Senzori + `</td>
+                                                <td>&nbsp` + product1.details[key].Senzori + `</td>`;
+                                    scorProdus2++;
+                                }
+                                else if(product2.details[key].Numar<product1.details[key].Numar) {
+                                    productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td >&nbsp` + product2.details[key].Senzori + `</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product1.details[key].Senzori + `</td>`;
+                                    scorProdus1++;
+                                }
+                                 else   {
+                                     productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td  style="background-color:#85bb65;">&nbsp` + product2.details[key].Senzori + `</td>
+                                                <td style="background-color:#85bb65;">&nbsp` + product1.details[key].Senzori + `</td>`;
+                                    scorProdus2++;scorProdus1++;
+                                 }
+                            }
+                            else productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                                <td >&nbsp` + product2.details[key] + `</td>
+                                                <td>&nbsp` + product1.details[key] + `</td>`;
+                        }
+
                     productsStr += `</tr>`;
+                } else {
+                    if(product1.details[key]===1) {
+                        productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                        <td style= "background-color:#85bb65;">&nbsp` + locale[product1.details[key]] + `</td>`
+                        scorProdus1++;
+                    }else {
+                        productsStr += `<td class="als" style="font-size:15px;">` + key + `&nbsp&nbsp</td>
+                                        <td >&nbsp` + locale[product1.details[key]] + `</td>`
+                    }
+                    if(product2.details[key]===1) {
+                        productsStr += `<td style= "background-color:#85bb65;" >&nbsp` + locale[product2.details[key]] + `</td>`;
+                        scorProdus2++;
+                    }else {
+                        productsStr += `<td>&nbsp` + locale[product2.details[key]] + `</td>`;
+                    }
+                        productsStr += `</tr>`;
                 }
+            }
+            let castigator1=`DA`;
+            let decorare1=`style= "background-color:#85bb65;"`;
+            let castigator2=`DA`;
+            let decorare2=`style= "background-color:#85bb65;"`;
+            if(scorProdus2>scorProdus1)
+            {
+                castigator1=`nu`;
+                decorare1=``;
+            }
+             else if(scorProdus2<scorProdus1)
+            {
+                castigator2=`nu`;
+                decorare2=``;
+            }
+             console.log(scorProdus2);
+            console.log(scorProdus1);
+            productsStr += `<tr class="asl"><td class="als" style="size: A3; font-size:25px;"><b>CASTIGATOR</b></td><td `+decorare2+`>`
+                            + castigator2+`</td><td `+decorare1+`>`+ castigator1+`</td>`;
             productsStr += `</table>`;
             return productsStr;
         }
@@ -98,25 +183,6 @@
                     document.getElementById("modalProduse").style.display = "block";
                     produseSelectate.length = 0;
                 }
-            }
-
-
-            function getProductDetailsHtml(product1, product2) {
-                let productsStr = '';
-                
-                for(let key in product1.details){
-                    productsStr += `<tr>`;
-                    if (product2.details[key] === null) 
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>-</td>`;
-                    else
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>` + product2.details[key] + `</td>`;
-                    productsStr += `</tr>`;
-                }
-                return productsStr;
             }
 
 
@@ -165,8 +231,8 @@
                 return `<div class="grid-item"> 
                   <table>
                    <tr>
-                    <td><img class="aimg" src= "${product.img_link}"></img><td>
-                    <td>
+                    <td  class="pdx"><img class="aimg" src= "${product.img_link}"></img><td>
+                    <td  class="pdx">
                      <ul class="pret">
                        <li>Pret: ${product.price} </li>
                        <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>

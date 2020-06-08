@@ -1,7 +1,10 @@
 
-<nav class="navbar">
-<li class=comparaBtn><a href=/produse/compara><b>COMPARA</b></a></li>
-  <div class="drop">
+<div class="navbar">
+    <ul>
+    <li class="drop">
+        <button class="dropper"><a href=/produse/compara>COMPARA</a></button>
+    </li>
+  <li class="drop">
     <button class="dropper">Casti Audio</button>
     <div class="dropwrap">
         <?php if(defined('SURSA1'))
@@ -11,8 +14,8 @@
         <?php if(defined('SURSA3'))
             echo '<a href="/produse/produse?categorie=casti&sursa='.DB_NAME4.'&page=1">'.SURSA3.'</a>'?>
     </div>
-  </div>
-  <div class="drop">
+  </li>
+  <li class="drop">
     <button class="dropper">Electrocasnice</button>
     <div class="dropwrap">
         <?php if(defined('SURSA1'))
@@ -22,8 +25,8 @@
         <?php if(defined('SURSA3'))
             echo '<a href="/produse/produse?categorie=electrocasnice&sursa='.DB_NAME4.'&page=1">'.SURSA3.'</a>'?>
     </div>
-  </div>
-  <div class="drop">
+  </li>
+  <li class="drop">
     <button class="dropper">Telefoane</button>
     <div class="dropwrap">
         <?php if(defined('SURSA1'))
@@ -33,8 +36,8 @@
         <?php if(defined('SURSA3'))
             echo '<a href="/produse/produse?categorie=telefoane&sursa='.DB_NAME4.'&page=1">'.SURSA3.'</a>'?>
     </div>
-  </div>
-  <div class="drop">
+  </li>
+  <li class="drop">
     <button class="dropper">Calculatoare</button>
     <div class="dropwrap">
         <?php if(defined('SURSA1'))
@@ -44,11 +47,12 @@
         <?php if(defined('SURSA3'))
             echo '<a href="/produse/produse?categorie=calculatoare&sursa='.DB_NAME4.'&page=1">'.SURSA3.'</a>'?>
     </div>
-  </div>
-  <div class="drop">
+  </li>
+  <li class="drop">
     <button class="docAPIbtn" id="myBtn">Documentatie API</button>
-  </div>
-</nav>
+  </li>
+    </ul>
+</div>
 
 
 

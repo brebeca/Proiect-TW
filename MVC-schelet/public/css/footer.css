@@ -131,22 +131,28 @@ footer{
 /* You can remove below code if you don't want Footer to be responsive */
 
 @media (max-height:800px){
-    footer { position: static; }
-    header { padding-top:40px; }
+    footer { position: static;}
 }
 @media (max-width: 880px) {
-
     .footer-distributed .footer-left,
-    .footer-distributed .footer-center,
+    .footer-distributed .footer-center{
+        display: none;
+    }
+
     .footer-distributed .footer-right{
+        font-size: 7px;
+        padding-top: 0px;
         display: block;
         width: 100%;
-        margin-bottom: 40px;
         text-align: center;
     }
-
-    .footer-distributed .footer-center i{
-        margin-left: 0;
+    .footer-distributed h3{
+        font: normal 12px 'Cookie', cursive;
     }
+    .footer-distributed {
+        padding-top: 0px;
+    }
+
+
 
 }
