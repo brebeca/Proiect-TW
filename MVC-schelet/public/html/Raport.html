@@ -40,7 +40,7 @@
 <section id="motivation">
     <h2>Motivație</h2>
     <p>
-        Aceata aplicație web reprezintă proiectul pe care noi am ales sa il abordam in cadrul cursului Tehnologii Web de la Facultatea de
+        Aceasta aplicație web reprezintă proiectul pe care noi am ales sa il abordam in cadrul cursului Tehnologii Web de la Facultatea de
         Informatică, Universitatea Alexandru Ioan Cuza din Iasi.
     </p>
 </section>
@@ -61,12 +61,12 @@
     <section id="dezvoltare-client">
         <h3>Dezvoltare pe partea de client</h3>
         <p>Prima etapa a fost cea a dezvoltarii parții de Front-End. Am inceput prin
-            a gandi cum va arata aplicația, care vor fi paginilie, care vor fi culorile principale etc. Am trecut la
+            a gandi cum va arata aplicația, care vor fi paginile, care vor fi culorile principale etc. Am trecut la
             implementarea continutului static de HTML și CSS de baza, mai apoi pe parcursul dezvoltarii aplicației
             adaugând și alte elemente in funcție de necesitați.
         </p>
         <p>
-            Paginile principale pe care le-am construit de la început au fost: home, login/register, pagnia pentru
+            Paginile principale pe care le-am construit de la început au fost: home, login/register, pagina pentru
             afisarea produselor, o pagina pentru contactarea administrației si o pagina de prezentare a misiunii
             aplicației.
         </p>
@@ -98,10 +98,10 @@
         <section id="google">
             <h4>Conectarea cu Google</h4>
             <p>
-                Un alt serviciu pe care l-am dezvoltat este cel de conectarea cu contul de Google. Pentru aceasta, cu ajutorul
-                managerului de dependețe pentru PHP <a href ="https://getcomposer.org/">Composer</a> am instalat biblioteca
-                <a href ="https://github.com/googleapis/google-api-php-client">google/apiclient</a>. De asemeneam am creat
-                un cont pentru plicația noastra pe <a href ="https://console.developers.google.com/">Google Developers</a>
+                Un alt serviciu pe care l-am dezvoltat este cel de conectare cu contul de Google. Pentru aceasta, cu ajutorul
+                managerului de dependențe pentru PHP <a href ="https://getcomposer.org/">Composer</a> am instalat biblioteca
+                <a href ="https://github.com/googleapis/google-api-php-client">google/apiclient</a>. De asemenea am creat
+                un cont pentru aplicația noastra pe <a href ="https://console.developers.google.com/">Google Developers</a>
                 pentru a obține token-ul pentru clasa Google_Client.
             </p>
         </section>
@@ -114,7 +114,7 @@
                 de cautare a unui produs dupa cuvinte cheie oferit de pagina principala.
             </p>
             <p>
-                In cererea trimisa prin metoda GET de fiecre data cand se cauta un produs sunt specificați in query string
+                In cererea trimisa prin metoda GET de fiecare data cand se cauta un produs sunt specificați in query string
                 cativa parametri precum: appid (id-ul din contul de <a href ="https://developer.ebay.com/">
                 eBay developers</a>), QueryKeywords (cuvintele cheie dupa care se face cautarea), AvailableItemsOnly
                 (boolean), MaxEntries (numarul de produse returnate). Raspunsul este in format XML cu taguri specifice.
@@ -177,9 +177,9 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
         <section id="Al doilea server">
             <h4>Al doilea server</h4>
             <p>
-                Pentru a nu incarca foarte mult baza de date si pentru a distribui munca, am constuit un la doilea server
+                Pentru a nu incarca foarte mult baza de date si pentru a distribui munca, am constuit un al doilea server
                 care sa se ocupe exclusiv cu managerierea produselor alese de utilizatori pentru comparare. Sub forma
-                uni API REST, am expus posibilitatea ca utilizatorii cu cont sa trimita direct poroduse pentru a le compara.
+                uni API REST, am expus posibilitatea ca utilizatorii cu cont sa trimita direct produse pentru a le compara.
                 Ei sunt recunoscuti pe baza unei chei oferite in cont. Acest server se ocupa si cu scraping-ul pentru
                 detaliile produselor. Pentru stocarea datelor se foloseste o baze de date aliniate paradigmei NoSQL in
                 cloud, MongoDb.
@@ -188,7 +188,7 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
         <section id="extensie">
             <h4>Extensie de navigator Web</h4>
             <p>
-                Cu ajutorul fisierului manijest.json am facut aplicatia disponibila ca extensie de browser.
+                Cu ajutorul fisierului manifest.json am facut aplicatia disponibila ca extensie de browser.
             </p>
         </section>
         <section id="Modulul de administrare">
@@ -202,7 +202,7 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <p>
                 Am realizat și un fisier de configurare app.ini in care sunt pastrate informații de acces la baza de date,
                 portul la care ruleaza cele doua servere, sursele din care provin produsele, care surse sunt active și
-                ale infomrații necesare aplicației care pot fi configurate.
+                alte informații necesare aplicației care pot fi configurate.
             </p>
         </section>
         <section id="Testare">
@@ -226,7 +226,7 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <h3>Pagnile HTML</h3>
             <p>
                 Fiecare pagina se cere prin metoda GET, contorller-ul fiind numele paginii si actiunea tot numele
-                pagnii si alti parametri specifici in query string. De exemplu, pentru preluarea paginii doi de
+                paginii si alti parametri specifici in query string. De exemplu, pentru preluarea paginii doi de
                 telefoane de pe emag se trimite cererea http:
             </p>
             <figure typeof="schema:SoftwareSourceCode">
@@ -238,10 +238,10 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
         <section id="Api Rest">
             <h3>API Rest-oferit de al doilea server</h3>
             <p>
-                Autentificare: pentru recunoasterea orcarei cereri se va utiliza campul "Session" din Heardes
+                Autentificare: pentru recunoasterea oricarei cereri se va utiliza campul "Session" din Heardes
                 unde se va completa cu id-ul din contul utilizatorului. Serverul principal are un id predefinit
                 in fisierul de configurare app.ini pentru ca al doilea server sa-l recunoască. Anumite operațiuni,
-                ca adăugarea de useri noi, se face doar la cereile care conțin id-ul serverului principal.
+                ca adăugarea de useri noi, se face doar la cererile care conțin id-ul serverului principal.
             </p>
             <p>
                 Pentru o cerere executata cu succes se va intoarce codul 200.
@@ -250,7 +250,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                 <h4>End-Ponit: /AddProduct</h4>
                 <p>
                     Verbul HTTP folosit este POST. Ruta aceasta este utilizata pentru adaugarea unui produs nou la lista
-                    de comparare a utilizatorului care face cererea. Cerea trebuie sa contina un body de tip json care sa
+                    de comparare a utilizatorului care face cererea. Cererea trebuie sa contina un body de tip json care sa
                     aiba urmatoarele campuri: "category" ,"title", "link","img_link", "source", "details", "price"(va
                     fi meționat in lei).
                 </p>
@@ -325,7 +325,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                     utilizatorului. Utilizatorul va fi recunoscut pe baza campului "Session" din Heardes.
                 </p>
                 <p>
-                    Rapunsul va fi un json. Un exempul de raspuns in caz de succes:
+                    Raspunsul va fi un json. Un exemplu de raspuns in caz de succes:
                 </p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
@@ -357,7 +357,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                     categorie din lista utilizatorului. Categoria va fi menționata prin paramaterul "category" din query string.
                 </p>
                 <p>
-                    Rapunsul va fi un json. Un exempul de raspuns in caz de succes:
+                    Raspunsul va fi un json. Un exemplu de raspuns in caz de succes:
                 </p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
@@ -394,11 +394,11 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
     <section id="PHP">
         <H3>Limbajul de programare pentru server</H3>
         <p>
-            Am decis sa folosim PHP pentru implementarea serverului deoarece este un limbaj optimp pentru dezvoltarea aplicațiilor
+            Am decis sa folosim PHP pentru implementarea serverului deoarece este un limbaj optim pentru dezvoltarea aplicațiilor
             web fara folosirea framework-urilor.
         </p>
         <p>
-            Pentru instalarea de biblioteci externe am apelat la <a href="https://getcomposer.org/">Composer</a>. Cu care am integrat
+            Pentru instalarea de biblioteci externe am apelat la <a href="https://getcomposer.org/">Composer</a>, cu care am integrat
             bibliotecile de care am avut nevoie.
         </p>
     </section>
@@ -406,14 +406,14 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
         <H3>Limbajul pe partea de client</H3>
         <p>
             Pe langa HMTL și CSS, pe partea de client am utilizat si JavaScript pentru anumite elemente mai dinamice din pagina,
-            dar si pentru a trimtie informații la server și a încarca informații de pe server fara a reîncarca sau schimba pagnia.
+            dar si pentru a trimite informații la server și a încarca informații de pe server fara a reîncarca sau schimba pagnia.
         </p>
     </section>
 
     <section id="github">
         <H3>Github</H3>
         <p>
-            Pentru dezvoltarea proiectului in echpa am utilizat <a href ="https://github.com/">Github</a> care reprezinta o varianta
+            Pentru dezvoltarea proiectului in echipa am utilizat <a href ="https://github.com/">Github</a> care reprezinta o varianta
             pentru lucrul in echipa la distanța.
         </p>
 
@@ -423,7 +423,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
         <p>
             Am folosit baza de date oferita de XAMPP (phpMyAdmin) pentru serverul principal deoarece e foarte usor de utilizat in
             combinație cu limbajul PHP. Pentru memorarea produselor, preluate din surse diverse, pe serverul al doilea am optat
-            pentru o varinata de baze de date NoSQL, MongoDb, deoarece ne oferea mai multa flexibilitatea in memorarea
+            pentru o varianta de baze de date NoSQL, MongoDb, deoarece ne oferea mai multa flexibilitate in memorarea
             documenteleor.
         </p>
 
