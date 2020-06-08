@@ -19,6 +19,12 @@ class Main
       $this->response();
     }
 
+    /**
+     * se verifica intai daca $sision-ul de recuoastere a cererii este valid
+     * se trimite mesaj de eroare daca nu
+     * se verifica in functie de verbul HTTP intr-un switch si se apeleaza functia potivia
+     * daca cererea nu este recunoscuta se intoarce mesaj de eroare
+     */
     public function response(){
         $session=$this->getSession();
         if($session==false)
@@ -122,6 +128,13 @@ class Main
         }
     }
 
+    /**
+     * @return bool|mixed
+     * se extrage capul 'Session' din heders
+     * se valideaza in baza de date
+     * daca validarea reuseste intoarce sessionul respectiv
+     * altfel se intoarce fals
+     */
     public function getSession()
 {
     $headers = array();

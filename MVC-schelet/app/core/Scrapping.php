@@ -42,8 +42,16 @@ class Select
     $output = $rezultat->fetch_all(MYSQLI_ASSOC);
     return $output;
   }
+
+    /**
+     * @param $nume
+     * @param $db_name
+     * @return array
+     * se cauta in toate tabelele (categoriile) produse care sa aiba in titlul $nume
+     * se returneaza un array cu toate produsle gasite
+     */
     public static function getProductsByName($nume,$db_name){
-        $categorii=array('telefoane','calculatoare','electrocasnice');
+        $categorii=array('telefoane','calculatoare','electrocasnice','casti');
         $servername = "localhost";
         $username = "root";
         $password = "";

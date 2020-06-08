@@ -4,6 +4,7 @@
 class AdminController extends Controller
 {
 
+
     public function home()
     {
         $this->model('loginModel');
@@ -13,7 +14,7 @@ class AdminController extends Controller
                 $this->view->render();
             }
         else {
-            echo "error";
+            header('Location:/home/index?error=1');
         }
     }
 
@@ -30,7 +31,7 @@ class AdminController extends Controller
                 $this->view->render();
             }
             else {
-                echo "error";
+                header('Location:/home/index?error=1');
             }
     }
 
@@ -41,7 +42,7 @@ class AdminController extends Controller
           AdminView::displayMessages($messages);
         }
         else {
-            echo "error";
+            header('Location:/home/index?error=1');
         }
     }
 
@@ -53,7 +54,7 @@ class AdminController extends Controller
             $this->model->updateToSeen();
         }
         else {
-            echo "error";
+            header('Location:/home/index?error=1');
         }
     }
     public function Raport(){

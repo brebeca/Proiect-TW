@@ -3,6 +3,11 @@
 
 class Scrapping
 {
+    /**
+     * @param $link
+     * @return string
+     * se verifica categoria prodosului si se apeleaza funcia de scrap potrivita
+     */
     public static function ebayCategory($link){
         $html = file_get_html($link);
        foreach ( $html->find('nav[class="breadcrumb clearfix"] ol li a span') as $category){
@@ -17,6 +22,11 @@ class Scrapping
 
     }
 
+    /**
+     * @param $link
+     * @return string
+     * se verifica categoria prodosului si se apeleaza funcia de scrap potrivita
+     */
     public static function detaliiEmag($link,$categorie){
         if(strpos($categorie,'telefoane')!==false)
             return detaliiEmagTelefoane($link);
@@ -29,6 +39,11 @@ class Scrapping
         return null;
     }
 
+    /**
+     * @param $link
+     * @return string
+     * se verifica categoria prodosului si se apeleaza funcia de scrap potrivita
+     */
     public static function detaliiAltex($link,$categorie){
         if(strpos($categorie,'telefoane')!==false)
             return detaliiAltexTelefoane($link);
@@ -41,6 +56,11 @@ class Scrapping
         return null;
     }
 
+    /**
+     * @param $link
+     * @return string
+     * se verifica categoria prodosului si se apeleaza funcia de scrap potrivita
+     */
     public static function detaliiEbay($link,$categorie)
     {
         if (strpos($categorie, 'telefoane') !== false)
@@ -49,6 +69,11 @@ class Scrapping
         return detaliiEbayGeneral($link);
     }
 
+    /**
+     * @param $link
+     * @return string
+     * se verifica categoria prodosului si se apeleaza funcia de scrap potrivita
+     */
     public static function detaliiCel($link,$categorie){
         if (strpos($categorie, 'telefoane') !== false)
             return detaliiCelTelefoane($link);
@@ -61,6 +86,14 @@ class Scrapping
         return null;
     }
 }
+
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiEmagElectrocasnice($link){
     $html = file_get_html($link);
     $product_det = array();
@@ -80,6 +113,13 @@ function detaliiAltexElectrocasnice($link){
 function count_capitals2($s) {
     return strlen(preg_replace('![^A-Z]+!', '', $s));
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiEmagTelefoane($link){
     $html = file_get_html($link);
     $product_det=array();
@@ -282,6 +322,13 @@ function detaliiAltexTelefoane($link){
     }
     return $product_det;
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiEmagCalculatoare($link)
 {
     $html = file_get_html($link);
@@ -394,6 +441,13 @@ function detaliiAltexCalculatoare($link){
     }
     return $product_det;
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiAltexCasti($link)
 {
     $html = file_get_html($link);
@@ -461,6 +515,13 @@ function detaliiEmagCasti($link)
     }
     return $product_det;
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiEbayTelefoane($link){
     $html = file_get_html($link);
     $product_det = array();
@@ -547,6 +608,13 @@ function detaliiEbayGeneral($link){
     }
     return $product_det;
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiCelTelefoane($link){
     $context = stream_context_create(
         array(
@@ -714,6 +782,13 @@ function detaliiCelCalculatoare($link)
     }
     return $product_det;
 }
+/**
+ * @param $link
+ * @return array
+ * se incerca fisierul html de la linkul din paramentru
+ * se parcurege tabelul cu detalii
+ * pintr-un switch se alcatuieste array-ul asociativ cu detalile produsului
+ */
 function detaliiCelElectrocasnice($link){
     $context = stream_context_create(
         array(

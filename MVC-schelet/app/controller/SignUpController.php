@@ -2,6 +2,13 @@
 class SignUpController extends Controller {
 
 
+    /**
+     * @param string $data
+     * daca se epeleaza fara marametrii se trmimite pagina de singUp
+     * altfe, se preiau parametrii
+     * se incearca inregistratea cu funtia sePoateIregistra() din model
+     * se redireceaza catre pegina de login pentru a se loga cu contul crreat
+     */
     public function signUp($data=""){
         if($data==""){
             $this->view('signUp/signUp');
@@ -29,7 +36,13 @@ class SignUpController extends Controller {
            
         }
     }
-   public function google($data=''){
+
+    /**
+     * se verifica daca este setat codul de la redirecatea facuta de google
+     *daca nu exista erori se preiau datele de la google si se inregistrara
+     * in functie de caz, se face redirectarea
+     */
+   public function google(){
        include( ROOT. 'public' . DIRECTORY_SEPARATOR ."googleConfig.php");
        $ok=false;
        if(isset($_GET["code"]))
