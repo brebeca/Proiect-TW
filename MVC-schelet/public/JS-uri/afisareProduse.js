@@ -80,7 +80,6 @@
                 modal.style.display = "none";
         }
 
-
             function memorareProdusSelectat(produs_id) {
                 for (let i in myArr.produse) {
                     for (let j in myArr.produse[i]) {
@@ -88,7 +87,6 @@
                             produseSelectate.push(myArr.produse[i][j]);
                     }
                 }
-                //console.log(produseSelectate[0]);
                 if (produseSelectate.length === 2) {     
                     if(produseSelectate[0].details.length >= produseSelectate[1].details.length)
                         document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[0], produseSelectate[1]);
@@ -99,26 +97,6 @@
                     produseSelectate.length = 0;
                 }
             }
-
-
-            function getProductDetailsHtml(product1, product2) {
-                let productsStr = '';
-                
-                for(let key in product1.details){
-                    productsStr += `<tr>`;
-                    if (product2.details[key] === null) 
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>-</td>`;
-                    else
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>` + product2.details[key] + `</td>`;
-                    productsStr += `</tr>`;
-                }
-                return productsStr;
-            }
-
 
             function comparaPret() {
                 //ordonam crescator produsele dupa pret
@@ -178,8 +156,6 @@
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;
             }
-
-
 
             function RSS() {
                 let lis = document.getElementsByClassName("first");

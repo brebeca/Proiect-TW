@@ -155,6 +155,9 @@ li.comparaBtn a:hover{
    padding-bottom: 2%;
    overflow: scroll;
 }
+.modal-content p{
+   margin-left: 120px;
+}
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
@@ -174,10 +177,6 @@ li.comparaBtn a:hover{
 
 ::-webkit-scrollbar-thumb:hover {
    background: #004d00;  
-}
-
-.modal-content p{
-   margin-left: 120px;
 }  
 
 @media only screen and (max-width: 990px){
@@ -229,4 +228,29 @@ li.comparaBtn a:hover{
    margin-left: 150px;
    margin-bottom: 15px;
  }
+}
+
+@media only screen and (max-width: 640px) {
+  .modal{
+   top: 22.5%;
+   width: 100%;
+   height: 90%; 
+   padding: 2%;
+  }
+  .modal-content{ 
+   padding: 3%;
+   width: 80%;
+   height: 80%; 
+  }
+  .modal-content p{
+   margin-left: 5px;
+   padding-bottom: 5%;
+  } 
+  .myAPIidBtn{
+   height: 40px;
+   width: 70%;
+   margin: 15%;
+   margin-bottom: 25px;
+   margin-top: 0px;
+  }
 }

@@ -86,7 +86,7 @@ label #cancel{
 /*meniul de sus*/
 .nav-menu {
   background: #2c292f;
-  height:51.5px;
+  height: 51.5px;
   width: auto;
 }
 
@@ -154,48 +154,6 @@ ul.nav-menu li.comparaBtn a:hover{
   margin-left: 250px;
 }
 
-@media only screen and (max-width: 768px) {
-
-  ul.nav-menu li a{
-    width: 70%;
-
-  }
-  .sidebar {
-    position: fixed;
-    left: -290px;
-    height: 100%;
-    background: #e0ac1c;
-    transition: all .3s ease;
-  }
-  .sidebar  header{
-    display: none;
-  }
-  .sidebar ul a{
-    height: 50%;
-    font-size: 15px;
-    line-height: 40px;
-
-  }
-
-}
-
-@media only screen and (max-width: 990px){
-  ul.nav-menu{
-    padding-left: 250px;
-    padding-right:0;
-    transition: all .3s ease;
-  }
-  ul.nav-menu li a{
-    border-bottom:  1px black solid;
-    border-left:  1px black solid;
-    border-right:  1px black solid;
-    font-size: 17px;
-    transition: all .3s ease;
-  }
-
-}
-
-
 
 section{
   background: linear-gradient(182deg, #2c292f, #e0ac1c);
@@ -220,8 +178,6 @@ section{
   transform: translate(-50%,-50%);
   box-sizing: border-box;
 }
-
-
 
 .element_mijloc h2{
   position: relative;
@@ -259,7 +215,6 @@ input {
   opacity: 0.5;
   max-width: 500px;
   box-sizing: border-box;
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -292,5 +247,79 @@ input {
   .element_mijloc .buton_cautare{
     left:20%;
   }
+}
+
+@media only screen and (max-width: 640px) {
+  .element_mijloc{
+    top: 75%;
+    height: 400px;
+  }
+  .element_mijloc h2{
+    padding-bottom: 7%;
+    font-size: 30px;
+  }
+  .element_mijloc p{
+    font-size: 20px;
+  }
+  .buton_cautare{
+    width: 70%;
+  }
+  input{
+    font-size: 15px;
+  }
+  ul.nav-menu {
+   height: 30px;
+   line-height: 35px;
+   width: 100px;
+  }
+}
+
+@media only screen and (max-width: 731px) {
+  .element_mijloc{
+    top: 65%;
+  }
+  .navbar{
+    float: right;
+    padding-left: 40px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  ul.nav-menu li a{
+    width: 70%;
+  }
+  .sidebar {
+    position: fixed;
+    left: -290px;
+    height: 100%;
+    background: #e0ac1c;
+    transition: all .3s ease;
+  }
+  .sidebar  header{
+    display: none;
+  }
+  .sidebar ul a{
+    height: 50%;
+    font-size: 15px;
+    line-height: 40px;
+  }
+}
+
+
+
+@media only screen and (max-width: 990px) {
+  ul.nav-menu{
+    padding-left: 250px;
+    padding-right:0;
+    transition: all .3s ease;
+  }
+  ul.nav-menu li a{
+    border-bottom:  1px black solid;
+    border-left:  1px black solid;
+    border-right:  1px black solid;
+    font-size: 17px;
+    transition: all .3s ease;
+  }
+
 }
 

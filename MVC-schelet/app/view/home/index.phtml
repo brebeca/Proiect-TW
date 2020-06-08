@@ -1,6 +1,4 @@
-
 <?php
-
 if (isset($_GET['login_succes'])) {
     session_start();
     $_SESSION['login'] = $_GET['user'];
@@ -9,8 +7,8 @@ if (isset($_GET['login_succes'])) {
     $_SESSION['id'] = $_GET['id'];
     $ok=true;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -46,8 +44,8 @@ if (isset($_GET['login_succes'])) {
       <h2>Bine ati venit!</h2>
       <div class="buton_cautare">
           <form class="cautare" action="/home/cauta" method="get">
-              <input type="text" name="cauta"  required placeholder="&nbsp Cauta produsul dorit..." aria-hidden="true">
-              <button  class="fa fa-search" style="font-size:50px;color: black;border: none; background: transparent;" type="submit"></button>
+              <input type="text" name="cauta" required placeholder="&nbsp Cauta produsul dorit..." aria-hidden="true">
+              <button  class="fa fa-search" style="font-size: 200%; color: black; border: none; background: transparent; margin-left: 35%;" type="submit"></button>
           </form>
       </div>
       <p>Scopul nostru este acela de a va ajuta sa gasiti produsele dorite cat mai rapid si mai usor. Noi va ajutam sa gasiti si sa comparati totul intr-un singur loc.</p>
@@ -60,7 +58,7 @@ include HTMLS.'nav-bar.phtml';
 ?>
 
 
- <section></section>
+<section></section>
 
 
     <footer class="footer-distributed">
@@ -110,6 +108,7 @@ include HTMLS.'nav-bar.phtml';
           </div>
       </div>
     </footer>
+
 <?php
 if(isset($_GET["session_expired"]))
  echo"   <script>alert(\"Your session has expired. Please login again!\");</script>";
@@ -124,8 +123,8 @@ echo"   <script>alert(\"Logout of account! !\");</script>";
 else if(isset($_GET["cautare_esuata"])){
   echo"   <script>alert(\"Cautare esuata !\");</script>";
 }
-
 ?>
+
 <script src="/JS-uri/navro.js"></script>
 
 </body>
