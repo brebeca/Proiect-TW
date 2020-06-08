@@ -504,22 +504,23 @@ td:hover{
 
 
 @media only screen and (max-width: 640px) {
-  .filtre{
+  .filtre {
    padding: 15%;
    width: 150px;
    padding-bottom: 0px;
   } 
-  .filtre .content{
-   padding: 15%;
+  .filtre .content {
+   padding: 0px;
    width: 150px;
-   padding-bottom: 0px;
+   text-align: center;
   } 
-  .filtre .container{
+  .filtre .container {
    margin-bottom: 12px;
    font-size: 15px;
    width: 150px;
  }
- .filtre .ratm .content {
+ .collapsible {
    width: 150px;
+   text-align: center; 
  }
 }
