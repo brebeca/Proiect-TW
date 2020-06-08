@@ -56,6 +56,12 @@ class AdminController extends Controller
             echo "error";
         }
     }
+    public function Raport(){
+        include HTMLS.'Raport.html';
+    }
+    public function GidUtilizare(){
+        include HTMLS.'GidUtilizare.html';
+    }
 
 
 }

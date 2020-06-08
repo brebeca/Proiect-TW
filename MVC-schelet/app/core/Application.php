@@ -5,6 +5,12 @@ private $controller='homeController';
 private $action='index';
 private $params=[];
 
+    /**
+     * Application constructor.
+     * apeleaza prepareURL() pentru a parsa url-ul cererii
+     * verifica daca exista actiunea(functia) in contolrul memorat in $controller
+     * daca nu exista actionue in controler se redirecteaza catre pegina principala
+     */
 public function __construct(){
    $this-> prepareURL();
 
@@ -28,6 +34,9 @@ public function __construct(){
     }
 }
 
+    /**
+     * extrage din uri-ul requestului controlerul, actiunea si parametrii
+     */
 private function prepareURL(){
 
     $request =trim($_SERVER['REQUEST_URI'],'/');
