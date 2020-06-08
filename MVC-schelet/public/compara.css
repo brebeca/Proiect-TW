@@ -8,7 +8,89 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: white;
 }
-/* The compare buttons */
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #2c292f;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 35px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #736b7b;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #5b460b;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+.sidebar ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background:  #e0ac1c;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 1px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+
+#check:checked ~ section{
+  margin-left: 250px;
+}
+
+
+/* Comparison buttons */
+
 .criteriiComp{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
@@ -18,7 +100,7 @@ body {
 }
 .criteriiComp h2{
   font-family: Apple Chancery, cursive;
-}
+}  
 
 .criteriiCompBtn a{
   position: static;
@@ -78,7 +160,9 @@ a.rssFeed:hover {
  background-color: #660066;
 }
 
+
 /* Containerul cu produse */
+
 .grid-container {
   display: table;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -93,7 +177,7 @@ a.rssFeed:hover {
 }
 
 .grid-item {
-  display: inline-table;
+  display: inline-block;
   background-color: whitesmoke;
   padding: 10px;
   margin: 10px;
@@ -175,7 +259,7 @@ h3.categorie{
 .criteriiComp{
   margin-left: 1%;
   margin-bottom: 0px;
-}
+}  
 }
 
 /* The Delete Product Button */
@@ -197,15 +281,15 @@ h3.categorie{
 
 /* The Modal (background) */
 .modalProduse{
-   display: none;
-   position: fixed;
+   display: none; 
+   position: fixed; 
    z-index: 1; /*Sit on top*/
    top: 8.5%;
    left: 0%;
    width: 2000px;
-   height: 650px;
+   height: 650px; 
    overflow: auto; /*Enable scroll if needed*/
-   background-color: rgb(0,0,0);
+   background-color: rgb(0,0,0); 
    background-color: rgba(0,0,0,0.7);
 }
 
@@ -220,7 +304,7 @@ h3.categorie{
    padding-bottom: 5%;
    border: 1px solid #888;
    width: 1100px;
-   height: 400px;
+   height: 400px; 
    padding-bottom: 2%;
    overflow: scroll;
 }
@@ -239,13 +323,13 @@ h3.categorie{
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-   background: #004d00;
+   background: #004d00;  
    border-radius: 10px;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-   background: #004d00;
-}
+   background: #004d00;  
+}  
 
 /* Close the Modal Button */
 .inchide {
@@ -265,13 +349,13 @@ h3.categorie{
 
 
 @media only screen and (max-width: 990px){
-  .modal-content{
+  .modal-content{ 
    padding: 1%;
    padding-bottom: 2%;
    padding-left: 0px;
    border: 1px solid #888;
    width: 500px;
-   height: 500px;
+   height: 500px; 
    margin: 5%;
    margin-top: 5px;
    overflow: scroll;
@@ -300,7 +384,7 @@ h3.categorie{
         width: 100%;
         height: 90%;
         padding: 2%;
-
+        
     }
    .modal-content{
         padding: 3%;
