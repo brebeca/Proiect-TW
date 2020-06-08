@@ -39,8 +39,12 @@ function makeItems()
             }
         }
         else if ($_GET["sursa"] == "produse_cel") {
-            //trrebuie apelata functia de display
-           print_r($produse);
+            foreach ($produse as $produs) { //putem folosi display_altex pentru ca avem aceleasi coloane in BD
+                display_altex($produs['id'], $produs['nume'], $produs['link'],
+                              $produs['imagine'], $produs['pret'],
+                              $produs['disponibilitate'],$_GET["categorie"]);
+            }
+           print_r($produse); 
         }
     }
 }
