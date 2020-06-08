@@ -3,6 +3,7 @@
         var produseSelectate = Array();
         var modal = document.getElementById("modalProduse");
         var span = document.getElementsByClassName("inchide")[0];
+
         span.onclick = function () {
             modal.style.display = "none";
         }
@@ -10,6 +11,7 @@
             if (event.target === document.getElementById("modalProduse"))
                 modal.style.display = "none";
         }
+
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
             let params = {
@@ -51,10 +53,10 @@
         }
 
         function afisareProduseModal(produseArray, product1, product2) {
-            let conectivitate=['Nu','Da'];
+            let conectivitate = ['Nu','Da'];
             let productsStr = '';
-            let scorProd1=0;
-            let scorProd2=0;
+            let scorProd1 = 0;
+            let scorProd2 = 0;
             for (let i in produseArray) {
                 productsStr += getProductHtmlModal(produseArray[i], id);
             }
@@ -132,7 +134,8 @@
             productsStr += `</table>`;
             return productsStr;
         }
-  function memorareProdusSelectat(produs_id) {
+
+         function memorareProdusSelectat(produs_id) {
                 for (let i in myArr.produse) {
                     for (let j in myArr.produse[i]) {
                         if (myArr.produse[i][j].id === produs_id)
@@ -169,8 +172,8 @@
                 document.getElementById('products').innerHTML = afisareProduse(myArr);
             }
 
-            function getProductHtml(product, user_id) {
-                return `<div class="grid-item" id="${product.id}"> 
+    function getProductHtml(product, user_id) {
+        return `<div class="grid-item" id="${product.id}"> 
                   <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
                   <table onclick="memorareProdusSelectat(${product.id})" >
                    <tr>
@@ -186,10 +189,10 @@
                   <br>
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;
-            }
+    }
 
-            function getProductHtmlModal(product, user_id) {
-                return `<div class="grid-item" > 
+    function getProductHtmlModal(product, user_id) {
+        return `<div class="grid-item" > 
                   <table>
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
@@ -204,7 +207,7 @@
                   <br>
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;
-            }
+    }
 
             function RSS() {
                 let lis = document.getElementsByClassName("first");
