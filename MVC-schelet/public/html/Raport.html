@@ -13,7 +13,7 @@
 
 <body prefix="schema: http://schema.org" style="font-family: calibri !important; font-size: 14pt;">
 <header>
-    <h1>Comp IT</h1>
+    <h1>ComIt</h1>
 </header>
 
 <div role="contentinfo">
@@ -22,16 +22,16 @@
         <dd>
             <a href="https://github.com/brebeca">Birleanu Rebeca</a>
             ,
-            <a href="https://github.com/infoROM2000">Olteanu Dragos</a>
+            <a href="https://github.com/infoROM2000">Olteanu Dragos-Mihai</a>
             si
-            <a href="https://github.com/Camelia7v">Lupancu Camelia Viorica</a>
+            <a href="https://github.com/Camelia7v">Lupancu Viorica-Camelia</a>
         </dd>
     </dl>
 </div>
 <section id="introduction" role="doc-introduction">
     <h2>Introducere</h2>
     <p>
-        Aplicația web <i>CompIT</i> ofera informații cu privire la câteva categorii de produse ,preluate din
+        Aplicația web <i>ComIt</i> ofera informații cu privire la câteva categorii de produse, preluate din
         surse multiple, din care utilizatorul logat sau nu poate sa aleaga cu scopul de a obține studii comparative
         pentru acele produse pe baza anumitor criterii universale precum pret sau rating, dar și specifice fiecarei
         categorii.
@@ -40,8 +40,8 @@
 <section id="motivation">
     <h2>Motivație</h2>
     <p>
-        Aceata aplicație web reprezintă proiectul pe care noi am ales sa il abordam in cadrul cursul Tehnologii Web al Facultății de
-        Informatică al Universității Alexandru Ioan Cuza.
+        Aceata aplicație web reprezintă proiectul pe care noi am ales sa il abordam in cadrul cursului Tehnologii Web de la Facultatea de
+        Informatică, Universitatea Alexandru Ioan Cuza din Iasi.
     </p>
 </section>
 <section id="cerinta">
@@ -60,10 +60,10 @@
     <h2>Procesul de dezvoltare </h2>
     <section id="dezvoltare-client">
         <h3>Dezvoltare pe partea de client</h3>
-        <p>Prima etapa a fost cea a dezvoltarii parții de Front-End . Am inceput prin
+        <p>Prima etapa a fost cea a dezvoltarii parții de Front-End. Am inceput prin
             a gandi cum va arata aplicația, care vor fi paginilie, care vor fi culorile principale etc. Am trecut la
-            implementarea continutul static de HTML și CSS de baza, mai apoi pe parcursul dezvoltarii aplicației
-            adaugând și alte elemente in funcție necesitați.
+            implementarea continutului static de HTML și CSS de baza, mai apoi pe parcursul dezvoltarii aplicației
+            adaugând și alte elemente in funcție de necesitați.
         </p>
         <p>
             Paginile principale pe care le-am construit de la început au fost: home, login/register, pagnia pentru
@@ -71,10 +71,10 @@
             aplicației.
         </p>
         <p>
-            In dezvolatarea acestora ma cautat sa abordam designul Web responsiv prin diferite metode prezentate
-            la laborator (media queries, folosirea procentelor in definirea de proprietați ca width ). Paginile
+            In dezvoltarea acestora am cautat sa abordam designul Web responsive prin diferite metode prezentate
+            la laborator (media queries, folosirea procentelor in definirea de proprietați ca width). Paginile
             au fost analizate să fie valide în conformitate cu standardele. Au fost folosite tool-uri pentru validare
-            de html și de css.
+            de HTML și de CSS.
         </p>
     </section>
     <section id="dezvoltare-server">
@@ -82,14 +82,14 @@
         <section id="MVC-dev">
             <h4>Structura de MVC</h4>
             <p>
-                Dupa ce am avut pagnile de baza gata primul lucru pe care l-am facut a fost sa contruim serverul dupa modeul
-                MVC care sa servearca pagnilie la cerere. Pentru structura de MVC am realizat trei clase principale Controller,
-                View si Model pentru generalizare care urmau sa fie extinse de controllere-le si modelele concrete.
+                Dupa ce am avut pagnile de baza gata, primul lucru pe care l-am facut a fost sa construim serverul dupa modelul
+                MVC care sa serveasca pagnilie la cerere. Pentru structura de MVC am realizat trei clase principale Controller,
+                View si Model, pentru generalizarile care urmau sa fie extinse de controllere-le si modelele concrete.
                 Pentru rezolvarea cererilor am realizat clasa Application care functioneaza ca un router fiind responsabila
                 cu apelarea acțiunii potrivite din controller-ul potrivit.
             </p>
              <p>
-                A urmat impementarilor serviciilor de creare de cont, de logare in cont si de contact la administrației. Pentru
+                A urmat implementarea serviciilor de creare de cont, logare in cont si contact la administrație. Pentru
                 acestea am folosit o baza de date locala oferita de XAMPP (myPHPAdmin).  Aceasta foloseste MySQL, foarte usor de
                 folosit cu PHP. Functiile care apeleaza baza de date sunt puse in clase care extind clasa Model și sunt
                  apelate din clase care extind calsa Controller.
@@ -115,13 +115,13 @@
             </p>
             <p>
                 In cererea trimisa prin metoda GET de fiecre data cand se cauta un produs sunt specificați in query string
-                cativa parametrii precum appid (id-ul din contul de  <a href ="https://developer.ebay.com/">
-                eBay developers</a> ), QueryKeywords (cuvintele cheiedupa care se face cautatea), AvailableItemsOnly
-                ( boolean ), MaxEntries ( numarul de produse returnate). Raspunsul este in format XML cu taguri specifice.
-                Raspunsul l-am parsat transformadu-l intro-o lista de  obiecte de tipul Product și le-am afisat în client.
-                Aceste date nu sunt memorate in baza de date.  Daca utilizatorul alege un produs pe partea de client sunt
-                prelurat in javaScript informațiile afișate în pagina și trimis la server printr-o cerere facuta cu
-                ajutorului thehnologiei AJAX .
+                cativa parametri precum: appid (id-ul din contul de <a href ="https://developer.ebay.com/">
+                eBay developers</a>), QueryKeywords (cuvintele cheie dupa care se face cautarea), AvailableItemsOnly
+                (boolean), MaxEntries (numarul de produse returnate). Raspunsul este in format XML cu taguri specifice.
+                Raspunsul l-am parsat transformadu-l intr-o lista de obiecte de tipul Product și le-am afisat în client.
+                Aceste date nu sunt memorate in baza de date. Daca utilizatorul alege un produs, pe partea de client sunt
+                preluate in JavaScript informațiile afișate în pagina și trimise la server printr-o cerere facuta cu
+                ajutorul tehnologiei AJAX.
             </p>
             <p>
                 Pentru cerea :
@@ -162,10 +162,10 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <p>
                 Tot pe partea de preluare de informații privitoare la categoriile alese de noi, am ales sa facem scraping
                 de pe situri de specialitate (<a href ="https://www.emag.ro/">Emag</a>, <a href ="https://altex.ro/">
-                Altex</a>, <a href ="https://www.cel.ro/">CEL</a>). Am stocat inforații genrice în
-                baza de date locala deoarece sa am realizat ca sa facem scraping dinamic la fiacre incarcare de pagina
-                dureaza destul de mult. Pentru consistența am decis ca baza de date sa fie updata constant. Din cauza ca
-                scraping-ul conuma timp am decis să nu updatam toate produsele din baza de date data, ci atunci cand un
+                Altex</a>, <a href ="https://www.cel.ro/">CEL</a>). Am stocat inforații generice în
+                baza de date locala deoarece am realizat ca daca facem scraping dinamic la fiacre incarcare de pagina
+                dureaza destul de mult. Pentru consistența am decis ca baza de date sa fie updatata constant. Din cauza ca
+                scraping-ul consuma timp, am decis să nu updatam toate produsele din baza de date data, ci atunci cand un
                 utilizator alege un produs se updateaza doar produsul respectiv.
             </p>
             <p>
@@ -178,7 +178,7 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <h4>Al doilea server</h4>
             <p>
                 Pentru a nu incarca foarte mult baza de date si pentru a distribui munca, am constuit un la doilea server
-                care sa se ocupe excusiv cu managerierea produselor alese de utilizatori pentru comparare. Sub forma
+                care sa se ocupe exclusiv cu managerierea produselor alese de utilizatori pentru comparare. Sub forma
                 uni API REST, am expus posibilitatea ca utilizatorii cu cont sa trimita direct poroduse pentru a le compara.
                 Ei sunt recunoscuti pe baza unei chei oferite in cont. Acest server se ocupa si cu scraping-ul pentru
                 detaliile produselor. Pentru stocarea datelor se foloseste o baze de date aliniate paradigmei NoSQL in
@@ -195,7 +195,7 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <h4>Modulul de administrare</h4>
             <p>
                 Am inceput prin a face o interfata pe partea de client pentru administratorul aplicatiei. Acesta se conecteaza
-                cu o parola specifica . I se ofera accesul la baza de date a aplicației, poaye vizualiza mesajele lasate
+                cu o parola specifica . I se ofera accesul la baza de date a aplicației, poate vizualiza mesajele lasate
                 de utilizatori prin formularul de contact (poate alege sa le vizualizeze pe toate sau doar pe cele noi).
                 De asemnenea, poate schimba parola contului de administrator.
             </p>
@@ -210,8 +210,8 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
             <p>
                 Pentru partea de tastare am apelat la PHPUnit care este un cadru de testare pentru limbajul de programare
                 PHP. Am scris teste pentru metodele din cadrul claselor Model, testând in felul acesta atat partea
-                de citrie și scriere a datelor din baza de date, cat și logica acestora. Deoarece funcțiile din modele
-                fac trimtit cereri la al doiela server am testat si funcționalitatea API-ului acestuia. Se verifica atat
+                de citire și scriere a datelor din baza de date, cat și logica acestora. Deoarece funcțiile din modele
+                trimit cereri la al doilea server, am testat si funcționalitatea API-ului acestuia. Se verifica atat
                 tipul intors, cat si valoarea returnata prin funcțiile de assert.
             </p>
         </section>
@@ -225,9 +225,9 @@ https://open.api.ebay.com/shopping?callname=FindProducts&responseencoding=XML&ap
         <section id="paginile html">
             <h3>Pagnile HTML</h3>
             <p>
-                Fiecare pagina se cere prin metoda GET contorller-ul fiind numele paginii si actiunea tot numele
-                pagnii si altii paramtertii specifici in query string. De exempul pentru preluarea pagnii doi de
-                telefoane de pe emag se trimite cerea http :
+                Fiecare pagina se cere prin metoda GET, contorller-ul fiind numele paginii si actiunea tot numele
+                pagnii si alti parametri specifici in query string. De exemplu, pentru preluarea paginii doi de
+                telefoane de pe emag se trimite cererea http:
             </p>
             <figure typeof="schema:SoftwareSourceCode">
                     <pre>
@@ -238,10 +238,10 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
         <section id="Api Rest">
             <h3>API Rest-oferit de al doilea server</h3>
             <p>
-                Autentificare : pentru recunoasterea orcarei cereri se va utiliza campul "Session" din Heardes
+                Autentificare: pentru recunoasterea orcarei cereri se va utiliza campul "Session" din Heardes
                 unde se va completa cu id-ul din contul utilizatorului. Serverul principal are un id predefinit
-                in fisierul de configurare app.ini pentru ca al doilea server sa-l recunoască. Anumite operațiuni
-                ca adăugarea de useri noi se face doar la cereile care conțin id-ul serverului principal.
+                in fisierul de configurare app.ini pentru ca al doilea server sa-l recunoască. Anumite operațiuni,
+                ca adăugarea de useri noi, se face doar la cereile care conțin id-ul serverului principal.
             </p>
             <p>
                 Pentru o cerere executata cu succes se va intoarce codul 200.
@@ -251,11 +251,11 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                 <p>
                     Verbul HTTP folosit este POST. Ruta aceasta este utilizata pentru adaugarea unui produs nou la lista
                     de comparare a utilizatorului care face cererea. Cerea trebuie sa contina un body de tip json care sa
-                    aiba urmatoarele campuri : "category" ,"title", "link","img_link", "source", "details", "price"(va
-                    fi meționat in lei ).
+                    aiba urmatoarele campuri: "category" ,"title", "link","img_link", "source", "details", "price"(va
+                    fi meționat in lei).
                 </p>
                 <p>
-                    Un exempul de cerere :
+                    Un exempul de cerere:
                 </p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
@@ -263,7 +263,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                     </pre>
                 </figure>
                 <p>
-                    Un exempul de raspuns in caz de succes :
+                    Un exemplu de raspuns in caz de succes:
                 </p>
                 <figure typeof="schema:SoftwareSourceCode">
                     <pre>
@@ -274,30 +274,30 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                     </pre>
                 </figure>
                 <p>
-                    Categoriile principale oferite de aplicatie sunt : telefoane, calculatoare, casti si electrocasnice,
+                    Categoriile principale oferite de aplicatie sunt: telefoane, calculatoare, casti si electrocasnice,
                     dar se pot adauga și produse din alte tipuri și vor fi asezate in aplicație sub categoria "diverse".
                     Pentru telefoane, calculatoare și casti am dezvoltat o standaridizare a detaliilor pentru a putea
                     fi evaluate automat de aplicație.
                 </p>
                 <p>
-                    Pentru categoria de calculatoare avem urmatoarele taguri de detalii : Tip procesor, Numar nuclee,
+                    Pentru categoria de calculatoare avem urmatoarele taguri de detalii: Tip procesor, Numar nuclee,
                     Procesor grafic integrat, Capacitate memorie(GB), Tip memorie, Tip stocare, Capacitate SSD(GB)
-                    ,Tip placa video, Tehnologii audio, Porturi ,Wi-Fi, Bluetooth, Sistem de operare.
+                    ,Tip placa video, Tehnologii audio, Porturi, Wi-Fi, Bluetooth, Sistem de operare.
                 </p>
                 <p>
-                    Pentru categoria de telefoane avem urmatoarele taguri de detalii : Sloturi SIM ,3G , 2G, 4G
-                    Memorie interna(GB), Dimensiune ecran(inch), Tip ecran ,Numar nuclee, Sistem de operare,
-                    Cemera principala(MP), Senzori ,Memorie RAM(GB), Rezolutie ecran.
+                    Pentru categoria de telefoane avem urmatoarele taguri de detalii: Sloturi SIM, 3G, 2G, 4G
+                    Memorie interna(GB), Dimensiune ecran(inch), Tip ecranNumar nuclee, Sistem de operare,
+                    Cemera principala(MP), Senzori, Memorie RAM(GB), Rezolutie ecran.
                 </p>
                 <p>
-                    Pentru categoria de casti avem urmatoarele taguri de detalii :Tip, Tehnologie,Raspuns in frecventa
-                    ,Impedanta (ohm), Diametru difuzor (mm).
+                    Pentru categoria de casti avem urmatoarele taguri de detalii: Tip, Tehnologie, Raspuns in frecventa
+                    , Impedanta (ohm), Diametru difuzor (mm).
                 </p>
             </section>
             <section id="PUT">
                 <h4>End-Ponit: /UpdatePrice</h4>
                 <p>
-                    Verbul HTTP folosit este PUT. Ruta aceasta este utilizata pentru update la pretului unui produs
+                    Verbul HTTP folosit este PUT. Ruta aceasta este utilizata pentru update la pretul unui produs
                     din lista de comparare a utilizatorului. Cererea trebuie sa fie insotita de un body de tip json
                     care sa conțina campurile "id" (id-ul produsului primit cand produsul este adugat) si "new_price".
                 </p>
@@ -314,15 +314,15 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                 <h4>End-Ponit: /DeleteProduct?id=id-ul_produsului </h4>
                 <p>
                     Verbul HTTP folosit este DELETE. Ruta aceasta este utilizata pentru stergerea unui anumit produs din
-                    lista de comparare a utilizatorului. În query sting se competa cu parametru id care este id-ul unic
-                    al produsului care va fi sters.
+                    lista de comparare a utilizatorului. În query sting se completeaza cu parametrul id care este id-ul unic
+                    al produsului ce va fi sters.
                 </p>
             </section>
             <section id="GET1">
                 <h4>End-Ponit: /GetMyProducts</h4>
                 <p>
                     Verbul HTTP folosit este GET. Ruta aceasta este utilizata pentru returnarea tuturor produselor din lista
-                    utilizator. Utilizatorul va fi recunoscut pe v=baza campului "Session" din Heardes.
+                    utilizatorului. Utilizatorul va fi recunoscut pe baza campului "Session" din Heardes.
                 </p>
                 <p>
                     Rapunsul va fi un json. Un exempul de raspuns in caz de succes:
@@ -354,7 +354,7 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
                 <h4>End-Ponit: /GetProductsByCategory?category=categoie </h4>
                 <p>
                     Verbul HTTP folosit este GET. Ruta aceasta este utilizata pentru returnarea  produselor dintr-o anumita
-                    categorie din lista utilizator. Categoria va fi menționata prin paramaterul "category" din query string.
+                    categorie din lista utilizatorului. Categoria va fi menționata prin paramaterul "category" din query string.
                 </p>
                 <p>
                     Rapunsul va fi un json. Un exempul de raspuns in caz de succes:
@@ -394,8 +394,8 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
     <section id="PHP">
         <H3>Limbajul de programare pentru server</H3>
         <p>
-            Am decis sa folosim PHP pentru implementarea serverului deoarece este un limbaj optimp pentru devoltarea aplicațiilor
-            web fara folosirea frameworkurilor.
+            Am decis sa folosim PHP pentru implementarea serverului deoarece este un limbaj optimp pentru dezvoltarea aplicațiilor
+            web fara folosirea framework-urilor.
         </p>
         <p>
             Pentru instalarea de biblioteci externe am apelat la <a href="https://getcomposer.org/">Composer</a>. Cu care am integrat
@@ -419,10 +419,10 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
 
     </section>
     <section id="db">
-        <H3>Baza de date </H3>
+        <H3>Baza de date</H3>
         <p>
             Am folosit baza de date oferita de XAMPP (phpMyAdmin) pentru serverul principal deoarece e foarte usor de utilizat in
-            combinație cu limbajul PHP . Pentru memorarea produselor, preluate din surse diverse, pe serverul la doilea am optat
+            combinație cu limbajul PHP. Pentru memorarea produselor, preluate din surse diverse, pe serverul al doilea am optat
             pentru o varinata de baze de date NoSQL, MongoDb, deoarece ne oferea mai multa flexibilitatea in memorarea
             documenteleor.
         </p>
@@ -432,15 +432,15 @@ http://localhost:800/produse/produse?categorie=telefoane&sursa=produse_emag&page
 </section>
 <section id="contributions">
         <h2>Contributii</h2>
-        <p>Dragos Olteanu s-a ocupat in principal de partea de scraping( crearea scripturilor pentru crearea bazelor de date pentru produse si popularea acestora ,
-            scraping pe informatiile generale care au fost afisatein pagina de produse, functia care returneaza din baza de date produsele si afisarea acestora in
-            pagina( generare HTML si stilizare in CSS) etc)</p>
+        <p>Dragos Olteanu s-a ocupat in principal de partea de scraping (crearea scripturilor pentru crearea bazelor de date pentru produse si popularea acestora,
+            scraping pe informatiile generale care au fost afisate in pagina de produse, functia care returneaza din baza de date produsele si afisarea acestora in
+            pagina (generare HTML si stilizare in CSS) etc)</p>
         <p>Birleanu Rebeca a lucrat in mare parte la partea de back-end: crearea serverului principal dupa modelul MVC, partea de inregistrare si logare, logarea cu
-            contul de google, crearea celui de-al doilea server si tot ce tine de el(lucrul cu mongoDb, scraping pentru detaliile produselor, comunicarea dintre cele doua servere etc) ,
+            contul de google, crearea celui de-al doilea server si tot ce tine de el(lucrul cu mongoDB, scraping pentru detaliile produselor, comunicarea dintre cele doua servere etc),
             integrarea tehnologiilor AJAX pe partea de client, generarea feed-ului RSS, partea de apeleare API eBay etc</p>
-        <p>Lupancu Camelia a avut in mare parte responsabilitatea pertii de front end, e a creat aproape toate pagnilie de continut static. S-a ocupat de parsarea
-        fiserului XML intors de API-ul eBay. A facut partea de font end ( javaScript ) in pagina de comparare cu toate functiile de sortare si comparare si generarea
-        a codului html si css.</p>
+        <p>Lupancu Camelia a avut in mare parte responsabilitatea partii de front-end, ea a creat aproape toate pagnilie de continut static. S-a ocupat de parsarea
+        fiserului XML intors de API-ul eBay. A facut partea de font end (JavaScript) in pagina de comparare cu toate functiile de sortare si comparare si generarea
+        codului HTML si CSS.</p>
 </section>
 
 
