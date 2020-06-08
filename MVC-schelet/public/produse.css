@@ -1,73 +1,71 @@
-*{
+* {
   padding: 0;
   margin: 0;
   list-style: none;
   text-decoration: none;
 }
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color:  #e0ac1c;
+  font-family: "Roboto", sans-serif;
+  background-color: #e0ac1c;
 }
 
-section{
+#check:checked ~ section {
+  margin-left: 250px;
+}
+
+section {
   background: linear-gradient(182deg, #2c292f, #e0ac1c);
   background-position: center;
   background-size: cover;
   height: 100vh;
-  transition: all .5s;
+  transition: all 0.5s;
 }
-
 
 /*meniul de sus*/
 .nav-menu {
   background: #2c292f;
-  height:51.5px;
+  height: 51.5px;
   width: auto;
 }
 
-ul.nav-menu{
-  padding-left:100px;
+ul.nav-menu {
+  padding-left: 100px;
   padding-right: 100px;
   border-bottom: 1px black solid;
 }
 
-ul.nav-menu li a{
-  float:right;
-  height:50px;
-  line-height:55px;
-  color:#ffffff;
+ul.nav-menu li a {
+  float: right;
+  height: 50px;
+  line-height: 55px;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 20px;
   box-sizing: border-box;
-  border-left:  1px  #1d3030 solid;
+  border-left: 1px #1d3030 solid;
   width: 200px;
-
 }
-ul.nav-menu li a:hover{
-  color:#92999f;
-   background: rgb(47, 79, 90);
+ul.nav-menu li a:hover {
+  color: #92999f;
+  background: rgb(47, 79, 90);
 }
 
-
-#check:checked ~ section{
+#check:checked ~ section {
   margin-left: 250px;
 }
 
-
-
-
 .grid-container {
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   padding: 10px;
   /*padding-left: 5%;
   padding-right: 5%;
-  */column-gap: 7vh;
+  */
+  column-gap: 7vh;
   row-gap: 4.3vh;
   grid-template-rows: 500px;
 }
-
 .grid-item {
   background-color: whitesmoke;
   padding: 10px;
@@ -77,15 +75,15 @@ ul.nav-menu li a:hover{
   --font-size: 30px;
   text-align: center;
   line-height: normal;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 .grid-item:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 .compara {
   display: inline-block;
+  position: absolute;
   border: 2px outset orange;
   border-radius: 50%;
   background-color: whitesmoke;
@@ -94,11 +92,12 @@ ul.nav-menu li a:hover{
   display: inline-block;
   cursor: pointer;
 }
+
 .compara:hover {
   background-color: orange;
 }
 .compara .hovtip {
-  display:none;
+  display: none;
   padding-top: 2px;
 }
 .compara:hover .hovtip {
@@ -109,12 +108,12 @@ ul.nav-menu li a:hover{
   background-color: black;
   color: white;
   text-align: center;
-  width:100px;
-  margin-left:-140px;
+  width: 100px;
+  margin-left: -140px;
   border-radius: 20px;
   padding: 5px;
   position: absolute;
-  bottom:0; /*la nivelul patratului*/
+  bottom: 0; /*la nivelul patratului*/
   z-index: 1;
   opacity: 0;
   transition: opacity 1s; /*animatie aici + in hover*/
@@ -143,41 +142,50 @@ ul.nav-menu li a:hover{
   mix-blend-mode: multiply;
 }
 
-.grid-item .review{
+.grid-item .review {
   text-decoration: none;
-  color:darkblue;
+  color: darkblue;
 }
-.grid-item .review:hover{
-  color:blueviolet;
+.grid-item .review:hover {
+  color: blueviolet;
 }
 
 .grid-item .pret {
   color: rgb(200, 100, 0);
-  font-size:30px;
+  font-size: 30px;
 }
 
 .grid-item .rating::before {
-  content: '★★★★★';
+  content: "★★★★★";
   --width: calc(var(--rating) / 5 * 100%);
   /*rating e intre 0 si 5, 20% reprezinta o stea*/
-  background: linear-gradient(to right, rgb(255, 200, 0) var(--width), rgb(15, 15, 15) var(--width));
+  background: linear-gradient(
+    to right,
+    rgb(255, 200, 0) var(--width),
+    rgb(15, 15, 15) var(--width)
+  );
   /* prima culoare e cea de umplere, a doua cea de fundal (rating 5=5 stele galbene)*/
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: block;
-  font-size: calc(var(--font-size)*2);
+  font-size: calc(var(--font-size) * 2);
   /*facem stelele duble fata de text*/
 }
 
-.grid-item .în-stoc{
-  color:green;
+.în-stoc,
+.În-stoc,
+.In-Stoc {
+  color: green;
 }
-.grid-item .stoc-limitat{
-  color:yellow;
+.Stoc-limitat,
+.stoc-limitat,
+.Disponibil-la-precomanda {
+  color: yellow;
 }
-.grid-item .ultimul{
-  color:red;
+.grid-item .ultimul {
+  color: red;
 }
+
 .collapsible {
   background-color: #ddd;
   padding: 20px;
@@ -190,8 +198,8 @@ ul.nav-menu li a:hover{
   font-size: 15px;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.deschis, .collapsible:hover {
+.deschis,
+.collapsible:hover {
   background-color: #ccc;
 }
 .none {
@@ -200,25 +208,25 @@ ul.nav-menu li a:hover{
 
 .content {
   padding: 0 1em;
-  max-height:0;
+  max-height: 0;
   overflow: hidden;
   background-color: white;
   transition: max-height 0.2s ease-out;
 }
 
-.filtre{
-  padding:50px 5%;
-  max-width:20%;
+.filtre {
+  padding: 50px 5%;
+  max-width: 20%;
 }
 #fila {
- border-top-left-radius: 1.5vh;
- border-top-right-radius: 1.5vh;
+  border-top-left-radius: 1.5vh;
+  border-top-right-radius: 1.5vh;
 }
 #filb {
   border-bottom-left-radius: 1.5vh;
   border-bottom-right-radius: 1.5vh;
 }
-.filtre .container{
+.filtre .container {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -230,61 +238,57 @@ ul.nav-menu li a:hover{
   border-radius: 1.5vh;
 }
 
-
 /*The products table*/
-
-table{
-    border: 1px solid black;
-    border-spacing: 5px;
-    background-color: #2c292f;
-    color: #ebc660;
-    width: 70%;
-    margin-left: 40px;
-    font-family: "Times New Roman", Times, serif;
+table {
+  border: 1px solid black;
+  border-spacing: 5px;
+  background-color: #2c292f;
+  color: #ebc660;
+  width: 70%;
+  margin-left: 40px;
+  font-family: "Times New Roman", Times, serif;
 }
-.cellWidth ul{
+.cellWidth ul {
   width: 350px;
 }
-.productImg img{
+.productImg img {
   width: 330px;
   height: 400px;
 }
 
-td{
-    border: 1px solid black; 
-    padding: 15px;
-    text-align: left;
-    vertical-align: middle;
-    color: black;
-    background-color: #ebc660;
+td {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  color: black;
+  background-color: #ebc660;
 }
-td:hover{
+td:hover {
   background-color: #e0ac1c;
 }
 
-
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
 }
 
-
 @media only screen and (max-width: 640px) {
-  .filtre{
-   padding: 15%;
-   width: 150px;
-   padding-bottom: 0px;
-  } 
-  .filtre .content{
-   padding: 15%;
-   width: 150px;
-   padding-bottom: 0px;
-  } 
-  .filtre .container{
-   margin-bottom: 12px;
-   font-size: 15px;
-   width: 150px;
- }
- .filtre .ratm .content {
-   width: 150px;
- }
+  .filtre {
+    padding: 15%;
+    width: 150px;
+    padding-bottom: 0px;
+  }
+  .filtre .content {
+    padding: 15%;
+    width: 150px;
+    padding-bottom: 0px;
+  }
+  .filtre .container {
+    margin-bottom: 12px;
+    font-size: 15px;
+    width: 150px;
+  }
+  .filtre .ratm .content {
+    width: 150px;
+  }
 }
