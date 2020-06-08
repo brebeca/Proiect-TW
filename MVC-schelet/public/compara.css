@@ -305,24 +305,6 @@ h3.categorie{
     text-decoration: none;
     cursor: pointer;
 }
-#cmpr {
-    display: table;
-    border-collapse: collapse;
-}
-#cmpr .als {
-    padding-left: 4px;
-    border-right: 1px solid lightgray;
-}
-.pdx {
-    padding: 10px;
-}
-#cmpr .asl {
-    padding-left: 4px;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-    font-size: 2vh;
-    color: black;
-    border-bottom: 1px solid lightgray;
-}
 grid-item table:after {
     content:'';
     clear:both;

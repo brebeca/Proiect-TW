@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+<div id="main">
 <?php
   include HTMLS . 'side-bar.phtml';
   include HTMLS . 'nav-bar.phtml';
@@ -43,8 +43,8 @@
   <div id="produseSelectate" class="modal-content">
      <span class="inchide">&times;</span>
   </div>
-</div> 
-
+</div>
+</div>
 <script src="/JS-uri/navro.js"></script>
 <script >
   if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {

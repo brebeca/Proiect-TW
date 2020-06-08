@@ -1,4 +1,6 @@
 function sterge(id_produs,id_user) {
+    let el = document.getElementById(id_produs);
+    el.remove();
     let url = new URL('http://localhost:800/produse/stergeProdus');
     let params = {
         product_id: id_produs,

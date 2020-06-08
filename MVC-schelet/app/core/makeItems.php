@@ -44,7 +44,6 @@ function makeItems()
                               $produs['imagine'], $produs['pret'],
                               $produs['disponibilitate'],$_GET["categorie"]);
             }
-           print_r($produse); 
         }
     }
 }

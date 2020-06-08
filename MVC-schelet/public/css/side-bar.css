@@ -74,6 +74,7 @@ label #cancel{
 
     .sidebar  {
         width: 40%;
+        height: 50px;
     }
     .sidebar {
         position: fixed;

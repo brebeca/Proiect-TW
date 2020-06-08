@@ -48,7 +48,6 @@
             for (let i in produseArray) {
                 productsStr += getProductHtmlModal(produseArray[i], id);
             }
-            
             productsStr += `<table>`;
             for(let key in product1.details){
                     productsStr += `<tr>`;
@@ -66,6 +65,9 @@
             return productsStr;
         }
 
+        // Get the modal
+        var modal = document.getElementById("modalProduse");
+        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("inchide")[0];
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
@@ -86,7 +88,7 @@
                 }
                 if (produseSelectate.length === 2) {
                         document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[1], produseSelectate[0]);
-                        document.getElementById("modalProduse").style.display = "inline";
+                    document.getElementById("modalProduse").style.display = "block";
                     produseSelectate.length = 0;
                 }
             }
@@ -114,9 +116,9 @@
             }
 
             function getProductHtml(product, user_id) {
-                return `<div class="grid-item" onclick="memorareProdusSelectat(${product.id})"> 
+                return `<div class="grid-item" id="${product.id}"> 
                   <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
-                  <table>
+                  <table onclick="memorareProdusSelectat(${product.id})" >
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
                     <td>
@@ -133,12 +135,18 @@
             }
 
             function getProductHtmlModal(product, user_id) {
-                return `<div class="grid-item"> 
-                    <img class="aimg" src= "${product.img_link}"></img>
+                return `<div class="grid-item" > 
+                  <table>
+                   <tr>
+                    <td><img class="aimg" src= "${product.img_link}"></img><td>
+                    <td>
                      <ul class="pret">
                        <li>Pret: ${product.price} </li>
                        <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>
                      </ul>
+                    </td>
+                   </tr>
+                  </table>
                   <br>
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;

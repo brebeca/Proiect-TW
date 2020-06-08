@@ -213,18 +213,21 @@ class ProduseModel extends Model{
 
     }
     public  function getProdusDb($id,$categorie,$sursa){
-            $sql = "SELECT * FROM ".$categorie." where id = :id ";
-            if($sursa=="emag")
+        if($categorie=='casti'||$categorie=='calculatoare'||$categorie=='electrocasnice'||$categorie=='telefoane') {
+            $sql = "SELECT * FROM " . $categorie . " where id = :id ";
+            if ($sursa == "emag")
                 $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
-            else if($sursa=="altex")
+            else if ($sursa == "altex")
                 $cerere = $this->bd3->obtine_conexiune()->prepare($sql);
-            else if($sursa=="cel")
+            else if ($sursa == "cel")
                 $cerere = $this->bd4->obtine_conexiune()->prepare($sql);
             $cerere->execute([
-                'id'=>$id
+                'id' => $id
             ]);
-            $result=$cerere->fetch();
+            $result = $cerere->fetch();
             return $result;
+        }
+        else return false;
     }
     public function trimiteProdus($id,$params){
         $cURLConnection = curl_init();
