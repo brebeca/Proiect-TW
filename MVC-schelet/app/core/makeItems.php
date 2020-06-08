@@ -1,9 +1,15 @@
 <?php
 require_once('core/Scrapping.php');
+/**
+ * in functie de request funtia  afiseaza produsele dorite
+ * daca sunt setati parametrii pentru cautare epleaza functia de cautare in baza de date si pe cea care returneaza produsele intoarse de Ebay
+ * daca  sunt setati parametrii pentru cautarea unui anumit tip de produs dintr-o anumita sursa se epeleaza fnuctia care intoarce produsele
+ * apoi pe vectorii de produse intorsi se apeleaza functiile de afisare
+ */
 function makeItems()
 {
     if (isset($_GET["nume-produs"]) && isset($_GET["nr-produse"])) {
-        /*$produse = Select::get_products_by_name($_GET["nume-produs"],"produse_emag");
+        $produse = Select::getProductsByName($_GET["nume-produs"],"produse_emag");
         if ($produse == false)
             header("Location:/index.php?scrap_esuat=1");
         foreach ($produse as $i => $values) {
@@ -13,15 +19,16 @@ function makeItems()
                     $value['disponibilitate'],$i);
 
             }
-        $produse = Select::get_products_by_name($_GET["nume-produs"],"produse_altex");
+        $produse = Select::getProductsByName($_GET["nume-produs"],"produse_altex");
         foreach ($produse as $i => $values) {
             foreach ($values as  $value)
                 display_altex($value['id'], $value['nume'], $value['link'],
                     $value['imagine'],  $value['pret'],
                     $value['disponibilitate'],$i);
-        }*/
+        }
         include VIEW . 'produse/search_ebay.phtml';
-    } else if (isset($_GET["categorie"]) && isset($_GET["sursa"])) {
+    }
+    else if (isset($_GET["categorie"]) && isset($_GET["sursa"])) {
         $produse = Select::scrapping($_GET["categorie"], $_GET["sursa"]);
         if ($produse == false)
             header("Location:/index.php?scrap_esuat=1");
@@ -44,7 +51,6 @@ function makeItems()
                               $produs['imagine'], $produs['pret'],
                               $produs['disponibilitate'],$_GET["categorie"]);
             }
-           print_r($produse); 
         }
     }
 }

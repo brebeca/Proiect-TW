@@ -55,10 +55,9 @@ class GetProducts
             $elect=$db->getProductsByBategory('electrocasnice',$session);
             $calc=$db->getProductsByBategory('calculatoare',$session);
             $div=$db->getProductsByBategory('search',$session);
-            $imbr=$db->getProductsByBategory('imbracaminte',$session);
             $casti=$db->getProductsByBategory('casti',$session);
             $produse=array("electrocasnice"=>$elect,"telefoane"=>$tel,"calculatoare"=>$calc,
-                "diverse"=>$div,"imbracaminte"=>$imbr,"casti"=>$casti);
+                "diverse"=>$div,"casti"=>$casti);
             http_response_code(200);
             echo json_encode(array("Success" => "true","produse"=>$produse));
     }

@@ -80,9 +80,9 @@ class DBManagement
         return false;
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct()
     {
-       $this->products_collection->deleteOne(array("id"=>intval($id)));
+       $this->products_collection->deleteMany([]);
     }
 
     public function updatePrice($id, $new_price)
@@ -93,7 +93,8 @@ class DBManagement
 
     public function getProductsByBategory($category,$session)
     {
-        $products=$this->getProductsByName($category,$session);
+        //$products=$this->getProductsByName($category,$session);
+        $products=[];
         $result=$this->products_collection->find(array('category'=>$category,'owner'=>$session))->toArray();
         foreach ($result as $item){
             array_push($products,$item);

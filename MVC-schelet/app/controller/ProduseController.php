@@ -43,16 +43,18 @@ class ProduseController extends Controller {
             $source='altex';
 
         $produs=$this->model->getProdusDb($_GET['index'], $_GET['category'],$source);
-        if(isset($produs['rating']))
-            $rating=$produs['rating'];
-        else $rating=0;
-        $de_trimis=array("category"=>$_GET['category'],"title"=>$produs['nume'],"link"=>$produs['link'],"img_link"=>$produs['imagine']
-        ,"price"=>$produs['pret'],"rating"=>$rating,
-            "source"=>$source);
-       // print_r($de_trimis);
-        $this->model->trimiteProdus2($de_trimis,$id);
-       // $this->model->updateProdus($_GET['source'],$_GET['category'],$_GET['index'],$produs['link']);
-
+        if($produs==false)
+        {}
+        else {
+            if(isset($produs['rating']))
+                $rating=$produs['rating'];
+            else
+                $rating=0;
+            $de_trimis=array("category"=>$_GET['category'],"title"=>$produs['nume'],"link"=>$produs['link'],"img_link"=>$produs['imagine']
+            ,"price"=>$produs['pret'],"rating"=>$rating, "source"=>$source);
+            $this->model->trimiteProdus2($de_trimis,$id);
+            //$this->model->updateProdus($_GET['source'],$_GET['category'],$_GET['index'],$produs['link']);
+        }
     }
 
     public function RSS(){

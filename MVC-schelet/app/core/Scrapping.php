@@ -1,7 +1,14 @@
 <?php
 class Select 
 {
-  public static function scrapping($categorie,$db){
+    /**
+     * @param $categorie
+     * @param $db
+     * @return mixed
+     * returneaza produsele obtinute prin scraping meomorate in baza de date
+     * categoria este reprezentata prin numele tabelului
+     */
+    public static function scrapping($categorie,$db){
    $servername = "localhost";
     $username = "root";
     $password = "";
@@ -35,13 +42,12 @@ class Select
     $output = $rezultat->fetch_all(MYSQLI_ASSOC);
     return $output;
   }
-    public static function get_products_by_name($nume,$db_name){
+    public static function getProductsByName($nume,$db_name){
         $categorii=array('telefoane','calculatoare','electrocasnice');
         $servername = "localhost";
         $username = "root";
         $password = "";
         $con = new mysqli($servername, $username, $password, $db_name);
-
         if ($con->connect_error) {
             die("Nu s-a reusit conectarea la baza de date: " . $con->connect_error);
         }

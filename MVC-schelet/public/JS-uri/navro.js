@@ -2,7 +2,8 @@
 function navroll(state) {
     if(state === true)
     {
-        document.getElementById("main").style.marginLeft = "250px";
+        if(window.screen.height>=1024)
+            document.getElementById("main").style.marginLeft = "250px";
     }
     else
         document.getElementById("main").style.marginLeft = "0px";

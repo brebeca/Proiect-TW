@@ -2,7 +2,14 @@
 
 //require 'Model.php';
  class ModelRegister extends Model{
-
+     /**
+      * @param $username
+      * @param $password
+      * @param $email
+      * @return bool|string
+      * se inseraza in tabela users o noua inregistrare cu indormatiile noului user
+      * se semnaleaza seuccesul sau esecul prin forma de return
+      */
     public function addUser($username, $password, $email){ //create
         $id=uniqid();
         $sql = "INSERT INTO users (username,password, email,session) VALUES (:username, :password, :email, :id)";
@@ -19,6 +26,11 @@
         }
         else return false;
     }
+
+     /**
+      * @param $cookie
+      * se trimite o cerere la al doilea server pentru a inregistra un user dupa un cookie
+      */
     public function sendCookie($cookie){
         $postData = array(
             'Cookie' => $cookie
@@ -41,6 +53,14 @@
         echo $response;
 
     }
+
+     /**
+      * @param $email
+      * @return bool|mixed
+      * se verifica in baza de date daca exista o inregistrare cu emailul din parametrii
+      * daca exista se intoarce sesiunea utilizatorului
+      * altfel se intoarce true
+      */
     public function sePoateIregistra( $email){
         $sql = "SELECT * FROM users where  email = :email ";
         $cerere = $this->bd->obtine_conexiune()->prepare($sql);

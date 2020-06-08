@@ -1,7 +1,15 @@
         var id;
         var myArr;
         var produseSelectate = Array();
-
+        var modal = document.getElementById("modalProduse");
+        var span = document.getElementsByClassName("inchide")[0];
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target === document.getElementById("modalProduse"))
+                modal.style.display = "none";
+        }
         function load() {
             let url = new URL('http://localhost:800/produse/incarcaProduse');
             let params = {
@@ -15,6 +23,7 @@
             {
                 if(http.readyState === 4 && http.status === 200) {
                     myArr = JSON.parse(http.responseText);
+                    console.log(myArr);
                     if (myArr["Success"] === "true") {
                         document.getElementById('products').innerHTML = afisareProduse(myArr);
                     }
@@ -42,54 +51,98 @@
         }
 
         function afisareProduseModal(produseArray, product1, product2) {
+            let conectivitate=['Nu','Da'];
             let productsStr = '';
-            console.log(product1);
-            console.log(product2);
+            let scorProd1=0;
+            let scorProd2=0;
             for (let i in produseArray) {
                 productsStr += getProductHtmlModal(produseArray[i], id);
             }
-            
-            productsStr += `<table>`;
+            productsStr += `<table style="color: black">`;
             for(let key in product1.details){
-                    productsStr += `<tr>`;
-                    if (product2.details[key] === null) 
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
-                                        <td>-</td>`;
-                    else
-                        productsStr += `<td>` + key + `</td>
-                                        <td>` + product1.details[key] + `</td>
+                let decorare1=`style="background-color:#85bb65"`;
+                let decorare2=`style="background-color:#85bb65"`;
+                productsStr += `<tr><td><strong>` + key + `</strong></td>`;
+                if(product2.details[key]!==undefined) {
+                    if (typeof (product1.details[key]) == 'number') {
+                        if (product1.details[key] > product2.details[key]) {
+                            decorare2 = ``;
+                            scorProd1++;
+                        } else if (product1.details[key] < product2.details[key]) {
+                            decorare1 = ``;
+                            scorProd2++;
+                        }
+                        if (key === '4G' || key === '2G' || key === '3G') {
+                            productsStr += `<td ` + decorare1 + `>` + conectivitate[product1.details[key]] + `</td>
+                                        <td ` + decorare2 + `>` + conectivitate[product2.details[key]] + `</td>`;
+                        } else {
+                            productsStr += `<td ` + decorare1 + `>` + product1.details[key] + `</td>
+                                        <td ` + decorare2 + `>` + product2.details[key] + `</td>`;
+                        }
+                    }
+                    else if (key == 'Senzori') {
+                            if (product1.details[key].Numar > product2.details[key].Numar) {
+                                decorare2 = ``;
+                                scorProd1++;
+                            } else if (product1.details[key].Numar < product2.details[key].Numar) {
+                                decorare1 = ``;
+                                scorProd2++;
+                            }
+                            productsStr += `<td ` + decorare1 + `>` + product1.details[key].Senzori + `</td>
+                                        <td ` + decorare2 + `>` + product2.details[key].Senzori + `</td>`;
+                            }
+                    else if (key == 'Rezolutie video') {
+                            decorare1 = ``;
+                            decorare2 = ``;
+                            if (product1.details[key].includes('4K')) {
+                                decorare1 = `style="background-color:#85bb65"`;
+                                scorProd1++;
+                            } else if (product2.details[key].includes('4K')) {
+                                decorare2 = `style="background-color:#85bb65"`;
+                                scorProd2++;
+                            }
+                            productsStr += `<td ` + decorare1 + `>` + product1.details[key] + `</td>
+                                        <td ` + decorare2 + `>` + product2.details[key] + `</td>`;
+                        }
+                    else {
+                            productsStr += `<td >` + product1.details[key] + `</td>
                                         <td>` + product2.details[key] + `</td>`;
-                    productsStr += `</tr>`;
+                        }
                 }
+                else {
+                    productsStr += `<td >` + product1.details[key]+ `</td>
+                                        <td >-</td>`;
+                }
+                    productsStr += `</tr>`;
+            }
+            let prod2Rezultat = ``;
+            let prod1Rezultat = ``;
+            if(scorProd2>scorProd1) {
+                 prod2Rezultat = `CASTIGATOR`;
+                 prod1Rezultat = `mai slab`;
+            }else if(scorProd2<scorProd1) {
+                 prod1Rezultat = `CASTIGATOR`;
+                 prod2Rezultat = `mai slab`;
+            }
+            else {
+                 prod1Rezultat = `Egal`;
+                 prod2Rezultat = `Egal`;
+            }
+            productsStr+=`<tr style="font-size: 20px; size:A3;padding-top: 8px; background: #005cbf;"><td ><strong>Rezultat</strong></td><td>`+prod1Rezultat+`</td><td>`+prod2Rezultat+`</td></tr>`;
             productsStr += `</table>`;
             return productsStr;
         }
-
-        // Get the modal
-        var modal = document.getElementById("modalProduse");
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("inchide")[0];
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target === document.getElementById("modalProduse")) 
-                modal.style.display = "none";
-        }
-
-            function memorareProdusSelectat(produs_id) {
+  function memorareProdusSelectat(produs_id) {
                 for (let i in myArr.produse) {
                     for (let j in myArr.produse[i]) {
                         if (myArr.produse[i][j].id === produs_id)
                             produseSelectate.push(myArr.produse[i][j]);
                     }
                 }
+                console.log(produs_id);
                 if (produseSelectate.length === 2) {
                         document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[1], produseSelectate[0]);
-                        document.getElementById("modalProduse").style.display = "inline";
+                    document.getElementById("modalProduse").style.display = "block";
                     produseSelectate.length = 0;
                 }
             }
@@ -117,9 +170,9 @@
             }
 
             function getProductHtml(product, user_id) {
-                return `<div class="grid-item" onclick="memorareProdusSelectat(${product.id})"> 
+                return `<div class="grid-item" id="${product.id}"> 
                   <span class="close" onclick="sterge(${product.id},'${user_id}')">&times;</span>
-                  <table>
+                  <table onclick="memorareProdusSelectat(${product.id})" >
                    <tr>
                     <td><img class="aimg" src= "${product.img_link}"></img><td>
                     <td>
@@ -136,12 +189,18 @@
             }
 
             function getProductHtmlModal(product, user_id) {
-                return `<div class="grid-item"> 
-                    <img class="aimg" src= "${product.img_link}"></img>
+                return `<div class="grid-item" > 
+                  <table>
+                   <tr>
+                    <td><img class="aimg" src= "${product.img_link}"></img><td>
+                    <td>
                      <ul class="pret">
                        <li>Pret: ${product.price} </li>
                        <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>
                      </ul>
+                    </td>
+                   </tr>
+                  </table>
                   <br>
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;

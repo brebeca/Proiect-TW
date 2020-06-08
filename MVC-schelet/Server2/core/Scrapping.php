@@ -253,7 +253,7 @@ function detaliiAltexTelefoane($link){
                 }
                 case "Selfie Camera":
                 {
-                    $product_det["Camera frontala"] = explode(',',$value)[0];
+                    $product_det["Camera frontala"] = intval(explode('M',$value)[0]);
                     break;
                 }
                 case "Capacitate baterie (mAh)":
@@ -372,7 +372,10 @@ function detaliiAltexCalculatoare($link){
             case "USB 3.2 Type C Gen 1":
             case "HDMI":
             case "USB 3.2 Type A Gen 1":{
+                if(isset($product_det["Porturi"]))
                 $product_det["Porturi"]=$product_det["Porturi"].' '.$tag;
+                else
+                    $product_det["Porturi"]=$tag;
                 break;
             }
             case "Sistem operare":{
