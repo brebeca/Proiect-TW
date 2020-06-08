@@ -4,6 +4,6 @@
   "description": "Compara",
   "manifest_version": 2,
   "homepage_url": "http://localhost:800/",
-  "icons": {"128": "logo_mic2.png"},
-  "browser_action": {"default_icon": "logo_mic2.png"}
+  "icons": {"128": "/images/logo_mic2.png"},
+  "browser_action": {"default_icon": "/images/logo_mic2.png"}
 }
