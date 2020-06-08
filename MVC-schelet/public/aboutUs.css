@@ -250,30 +250,37 @@ ul.nav-menu li.comparaBtn a:hover{
     left: 106%;
   }
   .aboutus h2{
-       margin-top: 5%;
+    margin-top: 5%;
     font-size: 35px;
   }
   
   
-  @media (max-width:990px){
+  @media only screen and (max-width:990px){
     .aboutus{
-      width: 550px;
-      height: 400px;
-      top: 66%;
+      width: 80%;
+      height: 50%;
+      top: 73%;
       left:50%;
     }
+    .aboutus h2{
+      font-size: 20px;
+    }
     .aboutus .text{
-      width: 480px;
-      height: 400px;
+      width: 90%;
+      height: 40%;
       top: 22%;
       left: 3%;
-      position: absolute;
-      color:rgb(233, 222, 125);
       text-align: center;
-      font: 17px sans-serif;
+      font: 15px sans-serif;
     }
     .aboutus .img-wrap img{
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 640px){
+    .aboutus .text{
+      font: 12px sans-serif;
     }
   }
   

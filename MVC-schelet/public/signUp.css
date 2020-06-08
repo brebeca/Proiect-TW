@@ -4,11 +4,9 @@
     list-style: none;
     text-decoration: none;
   }
-  body {
+  body{
     font-family: 'Roboto', sans-serif;
   }
-
-  
   section{
     background: linear-gradient(182deg, #2c292f, #e0ac1c);
     background-position: center;
@@ -25,7 +23,7 @@
     height: 560px;
     background: #2c292f;
     color: #fff;
-    top: 62%;
+    top: 65%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
@@ -37,7 +35,7 @@
     height: 90px;
     border-radius: 50%;
     position: absolute;
-    top: -50px;
+    top: -45px;
     left: calc(50% - 50px);
   }
   h1{
@@ -111,15 +109,57 @@
     width: 30px;
     margin: -10px auto 5px;
   }
-  @media only screen and (max-width: 768px) {
-    
-    .signupbox{
-      margin-top: 7%;
-    }
+
+
+@media only screen and (max-width: 990px) {
+  .signupbox{
+    width: 90%;
+    height: 52%;
+    top: 74%;
+    left: 50%;
+    padding-top: 2%;
   }
+  .avatar{
+    display: none;
+  }
+  h1{
+    font-size: 16px;
+  }
+  .imputbox{
+    height: 10%;
+    width: 95%;
+    font-size: 14px; 
+    margin-bottom: 0px;
+  }
+  button{
+    width: 100%;
+    height: 20%;
+    padding: 5px;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .googlebtn{
+    height: 50px;
+    margin: 0px;
+  }
+  .googlebtn img{
+    width: 80px;
+    margin-left: 2px;
+  }
+  hr, .termeniSiConditii, .or{
+    display: none;
+  }
+  .loginbox input[type="text"], input[type="email"], input[type="password"]{
+    height: 17%;
+    font-size: 12px;  
+  }
+  p{
+    font-size: 12px;
+  }
+}
+
 
 #main {
   transition: margin-left .5s;
   padding: 16px;
-}
-  
+}  
