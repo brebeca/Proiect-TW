@@ -109,17 +109,19 @@ input {
 @media only screen and (max-width: 640px) {
   .element_mijloc{
     top: 75%;
-    height: 400px;
+    height: 300px;
+    margin-top: 10%;
   }
   .element_mijloc h2{
-    padding-bottom: 7%;
+    padding-bottom: 4%;
     font-size: 30px;
   }
   .element_mijloc p{
-    font-size: 20px;
+    font-size: 18px;
   }
   .buton_cautare{
     width: 70%;
+    margin-top: 0px;
   }
   input{
     font-size: 15px;
@@ -162,8 +164,6 @@ input {
   }
 }
 
-
-
 @media only screen and (max-width: 990px) {
   ul.nav-menu{
     padding-left: 250px;
@@ -177,6 +177,14 @@ input {
     font-size: 17px;
     transition: all .3s ease;
   }
-
+  .element_mijloc{
+    top: 62%;
+    height: 300px;
+    margin-top: 10%;
+    padding-bottom: 30%;
+  }
+  .buton_cautare{
+    padding-top: 0%;
+  }
 }
 

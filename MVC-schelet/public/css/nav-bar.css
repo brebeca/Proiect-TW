@@ -245,7 +245,9 @@ li.comparaBtn a:hover{
         font-size: 17px;
         transition: all .3s ease;
     }
-
+    .docAPIbtn{
+        float: none;
+    }
 }
 
 @media only screen and (max-width: 640px) {
