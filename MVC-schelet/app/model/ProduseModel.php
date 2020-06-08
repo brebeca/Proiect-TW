@@ -87,13 +87,15 @@ class ProduseModel extends Model{
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("disi", $rating, $pret, $disponibilitate, $id);
                     break;
+			    
                 case "produse_altex":
                     $pret = $dom->find('.Price-int', 0)->innertext;
-                    echo "\n$pret";
+                    //echo "\n$pret";
                     $pret = str_replace("&#46;", "", $pret);
+		    $pret = str_replace(".", "", $pret);
                     //nu putem lua pur si simplu cu intval pentru ca ia numai ce e la dreapta punctului...
                     //sistemul englez vs cel francez de numerotare... (primul foloseste . ca decimal point si virgula ca separator de grupuri de 3 cifre, al doilea(adica noi) invers)
-                    echo "\n$pret";
+                    //echo "\n$pret";
                     $pret = intval($pret);
 
                     //disponibilitate
@@ -102,6 +104,21 @@ class ProduseModel extends Model{
                     $sql = "UPDATE $categorie SET pret=?,disponibilitate=? WHERE id=?";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("isi", $pret, $disponibilitate, $id);
+                    break;
+			    
+		case "produse_cel":
+                    $pret = $dom->find('.productPrice', 0)->innertext;
+                    //echo "\n$pret";
+                    $pret = intval($pret);
+
+                    /*disponibilitate
+                    $disp = $dom->find('.infoStocElem', 0);
+                    $disponibilitate = $disp->innertext;
+                    echo "\n$disponibilitate";
+                    */
+                    $sql = "UPDATE $categorie SET pret=? WHERE id=?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("ii", $pret, $id);
                     break;
             }
             $stmt->execute();
