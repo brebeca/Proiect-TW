@@ -66,9 +66,6 @@
             return productsStr;
         }
 
-        // Get the modal
-        var modal = document.getElementById("modalProduse");
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("inchide")[0];
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
@@ -87,13 +84,9 @@
                             produseSelectate.push(myArr.produse[i][j]);
                     }
                 }
-                if (produseSelectate.length === 2) {     
-                    if(produseSelectate[0].details.length >= produseSelectate[1].details.length)
-                        document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[0], produseSelectate[1]);
-                    else
+                if (produseSelectate.length === 2) {
                         document.getElementById("produseSelectate").innerHTML = afisareProduseModal(produseSelectate, produseSelectate[1], produseSelectate[0]);
-                    
-                    document.getElementById("modalProduse").style.display = "block";
+                        document.getElementById("modalProduse").style.display = "inline";
                     produseSelectate.length = 0;
                 }
             }
@@ -141,17 +134,11 @@
 
             function getProductHtmlModal(product, user_id) {
                 return `<div class="grid-item"> 
-                  <table>
-                   <tr>
-                    <td><img class="aimg" src= "${product.img_link}"></img><td>
-                    <td>
+                    <img class="aimg" src= "${product.img_link}"></img>
                      <ul class="pret">
                        <li>Pret: ${product.price} </li>
                        <li>Rating: <div class="rating" style="--rating:${product.rating};"></div></li>
                      </ul>
-                    </td>
-                   </tr>
-                  </table>
                   <br>
                   <p><a class="titlu" href="${product.link}">${product.title}</a></p><br>
                 </div>`;
