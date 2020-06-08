@@ -1,87 +1,76 @@
-*{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-decoration: none;
-  }
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  section{
-    background: linear-gradient(182deg, #2c292f, #e0ac1c);
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    transition: all .5s;
-  }
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
 
-  
-  /*Elementul principal*/
-  
-  .container{
-    color: #b9ae6c;
-    padding: 40px 0;
-    width: 650px;
-    height: 610px;
-    top: 58%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    box-sizing: border-box;
-    overflow: scroll;
-  }
-  /* Scrollbar styles */
-  ::-webkit-scrollbar {
+section {
+  background: linear-gradient(182deg, #2c292f, #e0ac1c);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all 0.5s;
+}
+
+/*Elementul principal*/
+
+.container {
+  color: #b9ae6c;
+  padding: 20px 0;
+  width: 60%;
+  height: 80%;
+  top: 100px;
+  left: 20%;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+/* Scrollbar styles */
+::-webkit-scrollbar {
   width: 12px;
   height: 12px;
-  }
-  
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
   border: 1px solid #e0ac1c;
   border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-  background: #e0ac1c;  
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e0ac1c;
   border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-  background: #effcb7;  
-  }
-  .container h1{
-    padding: 0 0 50px;
-    text-align: center;
-    font-size: 40px;
-    color: #effcb7;
-  }
-  .container h3{
-    padding-left:50px;
-    margin-bottom:5px;
-    color: #f5f7a0;
-  }
-  .container p{
-    padding:10px;
-  }
-  
-  @media only screen and (max-width: 1100px) {
-    .container{
-      width: 90%;
-      height: 50%;
-      left: 50%;
-      top: 73%;
-    }
-    .container h1{
-      font-size: 25px;
-    }
-    .container p{
-      color: #2c292f;
-    }
-  }
+}
 
-
+::-webkit-scrollbar-thumb:hover {
+  background: #effcb7;
+}
+.container h1 {
+  padding: 0 0 50px;
+  text-align: center;
+  font-size: 40px;
+  color: #effcb7;
+}
+.container h3 {
+  padding-left: 50px;
+  margin-bottom: 5px;
+  color: #f5f7a0;
+}
+.container p {
+  padding: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    top: 300px; /*spatiu pentru bara cu produse coborata*/
+    height: 50%; /*si putem acoperi mai putin din ecran*/
+    width: 100%; /* si folosim tot spatiul*/
+    left: 0;
+  }
+}
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 16px;
 }

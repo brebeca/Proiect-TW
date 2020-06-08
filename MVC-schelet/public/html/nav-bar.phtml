@@ -165,15 +165,15 @@
 
 <script>
 function showMyAPIid() {
-      let id = new String(<?php echo"\"". $_SESSION['id']."\"";?>);
-      let coloredId = id.fontcolor("black");
-      document.getElementById("myID").innerHTML = new String("ID-ul tau de API este: " + coloredId);
-      let afiseazaMesaj = document.getElementById("myID");
-      if (afiseazaMesaj.style.display === "none") {
-        afiseazaMesaj.style.display = "block";
-      } else {
-        afiseazaMesaj.style.display = "none";
-      }
+    let id = new String(`<?php echo"\"". $_SESSION['id']."\"";?>`);
+    let coloredId = id.fontcolor("black");
+    document.getElementById("myID").innerHTML = new String("ID-ul tau de API este: " + coloredId);
+    
+    let afiseazaMesaj = document.getElementById("myID");
+    if (afiseazaMesaj.style.display === "none") 
+      afiseazaMesaj.style.display = "block";
+    else 
+      afiseazaMesaj.style.display = "none";
 }
 </script>
 
