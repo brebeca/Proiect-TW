@@ -1,13 +1,14 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST, GET");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
 class PostProduct
 {
+    /**
+     * @param $data
+     * @param $session
+     * se verifica daca datele necesare au fost trimise
+     * se apeleaza funcita de alcatuire a documentului is se insereaza
+     * se trimite mesaj de scuuse si id-ul produsului inserat
+     */
     public static  function add($data,$session){
         if(isset($data['category'])&&isset($data['title'])&&isset($data['link'])
             &&isset($data['img_link'])&&isset($data['price'])) {
@@ -35,6 +36,15 @@ class PostProduct
 
 
 }
+
+/**
+ * @param $session
+ * @param $data
+ * @param $source
+ * @return array
+ * in functie de sursa se apeleaza functia de sapraping pentru detaliile produsului
+ * se alcatuieste array-ul si se returneaza
+ */
 function getDocument($session,$data,$source){
    $details=array();
     if($source=='emag')

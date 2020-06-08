@@ -6,7 +6,10 @@ class ContactUsController extends Controller {
         $this->view->render();
     }
 
-    public function contactUnregister($data=''){
+    /**
+     *preia datele din uri si apeleaza functia din modelul ContactModel pentru a inregistra mesajul in bd
+     */
+    public function contactUnregister(){
             $this->model('ContactModel');
             $email=$_GET['email'];
             $telephone_nr=$_GET['telephone'];

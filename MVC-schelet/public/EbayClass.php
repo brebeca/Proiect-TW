@@ -1,6 +1,12 @@
 <?php
 class Ebay {
-
+    /**
+     * @param string $produs
+     * @param int $nr_de_produse
+     * @return bool|string
+     * daca nu se trimite numele produsului re returneaza false
+     * altfel, se apeleaza API-ul de la eBay cu informatiile prinmite ca aprametru si se returneaza raspunsul
+     */
  public static function getProductsInXml($produs='', $nr_de_produse=1){
 
     if($produs=='')return false;
@@ -15,5 +21,4 @@ class Ebay {
 
     return $raspunse;
  }
-
 }

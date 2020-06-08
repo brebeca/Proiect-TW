@@ -9,6 +9,13 @@ require_once 'simple_html_dom.php';
 
 class  AddProduct
 {
+    /**
+     * @param $session
+     * se verifica daca toate informatiile au fost trimise
+     * se apelaza functia de creare a documentului in functie de sursa
+     * se insereaza in baza de date
+     * se intoace mesaj de succes
+     */
     public static function add($session)
     {
         if (
@@ -32,6 +39,14 @@ class  AddProduct
         }
     }
 }
+
+/**
+ * @param $session
+ * @return array
+ * in functiie de parametrii trimisi in uri se alcatuieste documentul de inserat
+ * se face scrping pentru alte detalii ca pret, categorie si altele
+ * se returneaza obiectul alcatuit
+ */
 function ebayDocument($session){
     $key_word = "no_key_word";
     if (isset($_GET['key_word']))

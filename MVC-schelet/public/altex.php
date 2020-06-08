@@ -1,4 +1,11 @@
 <?php
+/**
+ * @param $categorie
+ * functia care face scrapind in site-ul celor de la altx
+ * creaza talea corespunzatoare corespunzatoare categoriei
+ * alcatuieste in switch in functie de categorie linkul de unde va face scrap
+ * inregistreaza in baza de date rezultalele extrase din pagina htlm incarcata
+ */
 function altex($categorie)
 {
     $servername = "localhost";
@@ -88,11 +95,8 @@ function altex($categorie)
     echo"\n $i produse inserate cu succes";
     $conn->close();
 }
-//altex("calculatoare");
-//altex("telefoane");
-//altex("electrocasnice");
+altex("calculatoare");
+altex("telefoane");
+altex("electrocasnice");
 altex("casti");
 
-/*
-altex("imbracaminte");//nu exista
-*/

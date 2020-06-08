@@ -39,18 +39,18 @@ class BD4{
     }
 }
 class ProduseModel extends Model{
-    private $bd2;
-    private $bd3;
-    private $bd4;
+    private $bd_emag;
+    private $bd_altex;
+    private $bd_cel;
 
     /**
      * ProduseModel constructor.
      * se intializeaza conexiunile la bazele de date cu produse
      */
     public function __construct(){
-        $this->bd2= new BD2;
-        $this->bd3= new BD3;
-        $this->bd4= new BD4;
+        $this->bd_emag= new BD2;
+        $this->bd_altex= new BD3;
+        $this->bd_cel= new BD4;
     }
 
     /**
@@ -169,8 +169,9 @@ class ProduseModel extends Model{
      * @param $id
      * @param $category
      * @return mixed
-     * se face apel la al doilea server pentru returnarea produselor unui utilizator recunoscut pirn id pe categorie pe ruta /GetProductsByCategory
+     * se face apel la al doilea server pentru returnarea produselor unui utilizator recunoscut prin id pe categorie pe ruta /GetProductsByCategory
      * se returneaza raspunsul primit
+     * id-ul se trimite criptat cu funtia md5() pentru securitate
      */
     public static function produseleMele($id,$category)
     {
@@ -190,9 +191,11 @@ class ProduseModel extends Model{
      * @return bool|string
      * se face cerere la al doilea server pentru a primi toate produsele unui anumit utilizator
      * se returneaza direct raspunsul care va fi interpretat in controller
+     * id-ul se trimite criptat cu funtia md5() pentru securitate
      */
     public static function toateProdusele($id)
     {
+        $id=md5($id);
         $cURLConnection = curl_init();
         curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsAllCategory');
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
@@ -210,9 +213,12 @@ class ProduseModel extends Model{
      * @return mixed
      * se face cerere la al doilea server pentru a primi produsele care contin in titlu $word
      * se returneaza direct raspunsul ca un array asociativ care va fi interpretat in controller
+     * adauga in headers capul session cu valoarea id-ului serverului pentru recuonasterea cererii in serverul 2
+     * sessionul se trimite criptat cu funtia md5() pentru securitate
      */
     public static function cautaProdusDbDupaNumeSrver2($word)
     {
+
         $cURLConnection = curl_init();
         $session=md5(APP_SESSION);
         curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/GetProductsByName?word='.urlencode($word));
@@ -228,21 +234,25 @@ class ProduseModel extends Model{
     }
 
     /**
-     * @param $id
-     * @param $categorie
-     * @param $sursa
+     * @param $id id-ul produslui
+     * @param $categorie categoria din care face parte (tabla )
+     * @param $sursa sursa produsului (baza de date in care se gaseste)
      * @return bool|mixed
-     *
+     * intoarce produslu cu id-ul mentionat
+     * valideaza categoiria
+     * cauta produsul in talela indicata de categorie in baza de date corspondenta sursei
+     * returneaza false daca nu recucunoste gategoia
+     * retunreaza rezultatul interogarii altfel
      */
     public  function getProdusDb($id,$categorie,$sursa){
         if($categorie=='casti'||$categorie=='calculatoare'||$categorie=='electrocasnice'||$categorie=='telefoane') {
             $sql = "SELECT * FROM " . $categorie . " where id = :id ";
             if ($sursa == "emag")
-                $cerere = $this->bd2->obtine_conexiune()->prepare($sql);
+                $cerere = $this->bd_emag->obtine_conexiune()->prepare($sql);
             else if ($sursa == "altex")
-                $cerere = $this->bd3->obtine_conexiune()->prepare($sql);
+                $cerere = $this->bd_altex->obtine_conexiune()->prepare($sql);
             else if ($sursa == "cel")
-                $cerere = $this->bd4->obtine_conexiune()->prepare($sql);
+                $cerere = $this->bd_cel->obtine_conexiune()->prepare($sql);
             $cerere->execute([
                 'id' => $id
             ]);
@@ -251,6 +261,14 @@ class ProduseModel extends Model{
         }
         else return false;
     }
+
+    /**
+     * @param $id
+     * @param $params
+     * trimte prin get produsul la serverul al doilea descris genral in parametrii din query string
+     * adauga in headers capul session cu valoarea id-ului primit pentru recuonasterea cererii in serverul 2
+     * id se trimite criptat cu funtia md5() pentru securitate
+     */
     public function trimiteProdus($id,$params){
         $cURLConnection = curl_init();
          $id=md5($id);
@@ -264,11 +282,19 @@ class ProduseModel extends Model{
         curl_close($cURLConnection);
 
         echo $res;
-        //print_r($jsonArrayResponse);
     }
+
+    /**
+     * @param $produs
+     * @param $id
+     * trimite prin post produsul primite ca parametru in body-ul cererii la serverul2
+     *  adauga in headers capul session cu valoarea id-ului primit pentru recuonasterea cererii in serverul 2
+     * id se trimite criptat cu funtia md5() pentru securitate
+     */
     public function trimiteProdus2($produs,$id){
 
         $ch = curl_init('http://localhost:'.PORT_SERVER2.'/AppInsert');
+        $id=md5($id);
         curl_setopt_array($ch, array(
             CURLOPT_POST => TRUE,
             CURLOPT_RETURNTRANSFER => TRUE,
@@ -287,9 +313,17 @@ class ProduseModel extends Model{
         $responseData = json_decode($response, TRUE);
         print_r( $responseData);
     }
+
+    /**
+     * @param $id
+     * @param $session
+     * apeleaza ruta de stergere au unui produs din serverul al doilea trimitandu-i id-ul din parametrii
+     * adauga in headers capul session cu valoarea id-ului primit pentru recuonasterea cererii in serverul 2
+     * sessionul se trimite criptat cu funtia md5() pentru securitate
+     */
     public function sterge($id, $session){
         $cURLConnection = curl_init();
-
+        $session=md5($session);
         curl_setopt($cURLConnection, CURLOPT_URL, 'http://localhost:'.PORT_SERVER2.'/DeleteProduct?id='.$id);
         curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($cURLConnection, CURLOPT_CUSTOMREQUEST, "DELETE");

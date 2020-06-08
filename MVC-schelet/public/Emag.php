@@ -1,4 +1,11 @@
 <?php
+/**
+ * @param $categorie
+ * functia care face scrapind in siteul emag
+ * creaza talea corespunzatoare corespunzatoare categoriei
+ * alcatuieste in switch in functie de categorie linkul de unde va face scrap
+ * inregistreaza in baza de date rezultalele extrase din pagina htlm incarcata
+ */
 function Emag($categorie)
 {
     $servername = "localhost";

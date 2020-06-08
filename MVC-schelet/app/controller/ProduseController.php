@@ -1,12 +1,19 @@
 <?php
 class ProduseController extends Controller {
-    public function produse(){
 
+    /**
+     * intoarce pagina de produse
+     */
+    public function produse(){
        $this->view('produse\produse');
        $this->view->render();
      }
 
-    public function alegereEbay($data=''){
+    /**
+     * se apleaza cand utilizatorului alege un produs de la eBay
+     * informatiile sunt preluate din uri si se apeleaza functia de trimtie produs din model pentru transmiterea informatiei la serverul 2
+     */
+    public function alegereEbay(){
             $params= explode('?',$_SERVER['REQUEST_URI'])[1];
             $id=$_GET['id'];
             $params=explode("&id=", $params)[0];
@@ -14,24 +21,46 @@ class ProduseController extends Controller {
             $this->model->trimiteProdus($id,$params);
     }
 
+    /**
+     * intoarce pagina de comparare
+     */
     public function compara(){
         $this->view('produse\compara');
         $this->view->render();
 
     }
 
+    /**
+     * se apleaza din pagina de comparare pentru a incerca produelse utilizatorului
+     * se apleaeaza functia din model care face cererea la serverul 2
+     * se transmite rezultul prin echo
+     */
     public function incarcaProduse(){
         $this->model('ProduseModel');
-        $produse=$this->model->toateProdusele(md5($_GET['id']));
+        $produse=$this->model->toateProdusele($_GET['id']);
         echo $produse;
     }
 
+    /**
+     * se verifica daca sunt setati parametrii necereai in url si se apeleaza funtia de sterge din model
+     */
     public function stergeProdus(){
          $this->model('ProduseModel');
         if(isset($_GET['session'])&&isset($_GET['product_id']))
             $this->model->sterge($_GET['product_id'],$_GET['session']);
+        else {
+            http_response_code(400);
+            echo json_encode(array("Success" => "false","Reason" => "Need more data"));
+        }
     }
 
+    /**
+     * se verifica sursa
+     * se apeleaza cu parametrii primiti functioa din model pentru returnarea produsului
+     * daca esueaza se trimite mesaj de fail
+     * se seteaza ratingul (in unele caruri nu exista rating)
+     *  se apeleaza funtia din model care trimte produsul la al doilea server
+     */
     public function alegere(){
 
         $id=$_GET['id'];
@@ -44,7 +73,10 @@ class ProduseController extends Controller {
 
         $produs=$this->model->getProdusDb($_GET['index'], $_GET['category'],$source);
         if($produs==false)
-        {}
+        {
+            http_response_code(500);
+            echo json_encode(array("Success" => "false","Reason" => "Internal error"));
+        }
         else {
             if(isset($produs['rating']))
                 $rating=$produs['rating'];
@@ -57,6 +89,9 @@ class ProduseController extends Controller {
         }
     }
 
+    /**
+     * se parcuge inputul din body-ul cererii si se genreaza feee-ul si se trimie la client
+     */
     public function RSS(){
         $rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
         $rssfeed .= '<rss version="2.0">';

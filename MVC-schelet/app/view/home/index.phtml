@@ -63,14 +63,9 @@ if (isset($_GET['login_succes'])) {
 
 
 <section></section>
-
   <?php      include  HTMLS.'footer.phtml';
-   ?>
-<?php
-if(isset($_GET["session_expired"]))
- echo"   <script>alert(\"Your session has expired. Please login again!\");</script>";
 
-else if(isset($_GET["login_succes"])){
+if(isset($_GET["login_succes"])){
 echo"   <script>alert(\"Hello ". $_SESSION['username']." !\");</script>";
 }
 else if(isset($_GET["logout"])){
@@ -80,6 +75,8 @@ echo"   <script>alert(\"Logout of account! !\");</script>";
 else if(isset($_GET["cautare_esuata"])){
   echo"   <script>alert(\"Cautare esuata !\");</script>";
 }
+else if(isset($_GET["error"]))
+  echo"   <script>alert(\"Eroare interna!\");</script>";
 
 ?>
 

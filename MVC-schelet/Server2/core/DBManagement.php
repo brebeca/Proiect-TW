@@ -80,9 +80,9 @@ class DBManagement
         return false;
     }
 
-    public function deleteProduct()
+    public function deleteProduct($id)
     {
-       $this->products_collection->deleteMany([]);
+       $this->products_collection->deleteOne(array("id"=>intval($id)));
     }
 
     public function updatePrice($id, $new_price)

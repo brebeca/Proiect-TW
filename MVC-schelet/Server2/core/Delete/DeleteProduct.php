@@ -4,6 +4,13 @@
 class DeleteProduct
 {
 
+    /**
+     * @param $session
+     * verifica daca a fost trimis un id pentru recuoasterea pordusului
+     * se verifica daca produsul exista in lista de comparare au utilizatorului cu id-ul $session in baza de date
+     * daca nu exista se trmite mesaj de eroare
+     * daca estista apeleaza funtia de stergere si inoarce mesaj de succes
+     */
     public static function delete($session){
 
         if(isset($_GET['id'])){
@@ -15,7 +22,7 @@ class DeleteProduct
                 return;
             }
             else {
-                $db->deleteProduct($_GET['id']);
+               $db->deleteProduct($_GET['id']);
                 http_response_code(200);
                 echo json_encode(array("Success" => "true"));
                 return;
