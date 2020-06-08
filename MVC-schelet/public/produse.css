@@ -83,6 +83,7 @@ ul.nav-menu li a:hover{
 .grid-item:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
 .compara {
   display: inline-block;
   border: 2px outset orange;
@@ -93,7 +94,6 @@ ul.nav-menu li a:hover{
   display: inline-block;
   cursor: pointer;
 }
-
 .compara:hover {
   background-color: orange;
 }
@@ -232,6 +232,7 @@ ul.nav-menu li a:hover{
 
 
 /*The products table*/
+
 table{
     border: 1px solid black;
     border-spacing: 5px;
@@ -264,4 +265,26 @@ td:hover{
 
 #main {
   transition: margin-left .5s;
+}
+
+
+@media only screen and (max-width: 640px) {
+  .filtre{
+   padding: 15%;
+   width: 150px;
+   padding-bottom: 0px;
+  } 
+  .filtre .content{
+   padding: 15%;
+   width: 150px;
+   padding-bottom: 0px;
+  } 
+  .filtre .container{
+   margin-bottom: 12px;
+   font-size: 15px;
+   width: 150px;
+ }
+ .filtre .ratm .content {
+   width: 150px;
+ }
 }
