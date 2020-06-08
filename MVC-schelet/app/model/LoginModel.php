@@ -16,6 +16,7 @@
             'email'=>$email
         ]);
         $result=$cerere->fetchAll();
+        print_r($result);
        if(sizeof( $result)==0)
          return null;
         return $result;

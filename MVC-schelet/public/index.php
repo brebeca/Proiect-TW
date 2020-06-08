@@ -7,9 +7,10 @@ define('DATA', ROOT . 'public' .DIRECTORY_SEPARATOR );
 define('CORE', ROOT . 'app' .DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR);
 define('CONTROLLER', ROOT . 'app' .DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR);
 define('HTMLS', ROOT . 'public' .DIRECTORY_SEPARATOR.'html'. DIRECTORY_SEPARATOR);
+define('IMG', ROOT . 'public' .DIRECTORY_SEPARATOR.'images'. DIRECTORY_SEPARATOR);
 
 
-$modules=[ROOT, APP, CORE, CONTROLLER,DATA,HTMLS];
+$modules=[ROOT, APP, CORE, CONTROLLER,DATA,HTMLS,IMG];
 
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."config.php";
 require_once ROOT. 'public' . DIRECTORY_SEPARATOR ."simple_html_dom.php";
