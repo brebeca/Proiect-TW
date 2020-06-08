@@ -57,7 +57,9 @@
      /**
       * @param $email
       * @return bool|mixed
-      * se
+      * se verifica in baza de date daca exista o inregistrare cu emailul din parametrii
+      * daca exista se intoarce sesiunea utilizatorului
+      * altfel se intoarce true
       */
     public function sePoateIregistra( $email){
         $sql = "SELECT * FROM users where  email = :email ";
