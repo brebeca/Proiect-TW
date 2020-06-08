@@ -24,10 +24,10 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR, $modu
 
 new Main();
 /*$db= new DBManagement();
-$db->delete_temp_users();
-print_r(Scrapping::detalii_altex("https://altex.ro/casti-promate-tribe-cu-fir-in-ear-microfon-rosu/cpd/CASTRIBERD/","casti"));
-*/
-//print_r(Scrapping::detalii_emag("https://www.emag.ro/laptop-gaming-hp-pavilion-15-ec0017nq-cu-procesor-amd-ryzentm-7-3750h-pana-la-4-00-ghz-15-6-full-hd-8gb-256gb-ssd-nvidiar-geforcer-gtx-1660-ti-max-q-6gb-free-dos-black-9qe36ea/pd/D7K5CMMBM/","calculatoare"));
+$db->delete_temp_users();*/
+//print_r(Scrapping::detaliiAltex("https://altex.ro/casti-promate-tribe-cu-fir-in-ear-microfon-rosu/cpd/CASTRIBERD/","casti"));
+
+//print_r(Scrapping::detaliiEmag("https://www.emag.ro/laptop-gaming-hp-pavilion-15-ec0017nq-cu-procesor-amd-ryzentm-7-3750h-pana-la-4-00-ghz-15-6-full-hd-8gb-256gb-ssd-nvidiar-geforcer-gtx-1660-ti-max-q-6gb-free-dos-black-9qe36ea/pd/D7K5CMMBM/","calculatoare"));
 //print_r(Scrapping::detaliiCel("https://www.cel.ro/telefoane-mobile/telefon-mobil-apple-iphone-7-32gb-rose-gold-pMiYwMDIr-l/","telefoane"));
 //print_r(Scrapping::detaliiCel("https://www.cel.ro/casti/casti-somic-senicc-st-2628-black-pOCszMTIs-l/","casti"));
 

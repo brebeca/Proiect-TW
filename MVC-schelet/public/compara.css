@@ -6,7 +6,7 @@
 }
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: white;
+  background-color: #d3d9df;
 }
 .sidebar {
   position: fixed;
@@ -167,7 +167,7 @@ a.rssFeed:hover {
   padding-left: 3%;
   padding-right: 3%;
   padding-top: 3%;
-  margin-left: 180px;
+  margin-left: 10vh;
   column-gap: 4vh;
   grid-row-gap: 3vh;
   grid-template-rows: 500px;
@@ -206,7 +206,6 @@ a.rssFeed:hover {
   mix-blend-mode: multiply;
   width: 80%;
   height: 80%;
-  padding: 0px;
 }
 
 .grid-item .pret {
@@ -281,14 +280,17 @@ h3.categorie{
    display: none; 
    position: fixed; 
    z-index: 1; /*Sit on top*/
-   top: 8.5%;
+   top: 0;
    left: 0%;
    width: 2000px;
-   height: 650px; 
+   height: 100%;
    overflow: auto; /*Enable scroll if needed*/
    background-color: rgb(0,0,0); 
    background-color: rgba(0,0,0,0.7);
+
 }
+
+
 /* The Close Button */
 .inchide {
     color: #111;
@@ -303,42 +305,61 @@ h3.categorie{
     text-decoration: none;
     cursor: pointer;
 }
-
+#cmpr {
+    display: table;
+    border-collapse: collapse;
+}
+#cmpr .als {
+    padding-left: 4px;
+    border-right: 1px solid lightgray;
+}
+.pdx {
+    padding: 10px;
+}
+#cmpr .asl {
+    padding-left: 4px;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 2vh;
+    color: black;
+    border-bottom: 1px solid lightgray;
+}
+grid-item table:after {
+    content:'';
+    clear:both;
+    float: none;
+    display: table;
+}
 /* Modal Content/Box */
 .modal-content{
    display: inline-table;
    font-family: "Times New Roman", Times, serif;
-   background-color: #e0ac1c;
+   background-color: white;
    color: #004d00;
    margin: 4%; 
    padding: 1%;
-   padding-left: 20%;
+   border-radius: 3.5vh;
    border: 1px solid #888;
-   width: 1100px;
-   height: 400px; 
+   width: 50%;
    padding-bottom: 2%;
-   overflow: scroll;
 }
-
-/* Scrollbar styles */
 ::-webkit-scrollbar {
-   width: 12px;
-   height: 12px;
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-   border: 1px solid #e0ac1c;
-   border-radius: 10px;
+    border: 1px solid #e0ac1c;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background: #004d00;  
-   border-radius: 10px;
+    background: #004d00;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: #004d00;  
-}  
+    background: #004d00;
+}
 
 @media only screen and (max-width: 990px){
   .modal-content{ 
