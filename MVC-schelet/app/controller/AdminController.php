@@ -63,6 +63,18 @@ class AdminController extends Controller
     public function GidUtilizare(){
         include HTMLS.'GidUtilizare.html';
     }
+    public function UML1(){
+        header('Content-type:image/png');
+        readfile(IMG.'UMLServer1.png');
+    }
+    public function UML2(){
+        header('Content-type:image/png');
+        readfile(IMG.'UMLSv2.png');
+    }
+    public function Arhitectura(){
+        header('Content-type:image/png');
+        readfile(IMG.'Arhitectura.png');
+    }
 
 
 }

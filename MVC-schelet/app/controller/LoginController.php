@@ -16,13 +16,11 @@ class LoginController extends Controller {
         } else {
           $this->model('LoginModel');
           $params = explode('&', $data);
-          $email = urlencode(explode('=', $params[0])[1]);
+          $email = $_GET['email'];
           $password = explode('=', $params[1])[1];
-
-          $result_of_db_search = $this->model->performLogin($password, $email);
+         $result_of_db_search = $this->model->performLogin($password, $email);
           if ($result_of_db_search != null) {
-
-            header("Location:/index.php?login_succes=1&user=".$result_of_db_search[0]['username']."&id=".$result_of_db_search[0]['session']);
+              header("Location:/index.php?login_succes=1&user=".$result_of_db_search[0]['username']."&id=".$result_of_db_search[0]['session']);
           } else {
            header("Location:/login/login?login_fail=1");
          }
