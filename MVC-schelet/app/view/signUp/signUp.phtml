@@ -38,12 +38,12 @@ include('googleConfig.php');
       <hr>
       <p class="or">SAU</p>
     </form>  
-    <a href= <?php echo "\"".$google_client->createAuthUrl()."\""?> >
-      <button  class="googlebtn">
+    <form method="post" action=<?php echo "\"".$google_client->createAuthUrl()."\""?> >
+      <button class="googlebtn">
         <p>Conecteaza-te cu </p>
         <img src="/images/google_logo.png" alt="Google logo">
       </button>
-    </a>
+    </form>
     <p>Ai deja un cont? <a href="/login/login"> Intra in cont</a></p>
    </div>
 
