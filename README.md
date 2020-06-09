@@ -13,3 +13,7 @@ MVC-schelet/public/images
 
 Gidul de utilizate si Raportul html se alfal in :
 MVC-schelet/public/html
+
+Filmul de prezentare se gaseste la linkul:
+https://youtu.be/5y_vo-GwdJ0
+
