@@ -107,10 +107,11 @@ li.comparaBtn a:hover{
    background: #333;
    float: right;
    height: 45px;
-   width: 130px;
+   width: 170px;
    line-height: 40px;
    box-sizing: border-box;
-   padding: 0px;
+   padding-top: 1%;
+   margin-top: 0px;
 }
 
 .docAPIbtn:hover{
@@ -118,7 +119,7 @@ li.comparaBtn a:hover{
    background: rgb(47, 79, 90);
 }
 
-/* The Modal (background) */
+/* The API Documentation Modal (background) */
 .modal{
    display: none;
    position: fixed;
@@ -233,20 +234,10 @@ li.comparaBtn a:hover{
 }
 
 @media only screen and (max-width: 990px){
-    ul.nav-menu{
-        padding-left: 250px;
-        padding-right:0;
-        transition: all .3s ease;
-    }
-    ul.nav-menu li a{
-        border-bottom:  1px black solid;
-        border-left:  1px black solid;
-        border-right:  1px black solid;
-        font-size: 17px;
-        transition: all .3s ease;
-    }
     .docAPIbtn{
         float: none;
+        margin-left: 20%;
+        margin-top: 0px;
     }
 }
 
@@ -271,6 +262,11 @@ li.comparaBtn a:hover{
         width: 70%;
         margin: 15%;
         margin-bottom: 25px;
+        margin-top: 0px;
+    }
+    .docAPIbtn{
+        float: none;
+        margin-left: 0px;
         margin-top: 0px;
     }
 }
