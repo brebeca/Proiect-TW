@@ -16,7 +16,9 @@
 </head>
 
 <body>
+
 <div id="main">
+
 <?php
   include HTMLS . 'side-bar.phtml';
   include HTMLS . 'nav-bar.phtml';
@@ -45,8 +47,10 @@
   </div>
 </div>
 
+</div>
+
 <script src="/JS-uri/navro.js"></script>
-<script >
+<script>
   if(true===<?php  if(isset($_SESSION['id'])) echo "true"; else echo "false";?>) {
     id=<?php if(isset( $_SESSION['id']))echo"\"". $_SESSION['id']."\"";else echo "\"-\""?>;
   }

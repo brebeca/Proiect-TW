@@ -125,7 +125,7 @@ label #cancel{
   height: 100%;
   width: 5px;
   background:#004d00;
-  transform: 0.5s;
+  transition: 0.5s;
   transform: rotate(0deg) skewY(-45deg);
 }
 .criteriiCompBtn a:after{
@@ -136,7 +136,7 @@ label #cancel{
   height: 5px;
   width: 100%;
   background:#004d00;
-  transform: 0.5s;
+  transition: 0.5s;
   transform: rotate(0deg) skewX(-45deg);
 }
 .criteriiCompBtn a:hover{

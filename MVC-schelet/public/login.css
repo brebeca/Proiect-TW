@@ -85,12 +85,22 @@
      color: #fff;
      font-size: 23px;
      border-radius: 20px;
-}
-.formBtn:hover{
+ }
+ .formBtn:hover{
     cursor: pointer;
     background: #ffc107;
     color: #000;
-}
+ }
+ .formBtn a{
+    background: transparent;
+    color: #fff;
+    font-size: 23px;
+ }
+ .formBtn a:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+ }
 
 
 @media only screen and (max-width: 640px){
