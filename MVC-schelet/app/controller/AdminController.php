@@ -8,8 +8,8 @@ class AdminController extends Controller
     public function home()
     {
         $this->model('loginModel');
-        if(isset($_GET['code']))
-            if($this->model->adminLogin($_GET['code'])===true){
+        if(isset($_GET['password']))
+            if($this->model->adminLogin($_GET['password'])===true){
                 $this->view('admin\home');
                 $this->view->render();
             }

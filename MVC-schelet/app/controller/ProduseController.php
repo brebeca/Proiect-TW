@@ -103,18 +103,19 @@ class ProduseController extends Controller {
         $data = json_decode(file_get_contents('php://input'), true);
         foreach ($data as $index=>$item){
             $rssfeed .= '<item>';
-            $rssfeed .= '<title>' . $item['title'] . '</title>';
+            $rssfeed .= '<title>' . explode(' ',$item['title'])[0]. '</title>';
             $description='';
-          /*  if(is_array($item['description'])){
-                foreach ($item['description'] as $key=>$value){
-                    if(!is_array($value))
-                        $description.='<'.$key.'>'.$value.'</'.$key.'>';
-                }
-                $rssfeed .= '<description>' .$description. '</description>';
-            }
-            else*/
-                $rssfeed .= '<description> Categoria : '  . $item['category'] . '</description>';
-            $rssfeed .= '<link>"' . explode('#',$item['link'] )[0]. '"</link>';
+            /*  if(is_array($item['description'])){
+                  foreach ($item['description'] as $key=>$value){
+                      if(!is_array($value))
+                          $description.='<'.$key.'>'.$value.'</'.$key.'>';
+                  }
+                  $rssfeed .= '<description>' .$description. '</description>';
+              }
+              else*/
+            $rssfeed .= '<description> Categoria : '  . $item['category'] . '</description>';
+            $link =str_replace('&','',explode('#',$item['link'] )[0]);
+            $rssfeed .= '<link>"' .$link. '"</link>';
             $rssfeed .= '</item>';
         }
 
@@ -124,7 +125,7 @@ class ProduseController extends Controller {
     }
 
     public function renderRSS(){
-        header("Content-Type: text/xml");
+       header("Content-Type: text/xml");
         echo $_GET['rss'];
     }
 }

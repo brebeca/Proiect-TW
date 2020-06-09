@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin page</title>
+    <title>Admin</title>
 </head>
 <body>
 
 <h3>Admin page</h3>
 
 <form action="/admin/changePassword">
-  <label for="fname">New password:</label><br>
-  <input type="text" id="fname" name="new_password" ><br>
-  <input type="submit" value="Submit">
+    <label for="fname">New password:</label><br>
+    <input type="text" id="fname" name="new_password" ><br>
+    <input type="submit" value="Submit">
 </form>
 <form action="http://localhost/phpmyadmin/sql.php?server=1&db=<?php echo DB_NAME ?>&table=users&pos=0">
     <input type="submit" value="Go to database" />
@@ -20,7 +20,7 @@
     <input type="submit" value="See all user messages " />
 </form>
 <form action="/admin/newUserMessages">
-    <input type="submit" value="See all user messages " />
+    <input type="submit" value="See new user messages " />
 </form>
 
 </body>
